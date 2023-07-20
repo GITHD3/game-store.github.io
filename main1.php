@@ -11,7 +11,8 @@ session_start();
 
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js"></script>
 
 </head>
@@ -28,16 +29,18 @@ session_start();
     body {
         font-family: sans-serif;
         background: linear-gradient(#404ccc, #03e9f4);
-    }   
-    .side24{
-        display:flex;
+    }
+
+    .side24 {
+        display: flex;
         flex-direction: column;
     }
+
     @media (max-width: 768px) {
-            .side24{
-                flex-direction: row;
-            }
+        .side24 {
+            flex-direction: row;
         }
+    }
 </style>
 
 <body>
@@ -153,7 +156,7 @@ session_start();
         </div>
 
 
-        <div class="col mx-9">
+        <div class="relative col mx-8">
             <div class="col-lg-9" id="flipcard">
                 <div class="card-container" id="cardContainer1">
                     <div class="card-1 flip-card">
@@ -176,8 +179,7 @@ session_start();
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-9" id="flipcard">
+            </div><br>            <div class="col-lg-9" id="flipcard">
                 <div class="card-container" id="cardContainer2">
                     <div class="card-1 flip-card">
                         <div class="flip-card-inner">
@@ -241,7 +243,7 @@ session_start();
                         <div class="card">
                             <img class="card-img-top " src="img/Grand Theft Auto 3.webp">
                             <div class="card-block">
-                            <form method="get" action="seppage.php">
+                                <form method="get" action="seppage.php">
                                     <input type="hidden" name="gameName" value="Grand Theft Auto 3">
                                     <button type="submit" name="buy" class="btn btn-dark w-100">
                                         <h6 class=" card-title mb-3">Grand Theft Auto 3</h6>
@@ -257,7 +259,7 @@ session_start();
                         <div class="card">
                             <img class="card-img-top " src="img/Minecraft.webp">
                             <div class="card-block">
-                            <form method="get" action="seppage.php">
+                                <form method="get" action="seppage.php">
                                     <input type="hidden" name="gameName" value="Minecraft">
                                     <button type="submit" name="buy" class="btn btn-dark w-100">
                                         <h6 class=" card-title mb-3">Minecraft</h6>
@@ -273,7 +275,7 @@ session_start();
                         <div class="card">
                             <img class="card-img-top " src="img/Call Of Duty Modern Warfare.webp">
                             <div class="card-block">
-                            <form method="get" action="seppage.php">
+                                <form method="get" action="seppage.php">
                                     <input type="hidden" name="gameName" value="Call Of Duty Modern Warfare">
                                     <button type="submit" name="buy" class="btn btn-dark w-100">
                                         <h6 class=" card-title mb-3">COD - Modern Warfare</h6>
@@ -289,7 +291,7 @@ session_start();
                         <div class="card">
                             <img class="card-img-top " src="img/Wolfenstein New Order.webp">
                             <div class="card-block">
-                            <form method="get" action="seppage.php">
+                                <form method="get" action="seppage.php">
                                     <input type="hidden" name="gameName" value="Wolfenstein New Order">
                                     <button type="submit" name="buy" class="btn btn-dark w-100">
                                         <h6 class=" card-title mb-3">Wolfenstein New Order</h6>
@@ -305,7 +307,7 @@ session_start();
                         <div class="card">
                             <img class="card-img-top " src="img/Resident Evil 2.webp">
                             <div class="card-block">
-                            <form method="get" action="seppage.php">
+                                <form method="get" action="seppage.php">
                                     <input type="hidden" name="gameName" value="Resident Evil 2">
                                     <button type="submit" name="buy" class="btn btn-dark w-100">
                                         <h6 class=" card-title mb-3">Resident Evil 2</h6>
@@ -322,7 +324,7 @@ session_start();
                         <div class="card">
                             <img class="card-img-top " src="img/Assassins Creed Odyssey.webp">
                             <div class="card-block p-0">
-                            <form method="get" action="seppage.php">
+                                <form method="get" action="seppage.php">
                                     <input type="hidden" name="gameName" value="Assassins Creed Odyssey">
                                     <button type="submit" name="buy" class="btn btn-dark w-100">
                                         <h6 class=" card-title mb-3">Assassins Creed Odyssey</h6>
@@ -338,7 +340,7 @@ session_start();
                         <div class="card">
                             <img class="card-img-top " src="img/Counter-Strike Global Offensive.webp">
                             <div class="card-block">
-                            <form method="get" action="seppage.php">
+                                <form method="get" action="seppage.php">
                                     <input type="hidden" name="gameName" value="Counter-Strike Global Offensive">
                                     <button type="submit" name="buy" class="btn btn-dark w-100">
                                         <h6 class=" card-title mb-3">Counter-Strike: GO </h6>
@@ -354,7 +356,7 @@ session_start();
                         <div class="card">
                             <img class="card-img-top " src="img/roblox.webp">
                             <div class="card-block">
-                            <form method="get" action="seppage.php">
+                                <form method="get" action="seppage.php">
                                     <input type="hidden" name="gameName" value="Roblox">
                                     <button type="submit" name="buy" class="btn btn-dark w-100">
                                         <h6 class=" card-title mb-3">Roblox</h6>
@@ -371,7 +373,7 @@ session_start();
                         <div class="card">
                             <img class="card-img-top " src="img/Cyberpunk2077.webp">
                             <div class="card-block">
-                            <form method="get" action="seppage.php">
+                                <form method="get" action="seppage.php">
                                     <input type="hidden" name="gameName" value="Cyberpunk2077">
                                     <button type="submit" name="buy" class="btn btn-dark w-100">
                                         <h6 class=" card-title mb-3">Cyberpunk2077</h6>
@@ -406,7 +408,7 @@ session_start();
                         <div class="card">
                             <img class="card-img-top " src="img/Grand Theft Auto V.webp">
                             <div class="card-block">
-                            <form method="get" action="seppage.php">
+                                <form method="get" action="seppage.php">
                                     <input type="hidden" name="gameName" value="Grand Theft Auto V">
                                     <button type="submit" name="buy" class="btn btn-dark w-100">
                                         <h6 class=" card-title mb-3">Grand Theft Auto V</h6>
@@ -422,7 +424,7 @@ session_start();
                         <div class="card">
                             <img class="card-img-top " src="img/Counter-Strike Global Offensive.webp">
                             <div class="card-block">
-                            <form method="get" action="seppage.php">
+                                <form method="get" action="seppage.php">
                                     <input type="hidden" name="gameName" value="Counter-Strike Global Offensive ">
                                     <button type="submit" name="buy" class="btn btn-dark w-100">
                                         <h6 class=" card-title mb-3">Counter-Strike: GO </h6>
@@ -438,7 +440,7 @@ session_start();
                         <div class="card">
                             <img class="card-img-top " src="img/Cyberpunk2077.webp">
                             <div class="card-block">
-                            <form method="get" action="seppage.php">
+                                <form method="get" action="seppage.php">
                                     <input type="hidden" name="gameName" value="Cyberpunk2077">
                                     <button type="submit" name="buy" class="btn btn-dark w-100">
                                         <h6 class=" card-title mb-3">Cyberpunk2077</h6>
@@ -454,7 +456,7 @@ session_start();
                         <div class="card">
                             <img class="card-img-top " src="img/Grand Theft Auto 3.webp">
                             <div class="card-block">
-                            <form method="get" action="seppage.php">
+                                <form method="get" action="seppage.php">
                                     <input type="hidden" name="gameName" value="Grand Theft Auto 3">
                                     <button type="submit" name="buy" class="btn btn-dark w-100">
                                         <h6 class=" card-title mb-3">Grand Theft Auto 3</h6>
@@ -470,7 +472,7 @@ session_start();
                         <div class="card">
                             <img class="card-img-top " src="img/Assassins Creed Odyssey.webp">
                             <div class="card-block p-0">
-                            <form method="get" action="seppage.php">
+                                <form method="get" action="seppage.php">
                                     <input type="hidden" name="gameName" value="Assassins Creed Odyssey">
                                     <button type="submit" name="buy" class="btn btn-dark w-100">
                                         <h6 class=" card-title mb-3">Assassins Creed Odyssey</h6>
@@ -486,7 +488,7 @@ session_start();
                         <div class="card">
                             <img class="card-img-top " src="img/Wolfenstein New Order.webp">
                             <div class="card-block">
-                            <form method="get" action="seppage.php">
+                                <form method="get" action="seppage.php">
                                     <input type="hidden" name="gameName" value="Wolfenstein New Order">
                                     <button type="submit" name="buy" class="btn btn-dark w-100">
                                         <h6 class=" card-title mb-3">Wolfenstein : New Order</h6>
@@ -502,7 +504,7 @@ session_start();
                         <div class="card">
                             <img class="card-img-top " src="img/Resident Evil 2.webp">
                             <div class="card-block">
-                            <form method="get" action="seppage.php">
+                                <form method="get" action="seppage.php">
                                     <input type="hidden" name="gameName" value="Resident Evil 2">
                                     <button type="submit" name="buy" class="btn btn-dark w-100">
                                         <h6 class=" card-title mb-3">Resident Evil 2</h6>
@@ -607,21 +609,21 @@ session_start();
     }
 
     @media (max-width: 800px) {
-  .sides24 {
-    flex-direction: column;
-    align-items: center;
-  }
+        .sides24 {
+            flex-direction: column;
+            align-items: center;
+        }
 
-  #carouselVideoExample {
-    width: 100%;
-  }
+        #carouselVideoExample {
+            width: 100%;
+        }
 
-  #flipcard {
-    
-    width: 100%;
-    margin-top: 10px;
-  }
-}
+        #flipcard {
+
+            width: 100%;
+            margin-top: 10px;
+        }
+    }
 
     /* Media query for desktop view */
     @media (min-width: 400px) {
@@ -674,7 +676,8 @@ session_start();
 
 
     #flipcard {
-        width: 100%;
+        width: 90%;
+        box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
     }
 
     #cardContainer1 {
@@ -685,7 +688,6 @@ session_start();
     }
 
     .flip-card {
-        box-sizing: border-box;
         font-family: 'Segoe UI', sans-serif;
         text-align: center;
         width: 100%;
@@ -697,9 +699,9 @@ session_start();
 
     .flip-card-inner {
         width: 100%;
-        position: relative;
+        position: absolute;
         height: 100%;
-        transition: 0.65s;
+        transition: 0.55s;
         transform-style: preserve-3d;
     }
 
@@ -713,8 +715,7 @@ session_start();
 
     .flip-card-front,
     .flip-card-back {
-        width: 100%;
-        height: 100%;
+
         position: absolute;
         backface-visibility: hidden;
     }
@@ -728,20 +729,24 @@ session_start();
     .flip-card-front {
         display: grid;
         place-items: center;
-        border: 1px solid rgba(151, 149, 149, 0.466);
         border-radius: 10px;
     }
 
     .flip-card-back {
+        align-items: center;
+        width: 100%;
+        height: 100%;
         background-color: #191e24;
         transform: rotateY(180deg);
-        box-shadow: 10px 10px 10px lightgray;
-        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 22px 42px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        border-radius: 6px;
     }
 
     .flip-card-front img {
-        max-width: 90%;
+        height: 100%;
+        max-width: 80%;
         min-width: 50%;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
         background-size: cover;
     }
 

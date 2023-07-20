@@ -7,9 +7,9 @@ nav {
   z-index: 12;
 }
 .container-fluid {
-  width: 100%;
-  padding-right: 0px ;
-  padding-left: 0px;
+  width: 80%;
+  padding-right: 10px ;
+  padding-left: 10px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -109,3 +109,4 @@ nav {
 
   vertical-align: middle;
 }
+

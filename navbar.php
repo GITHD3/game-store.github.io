@@ -16,27 +16,36 @@
       align-items: center;
     }
 
-    @media (max-width: 767px) {
+    @media (min-width: 767px) {
       .navbar-nav.ml-auto.mb-7.mb-lg-0 {
         margin-top: 8px;
       }
     }
 
     #navbarAZ {
-      background-color: #545454;
-      padding-left: 0px;
+      border-color: rgba(211, 211, 211, 0.5);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 30px;
+      margin: 10px;
     }
 
-    @media (max-width: 767px) {
+    
+    @media (max-width: 400px) {
       .navbar-toggler[aria-expanded="false"]~.navbar-collapse #imglogotemp {
         display: none;
       }
+     
     }
+    
   </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-sm navbar-dark  w-0 p-0" id="navbarAZ">
+  <nav class="navbar navbar-expand-sm navbar-dark p-0" id="navbarAZ">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>

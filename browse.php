@@ -17,13 +17,15 @@ include 'navbar.php';
             background-repeat: no-repeat;
             background-attachment: fixed;
             height: 100%;
+            padding-bottom: 20px;
         }
 
         .container {
             display: flex;
             justify-content: center;
-            padding-top: 15px;
-            gap: 9px;
+            padding-top: 20px;
+            gap: 10px;
+            max-width: 98%;
         }
 
         .main,
@@ -34,7 +36,7 @@ include 'navbar.php';
             border-style: solid;
             border-width: 1px; */
 
-            border-color: rgba(211, 211, 211, 0.5); 
+            border-color: rgba(211, 211, 211, 0.5);
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
             -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
@@ -48,6 +50,7 @@ include 'navbar.php';
             width: 80%;
             padding-right: 8px;
             padding-left: 8px;
+            padding-bottom: 20px;
         }
 
         .sidebar {
@@ -109,27 +112,7 @@ include 'navbar.php';
             color: slategray;
         }
 
-        .input1,
-        .input2 {
-            color: White;
-            background-color: black;
-            font-family: Arial, Helvetica, sans-serif;
-            border-style: solid;
-            border-radius: 4px;
-            border-color: slategray;
-            padding-left: 6px;
-            padding-right: 6px;
-            padding-top: 6px;
-            padding-bottom: 6px;
-        }
 
-        .input1:hover,
-        .input2:hover {
-            background-color: #363636;
-            border-radius: 6px;
-            text-decoration: none;
-            border-color: darkgrey;
-        }
 
         .flip-card {
             background-color: rgba(218, 218, 218, 0.3);
@@ -195,19 +178,75 @@ include 'navbar.php';
         }
 
         .temp {
-            padding-left: 58px;
+            padding-left: 60px;
         }
     </style>
 </head>
 
 <body>
+    <link href="https://fonts.cdnfonts.com/css/games" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div class="container">
+
         <div class="main">
             <form method="POST">
                 <div class="temp">
-                    <input class="input1" type="text" name="searchstring" placeholder="Enter Game name">
-                    <input class="input2" type="submit" name="submit" value="Search"><br><br>
+                    <input class="input1" type="text" name="searchstring" placeholder="Browse">
+                    <button class="input2" type="submit" name="submit"><i class="fa fa-search"></i></button><br><br>
+
                 </div>
+                <style>
+                    /* Assuming you have included Font Awesome CSS for the icon */
+                    /* If not, add the link to Font Awesome CSS in your HTML head section */
+
+                    .search-box {
+                        display: flex;
+                        align-items: center;
+                        max-width: 400px;
+                        /* You can adjust the maximum width as needed */
+                        margin: 0 auto;
+                        /* Center the search box */
+                        border: 2px solid #ccc;
+                        overflow: hidden;
+                        /* Prevent the icon from overflowing */
+                        color: whitesmoke;
+                    }
+
+                    .input1 {
+                        flex: 1;
+                        padding: 10px 15px;
+                        border-radius: 10px;
+                        font-size: 16px;
+                        border: none;
+                        background-color: rgba(135, 206, 250, 0.9);
+                        text-align: center;
+                        overflow: hidden;
+                    }
+
+                    .input2 {
+                        border-radius: 10px;
+                        background-color: #007bff;
+                        /* Change this color as per your design */
+                        color: #fff;
+                        border: none;
+                        padding: 10px 15px;
+                        cursor: pointer;
+                        transition: background-color 0.3s ease;
+                    }
+
+                    /* Adjust the icon size */
+                    .input2 i {
+                        font-size: 20px;
+                    }
+
+                    /* Responsive styles */
+                    @media screen and (max-width: 768px) {
+                        .search-box {
+                            max-width: 100%;
+                            /* Adjust the width for mobile screens */
+                        }
+                    }
+                </style>
                 <?php
                 if (isset($_POST['submit']) || isset($_POST['listvalue'])) {
                     try {
@@ -218,13 +257,13 @@ include 'navbar.php';
                         $db = new PDO($dsn, $username, $password);
                         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                        if(isset($_POST['searchstring']) || isset($_POST['listvalue'])) { // Check if searchstring is set
-                            if(isset($_POST['searchstring']))
-                            $searchString = $_POST['searchstring'];
-                            else if(isset($_POST['listvalue']))
+                        if (isset($_POST['searchstring']) || isset($_POST['listvalue'])) { // Check if searchstring is set
+                            if (isset($_POST['searchstring']))
+                                $searchString = $_POST['searchstring'];
+                            else if (isset($_POST['listvalue']))
                                 $searchString = $_POST['listvalue'];
-                           
-                           
+
+
                             $sql = "SELECT * FROM `games` WHERE gamename LIKE :searchString OR publisher_name LIKE :searchString OR developer_name LIKE :searchString OR genre_name LIKE :searchString";
                             $stmt = $db->prepare($sql);
                             $stmt->bindValue(':searchString', '%' . $searchString . '%');
@@ -244,7 +283,7 @@ include 'navbar.php';
                                                 <div class="flip-card-inner">
                                                     <div class="flip-card-front">
                                                         <div class="card-content">
-                                                            <img id="img1" src="img/<?php echo$row['gamename'];?>.webp">
+                                                            <img id="img1" src="img/<?php echo $row['gamename']; ?>.webp">
                                                         </div>
                                                     </div>
                                                     <div class="flip-card-back">
@@ -279,7 +318,18 @@ include 'navbar.php';
                                 </div>
                                 <?php
                             } else {
-                                echo "No Game found.";
+                                ?>
+                                <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+                                <p class="ngf">No Result found</p>
+                                <style>
+                                    .ngf {
+                                        font-family: "Trebuchet MS", Tahoma, sans-serif;
+                                        color: white;
+                                        padding-left: 63px;
+                                        font-weight: bold;
+                                    }
+                                </style>
+                                <?php
                             }
                         } else {
                             // echo "Please enter a search string.";
@@ -296,40 +346,60 @@ include 'navbar.php';
             </form>
         </div>
         <style>
-            .genrelist{
+            .genrelist {
                 text-decoration: none;
                 border: none;
                 background: none;
                 color: whitesmoke;
-                text-align:left;
+                text-align: left;
                 padding-top: 7px;
             }
-            .rigthsidelist{
-                list-style-type: circle;
-                color:grey;
-            }
 
+            .rigthsidelist {
+                list-style-type: circle;
+                color: grey;
+            }
         </style>
         <div class="sidebar">
             <form method="POST" action="">
-            <ul class = "rigthsidelist">
-                <li><button class="genrelist" type="Submit" name="listvalue" value="Action">Action</button></li>
-                <li><button class="genrelist" type="Submit" name="listvalue" value="Action-Adventure">Action-Adventure</button></li>
-                <li><button class="genrelist" type="Submit" name="listvalue" value="Racing">Racing</button></li>
-                <li><button class="genrelist" type="Submit" name="listvalue" value="Action Role-Play Game">Action Role-Play</button></li>
-                <li><button class="genrelist" type="Submit" name="listvalue" value="3D sandbox game">3D sandbox game</button></li>
-                <li><button class="genrelist" type="Submit" name="listvalue" value="Educational Video Game">Educational Video Game</button></li>
-                <li><button class="genrelist" type="Submit" name="listvalue" value="Survival Horror">Survival Horror</button></li>
-                <li><button class="genrelist" type="Submit" name="listvalue" value="Tactical Shooter">Tactical Shooter</button></li>
-                <li><button class="genrelist" type="Submit" name="listvalue" value="Puzzle-Platform Video game ">Puzzle-Platform</button></li>
-                <li><button class="genrelist" type="Submit" name="listvalue" value="Battle Royale">Battle Royale</button></li>
-                <li><button class="genrelist" type="Submit" name="listvalue" value="Real-time Grand Strategy">Real-time Grand Strategy</button></li>
-                <li><button class="genrelist" type="Submit" name="listvalue" value="Science-Fiction">Science-Fiction</button></li>
-                <li><button class="genrelist" type="Submit" name="listvalue" value="Horror">Horror</button></li>
-                <li><button class="genrelist" type="Submit" name="listvalue" value="Survival">Survival</button></li>
-            </ul>
-            <!-- Add your right side panel content here -->
-            </form></div>
+                <ul class="rigthsidelist">
+                    <li><button class="genrelist" type="Submit" name="listvalue" value="Action">Action</button></li>
+                    <li><button class="genrelist" type="Submit" name="listvalue"
+                            value="Action-Adventure">Action-Adventure</button></li>
+                    <li><button class="genrelist" type="Submit" name="listvalue" value="Racing">Racing</button></li>
+                    <li><button class="genrelist" type="Submit" name="listvalue" value="First Person Shooter">First Person Shooter</button></li>
+                    <li><button class="genrelist" type="Submit" name="listvalue" value="Action Role-Play Game">Action
+                        Role-Play</button></li>
+                        <li><button class="genrelist" type="Submit" name="listvalue" value="Open World">Open World</button>
+                    <li><button class="genrelist" type="Submit" name="listvalue" value="Fighting">Fighting</button></li>
+                    <li><button class="genrelist" type="Submit" name="listvalue" value="3D sandbox game">3D sandbox
+                            game</button></li>
+                    <li><button class="genrelist" type="Submit" name="listvalue"
+                            value="Educational Video Game">Educational Video Game</button></li>
+                    <li><button class="genrelist" type="Submit" name="listvalue" value="Survival Horror">Survival
+                            Horror</button></li>
+                    <li><button class="genrelist" type="Submit" name="listvalue" value="Tactical Shooter">Tactical
+                            Shooter</button></li>
+                    <li><button class="genrelist" type="Submit" name="listvalue"
+                            value="Puzzle-Platform Video game ">Puzzle-Platform</button></li>
+                    <li><button class="genrelist" type="Submit" name="listvalue" value="Battle Royale">Battle
+                            Royale</button></li>
+                    <li><button class="genrelist" type="Submit" name="listvalue"
+                            value="Real-time Grand Strategy">Real-time Grand Strategy</button></li>
+                    <li><button class="genrelist" type="Submit" name="listvalue"
+                            value="Science-Fiction">Science-Fiction</button></li>
+                    <li><button class="genrelist" type="Submit" name="listvalue" value="Horror">Horror</button></li>
+                    <li><button class="genrelist" type="Submit" name="listvalue" value="Simulation">Simulation</button></li>
+                    <li><button class="genrelist" type="Submit" name="listvalue" value="Survival">Survival</button></li>
+                    </li>
+                    <li><button class="genrelist" type="Submit" name="listvalue" value="Card Game">Card Game</button>
+                    </li>
+                    <li><button class="genrelist" type="Submit" name="listvalue" value="Board Game">Board Game</button>
+                    </li>
+                </ul>
+                <!-- Add your right side panel content here -->
+            </form>
+        </div>
     </div>
 </body>
 
