@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:300");
+@import url("https://mdbootstrap.com/wp-content/themes/mdbootstrap4/favicon.ico");
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 12;
+}
+.container-fluid {
+  width: 100%;
+  padding-right: 0px ;
+  padding-left: 0px;
+  margin-right: auto;
+  margin-left: auto;
+}
+#UL {
+
+  align-items: center;
+  padding-top: 2px;
+}
+
+#UL2 {
+
+  padding: 0px;
+  align-items: center;
+}
+
+#UL3 {
+
+  align-items: center;
+  padding-top: 2px;
+}
+#UL,
+#UL2 {
+  padding: 0;
+  margin: 0;
+}
+
+.vc {
+  padding-bottom: 2px;
+  padding-right: 2  px;
+}
+
+.blue-btn {
+  position: relative;
+  height: 34px;
+  max-width: 175px;
+  min-width: 120px;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  /* border: 1px solid #03e9f4; */
+  background: rgb(33 37 41);
+  font-family: 'Raleway', sans-serif;
+  color: #c3dfe0;
+  border: 1.5px solid #03e9f4;
+  border-radius: 7px;
+  margin-right: 10px;
+}
+
+.blue-btn:hover {
+  background-color: #03e9f4;
+  color: #050801;
+  box-shadow: 0px 0px 5px #03e9f4, 0px 0px 25px #03e9f4, 0px 0px 50px #03e9f4, 0px 0px 100px #03e9f4;
+  /* -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);  */
+}
+
+.dropdown-item {
+  width: fit-content;
+  max-width: 200px;
+  min-width: 127px;
+  position: sticky;
+  z-index: index 9;
+  opacity: 1;
+}
+
+.dropdown-menu {
+  position: relative;
+  border: none;
+  padding: 0rem 0rem 0rem 0rem;
+
+  background-color: transparent;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+}
+
+.avatar img {
+  max-width: 20%;
+  margin-right: 10px;
+}
+
+.btn-icon {
+  position: absolute;
+  top: 50%;
+  left: 33%;
+  vertical-align: middle;
+  transform: translateY(-50%);
+  max-width: 34%;
+  vertical-align: middle;
+}
+
+.btn-text {
+  display: inline-block;
+  max-width: calc(100% - 50px);
+
+  vertical-align: middle;
+}
