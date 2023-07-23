@@ -1,6 +1,6 @@
 <?php
-
 session_start();
+
 if (isset($_POST['submit'])) {
     $fn = $_POST['first'];
     $ln = $_POST['last'];
@@ -30,13 +30,17 @@ if (isset($_POST['submit'])) {
         ?>
         <script>
             setTimeout(function () {
-                
                 window.location.href = "registeration.php";
             }, 3000);
         </script>
         <?php
-
     } else {
+        // Use the Python script to hash the password (for non-admin passwords)
+        $output = [];
+        exec("python hashCreate.py $pw", $output);
+        // $hashed_password = $output[0]; // Get the first element of the $output array, which contains either the admin flag or the hashed password.
+        $hashed_password = $output[0] ?? null;
+
         // Retrieve the last primary key value
         $stmt = $conn->prepare("SELECT MAX(customerid) AS maxid FROM customer");
         $stmt->execute();
@@ -54,7 +58,7 @@ if (isset($_POST['submit'])) {
             ":cid" => $newId,
             ":dob" => $dob,
             ":emailaddress" => $email,
-            ":password" => $pw,
+            ":password" => $hashed_password, // Store the hashed password in the database
             ":contactno" => $contact,
         ]);
 
@@ -70,12 +74,4 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
-<html>
-<style>
-    body {
-        background-image: url('img/error.png');
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-    }
-</style>
-</html>
+<!-- ... rest of your HTML code ... -->

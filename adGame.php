@@ -98,24 +98,8 @@ if (isset($_POST['update'])) {
             background-repeat: no-repeat;
             background-attachment: fixed;
             height: 100%;
-            overflow: scroll;
         }
 
-        body::-webkit-scrollbar {
-            width: 0.5em;
-        }
-
-        body::-webkit-scrollbar-track {
-            background-color: transparent;
-        }
-
-        body::-webkit-scrollbar-thumb {
-            background-color: transparent;
-        }
-
-        body::-webkit-scrollbar-thumb:hover {
-            background-color: transparent;
-        }
 
         .card-header,
         .linkpages:link {
@@ -166,6 +150,33 @@ if (isset($_POST['update'])) {
                 padding-right: 5px;
             }
         }
+
+        #sel {
+            margin-top: 2px;
+            background-color: rgba(30, 144, 255, 0.4);
+            border: 2px solid white;
+            border-radius: 13px;
+            color: whitesmoke;
+            font-style: bold;
+            text-align: center;
+            padding: 7px;
+            max-width: 100px;
+            font-size: 18px;
+            transition: 0.4s;
+        }
+
+        #sel:hover {
+            background-color: dodgerblue;
+            border: 2px solid white;
+            border-radius: 13px;
+            color: whitesmoke;
+            
+            font-style: bold;
+            text-align: center;
+            padding: 7px;
+            max-width: 100px;
+            font-size: 18px;
+        }
     </style>
 </head>
 
@@ -204,9 +215,8 @@ if (isset($_POST['update'])) {
                 <?php endforeach; ?>
             </select>
         </div>
-        <button type="submit" name="select_game" class="btn btn-primary">Select</button>
+        <button type="submit" name="select_game" id="sel" class="Select btn btn-primary">Select</button>
     </form>
-    <br><br>
     <?php if (isset($selectedGame)): ?>
         <h2 style="padding-left: 16px;">Update Game:
             <?= $selectedGame['gamename'] ?>
@@ -291,7 +301,7 @@ if (isset($_POST['update'])) {
                         value="<?= $selectedGame['release_date'] ?>" required>
                 </div>
             </div>
-            <button type="submit" name="update" class="btn btn-primary">Update</button>
+            <button type="submit" name="update" id="sel" class="Select btn btn-primary">Update</button>
         </form>
     <?php endif; ?>
 </body>

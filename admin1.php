@@ -46,11 +46,16 @@ try {
     <title>Admin Page</title>
     <style>
         body {
-            background-image: linear-gradient(#0C97FA, #16E1F5);
+            background-image: linear-gradient(slateblue , #0C97FA);
             background-repeat: no-repeat;
             background-attachment: fixed;
             height: 100%;
-            overflow: hidden;
+        }
+        @media (min-width:700px){
+            body{
+                
+                padding-bottom: 19px;
+            }
         }
 
         .btn {

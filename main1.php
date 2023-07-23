@@ -217,7 +217,7 @@ session_start();
                     <h4 class="heading2" style="padding-left:10px;">Latest &#129170;</h4>
                 </a>
             </div>
-            <div class="container-fluid">
+            <div class="container-fluid onlycards">
                 <div class="row">
                     <div class="scrollcards">
 
@@ -534,30 +534,30 @@ session_start();
         /* Adjust the width as per your requirement */
         display: inline-block;
     }
-
+    
     #flipcard {
         width: 20%;
         /* Adjust the width as per your requirement */
     }
-
-
+    
+    
     .card {
         max-width: 260px;
         display: inline-block;
     }
-
+    
     .scrolling-wrapper {
         overflow-x: scroll;
         overflow-y: hidden;
         white-space: nowrap;
     }
-
+    
     .s1 {
         margin-top: 17px
     }
-
-
-
+    
+    
+    
     .card {
         margin: 10px 4px;
         color: white;

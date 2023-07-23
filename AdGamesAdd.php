@@ -92,7 +92,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         .btn {
-            padding-left: 19px;
+            padding-left:19px;
+
             font-size: 16px;
             transition-duration: 0.4s;
             border: 3px solid black;
@@ -107,7 +108,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         h2,
         form {
 
-            padding-left: 20px;
+            padding-left:19px;
+
         }
 
         table {
@@ -127,23 +129,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         h1{
-            padding-left: 19px;
+            padding-left:19px;
+
         }
 
         input {
             border-radius: 4px;
             border: 2px solid white;
-            padding-left: 6px;
+            padding-left:19px;
+
         }
 
         label {
-            padding-left: 14px;
+            padding-left:19px;
+
             padding-right: 5px;
         }
 
         .inputs {
-            padding-left: 9px;
-        }
+            padding-left:19px;
+                }
     </style>
 </head>
 
@@ -172,8 +177,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             #cardadmin2 {
-                padding-left: 16px;
-            }
+                padding-left:19px;
+                        }
         </style>
         <div id="cardadmin2">
             <div class="card " id="cardadmin" style="width: 17rem;">

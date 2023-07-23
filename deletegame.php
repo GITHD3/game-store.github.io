@@ -37,6 +37,32 @@
     #cardadmin2 {
         padding-left: 16px;
     }
+    #select {
+            margin-top: 2px;
+            background-color: rgba(30, 144, 255, 0.4);
+            border: 2px solid white;
+            border-radius: 13px;
+            color: whitesmoke;
+            font-style: bold;
+            text-align: center;
+            padding: 7px;
+            max-width: 100px;
+            font-size: 18px;
+            transition: 0.4s;
+        }
+
+        #select:hover {
+            background-color: dodgerblue;
+            border: 2px solid white;
+            border-radius: 13px;
+            color: whitesmoke;
+            
+            font-style: bold;
+            text-align: center;
+            padding: 7px;
+            max-width: 100px;
+            font-size: 18px;
+        }
 </style>
 <div id="cardadmin2">
     <div class="card " id="cardadmin" style="width: 17rem;">

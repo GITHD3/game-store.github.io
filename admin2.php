@@ -220,30 +220,38 @@ if (isset($_POST['show_game'])) {
 <style>
     .heading,
     form {
-        padding-top: 20px;
         padding-left: 20px;
+    }
+    #GAMENAME{
+        padding:7px;
+        min-width:40% ;
     }
 
     #select {
-        background-color: black;
+        margin-top: 2px;
+        background-color:rgba(30, 144, 255 ,0.4);
         border: 2px solid white;
-        border-radius: 3px;
-        color: white;
+        border-radius: 13px;
+        color: whitesmoke;
+        font-style: bold;
         text-align: center;
-        padding: 3px;
+        padding: 7px;
+        max-width: 100px;
         font-size: 18px;
+        transition: 0.4s;
     }
 
     #select:hover {
-        background-color: white;
-        border-radius: 10px;
-        color: black;
+        background-color: dodgerblue;
+        border: 2px solid white;
+        border-radius: 13px;
+        color : whitesmoke;;
+        font-style: bold;
         text-align: center;
-        padding: 2.7px;
+        padding: 7px;
+        max-width: 100px;
         font-size: 18px;
-        border: 2px solid black;
     }
-
     table {
         background-color: whitesmoke;
         color:darkslategrey;

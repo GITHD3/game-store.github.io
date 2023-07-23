@@ -59,7 +59,7 @@
             }
 
             .text-muted2 {
-                color: white !important;
+                color: black !important;
             }
 
             .blockabout2 {
@@ -67,17 +67,17 @@
                 font-family: Arial, Helvetica, sans-serif;
                 font-size: 20px;
                 font-weight: bold;
-                /* From https://css.glass */
-                background: rgba(255, 255, 255, 0.36);
+                background: linear-gradient(to right, dodgerblue 0%, lightpink 100%);
                 border-radius: 16px;
-                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
                 backdrop-filter: blur(7px);
-                -webkit-backdrop-filter: blur(7px);
+                -webkit-bakdrop-filter: blur(7px);
             }
 
             .blockabout2-inner2 {
                 padding: 30px;
                 border: 1px solid rgba(32, 33, 36, 0.1);
+                box-shadow: rgba(0, 0, 0, 0.8) 0px 30px 100px 10px;
+
             }
         </style>
 
