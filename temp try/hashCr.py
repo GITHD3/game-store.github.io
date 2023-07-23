@@ -1,4 +1,5 @@
 # password_hasher.py
+#!C:\Users\Harsh\AppData\Local\Programs\Python\Python311\python.exe
 import bcrypt
 import sys
 

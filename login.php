@@ -1,57 +1,74 @@
 <?php
-session_start(); // Move this line to the beginning of your code
+session_start();
 
 if (isset($_POST['submit'])) {
-  $email = $_POST['e'];
-  $password = $_POST['pass'];
+    $email = $_POST['e'];
+    $password = $_POST['pass'];
 
-  $host = "localhost";
-  $username = "root";
-  $db_password = "";
-  $database = "game4";
+    $host = "localhost";
+    $username = "root";
+    $db_password = "";
+    $database = "game4";
 
-  $conn = mysqli_connect($host, $username, $db_password, $database);
-
-  if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-  }
-
-  $stmt = $conn->prepare("SELECT customerid, firstname, emailaddress, password FROM customer WHERE emailaddress=? AND password=?");
-  $stmt->bind_param("ss", $email, $password);
-
-  if (!$stmt->execute()) {
-    die("Execute failed: (" . $stmt->errno . ") " . $stmt->error);
-  }
-
-  $stmt->store_result();
-
-  if ($stmt->num_rows > 0) {
-    $stmt->bind_result($customerid, $firstname, $emailaddress, $password);
-    $stmt->fetch();
-    $_SESSION['id'] = $customerid;
-    $_SESSION['name'] = $firstname;
-
-    if ($email === "harshadmin@gmail.com" && $password === "dedakiya") {
-      // Redirect to admin1.php
-      $stmt->close();
-      mysqli_close($conn);
-      header("Location: admin1.php");
-      exit;
-    } else {
-      // Login successful, but not an admin
-      $stmt->close();
-      mysqli_close($conn);
-      header("Location: main1.php");
-      exit;
+    $conn = mysqli_connect($host, $username, $db_password, $database);
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
     }
-  } else {
-    // Login failed
-    echo '<script>alert("Incorrect email or password");</script>';
-    $stmt->close();
-    mysqli_close($conn);
-  }
+
+    // Retrieve the hashed password from the database for the given email
+    $stmt = $conn->prepare("SELECT customerid, firstname, emailaddress, password FROM customer WHERE emailaddress=?");
+    $stmt->bind_param("s", $email);
+
+    if (!$stmt->execute()) {
+        die("Execute failed: (" . $stmt->errno . ") " . $stmt->error);
+    }
+
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        $stmt->bind_result($customerid, $firstname, $emailaddress, $hashed_password);
+        $stmt->fetch();
+
+        // Close the statement after fetching the hashed password
+        $stmt->close();
+        mysqli_close($conn);
+
+        // // Check if the hashed password is not empty
+        // if (empty($hashed_password)) {
+        //     // Hashed password not found, show an error message
+        //     echo '<script>alert("Incorrect email or password");</script>';
+        //     exit;
+        // }
+
+        // Use the Python script to compare the user input password with the hashed password
+        $output = shell_exec('C:\Users\Harsh\AppData\Local\Programs\Python\Python311\python.exe hashCheck.py compare ' . escapeshellarg($password) . ' ' . escapeshellarg($hashed_password));
+
+        if (trim($output) === "Password matches!") {
+            // Password matches, allow the user to log in
+            $_SESSION['id'] = $customerid;
+            $_SESSION['name'] = $firstname;
+
+            if ($email === "harshadmin@gmail.com" && $password === "dedakiya") {
+                // Redirect to admin1.php
+                header("Location: admin1.php");
+                exit;
+            } else {
+                // Login successful, but not an admin
+                header("Location: main1.php");
+                exit;
+            }
+        } else {
+            // Login failed - incorrect password
+            echo '<script>alert("Incorrect email or password");</script>';
+        }
+    } else {
+        // Login failed - user not found
+        echo '<script>alert("Incorrect email or password");</script>';
+    }
 }
+
 ?>
+<!-- ... rest of your HTML code ... -->
 
 
 <!DOCTYPE html>
@@ -62,9 +79,8 @@ if (isset($_POST['submit'])) {
   <link rel="stylesheet" href="login.css">
   <?php include 'cdns.php'; ?>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js"></script>
 
 </head>
 

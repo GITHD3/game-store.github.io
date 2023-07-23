@@ -1,22 +1,21 @@
 <?php
-
-
 if (isset($_POST['submit'])) {
-    
     $pw = $_POST['pass'];
+    $output = [];
+    $exit_code = 0;
+    exec("C:\Users\Harsh\AppData\Local\Programs\Python\Python311\python.exe test.py $pw 2>&1", $output, $exit_code);
 
-   
-    
-        // Use the Python script to hash the password (for non-admin passwords)
-        $output = [];
-        exec("python hashCr.py $pw", $output);
-        // $hashed_password = $output[0]; // Get the first element of the $output array, which contains either the admin flag or the hashed password.
+    // Check for errors
+    if ($exit_code !== 0) {
+        // There was an error executing the Python script
+        echo "Error occurred while executing the Python script:<br>";
+        foreach ($output as $line) {
+            echo $line . "<br>";
+        }
+    } else {
+        // Output the result
         $hashed_password = $output[0] ?? null;
-
-        echo $hashed_password;
-        echo $pw;
-        
-
+        echo "Hashed Password: " . $hashed_password;
     }
-
+}
 ?>
