@@ -35,49 +35,37 @@ if (isset($_POST['submit'])) {
         </script>
         <?php
     } else {
-        // Use the Python script to hash the password (for non-admin passwords)
-        // $output = [];
-        // $exit_code = 0;
-        // exec("C:\Users\Harsh\AppData\Local\Programs\Python\Python311\python.exe hashCreate.py $pw 2>&1", $output, $exit_code);
-        // $hashed_password = $output[0] ?? null;
-       
-            $hashed_password = shell_exec('C:\Users\Harsh\AppData\Local\Programs\Python\Python311\python.exe hashCreate.py create ' . escapeshellarg($pw));
-            $hashed_password = trim($hashed_password);
-        
-            if ($hashed_password) {
-                // Retrieve the last primary key value
-                $stmt = $conn->prepare("SELECT MAX(customerid) AS maxid FROM customer");
-                $stmt->execute();
-                $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                $lastId = $result['maxid'];
-                $newId = $lastId + 1;
-        
-                // Insert the new record into the database
-                $stmt = $conn->prepare("INSERT INTO customer (firstname, lastname, customerid, dob, emailaddress, password, contactno) 
-                VALUES (:firstname, :lastname, :cid , :dob, :emailaddress, :password, :contactno)");
-        
-                $stmt->execute([
-                    ":firstname" => $fn,
-                    ":lastname" => $ln,
-                    ":cid" => $newId,
-                    ":dob" => $dob,
-                    ":emailaddress" => $email,
-                    ":password" => $hashed_password, // Store the hashed password in the database
-                    ":contactno" => $contact,
-                ]);
-        
-                
-        
-                // Store the name in a session variable
-                $_SESSION['name'] = $fn;
-        
-                // Close the database connection
-                $conn = null;
-        
-                // Redirect to the main page after successful registration
-                header("Location: main1.php");
-                exit;
-            } else {
-                echo "Error while hashing the password.";
-            }
-        }}
+        // Retrieve the last primary key value
+        $stmt = $conn->prepare("SELECT MAX(customerid) AS maxid FROM customer");
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $lastId = $result['maxid'];
+        $newId = $lastId + 1;
+
+        // Insert the new record into the database
+        $stmt = $conn->prepare("INSERT INTO customer (firstname, lastname, customerid, dob, emailaddress, password, contactno) 
+        VALUES (:firstname, :lastname, :cid , :dob, :emailaddress, :password, :contactno)");
+
+        $stmt->execute([
+            ":firstname" => $fn,
+            ":lastname" => $ln,
+            ":cid" => $newId,
+            ":dob" => $dob,
+            ":emailaddress" => $email,
+            ":password" => $pw, // Store the plaintext password in the database
+            ":contactno" => $contact,
+        ]);
+
+        // Store the name in a session variable
+        $_SESSION['name'] = $fn;
+        $_SESSION['cid'] = $newid;
+        $_SESSION['email'] = $email;
+
+        // Close the database connection
+        $conn = null;
+
+        // Redirect to the main page after successful registration
+        header("Location: main1.php");
+        exit;
+    }
+}

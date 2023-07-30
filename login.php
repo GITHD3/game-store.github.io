@@ -26,24 +26,14 @@ if (isset($_POST['submit'])) {
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($customerid, $firstname, $emailaddress, $hashed_password);
+        $stmt->bind_result($customerid, $firstname, $emailaddress, $stored_password);
         $stmt->fetch();
 
-        // Close the statement after fetching the hashed password
+        // Close the statement after fetching the password
         $stmt->close();
         mysqli_close($conn);
 
-        // // Check if the hashed password is not empty
-        // if (empty($hashed_password)) {
-        //     // Hashed password not found, show an error message
-        //     echo '<script>alert("Incorrect email or password");</script>';
-        //     exit;
-        // }
-
-        // Use the Python script to compare the user input password with the hashed password
-        $output = shell_exec('C:\Users\Harsh\AppData\Local\Programs\Python\Python311\python.exe hashCheck.py compare ' . escapeshellarg($password) . ' ' . escapeshellarg($hashed_password));
-
-        if (trim($output) === "Password matches!") {
+        if ($password === $stored_password) {
             // Password matches, allow the user to log in
             $_SESSION['id'] = $customerid;
             $_SESSION['name'] = $firstname;
@@ -66,10 +56,7 @@ if (isset($_POST['submit'])) {
         echo '<script>alert("Incorrect email or password");</script>';
     }
 }
-
 ?>
-<!-- ... rest of your HTML code ... -->
-
 
 <!DOCTYPE html>
 <html>

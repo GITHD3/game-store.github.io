@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -77,11 +76,10 @@
           </li>
         </ul>
 
-        <center>
-          <ul class="UL2 col-md-auto w-0 p-0">
+          <ul class="UL2">
             <img id="imglogotemp" src="img/ww.png" />
           </ul>
-        </center>
+       
 
 
         <ul id="UL3" class="navbar-nav ml-auto mb-7 mb-lg-0  w-0 p-0">
@@ -129,8 +127,8 @@
                     <button class="blue-btn dropdown-item" role="button" style="margin: 0;">Log In</button>
                   </a>
                 </li>
-                <?php if (isset($_SESSION['name'])) { ?>
-                  <li style="margin: 0;">
+                <?php if (isset($_SESSION['name']) && $_SESSION['name'] == "harsh" && isset($_SESSION['id']) && $_SESSION['id'] == "3") { ?>
+                              <li style="margin: 0;">
                     <a href="admin1.php">
                       <button class="blue-btn dropdown-item" role="button" style="margin: 0;">Admin</button>
                     </a>

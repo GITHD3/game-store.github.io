@@ -63,10 +63,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $insertQuery = "INSERT INTO games (gameid,gamename, developer_name, publisher_name, price, genre_name, mature_content, gamesize, gametype, description, memory_required, operating_system, processor_required, storage_required, release_date) 
             VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $pdo->prepare($insertQuery);
-            $stmt->execute([$gameid,$gameName, $developerName, $publisherName, $price, $genre, $matureContent, $gameSize, $gameType, $description, $memoryRequired, $operatingSystem, $processorRequired, $storageRequired, $releaseDate]);
+            $stmt->execute([$gameid, $gameName, $developerName, $publisherName, $price, $genre, $matureContent, $gameSize, $gameType, $description, $memoryRequired, $operatingSystem, $processorRequired, $storageRequired, $releaseDate]);
 
             // Redirect to the game page or display a success message
-            echo"<br><pre>Added</pre>";
+            echo "<br><pre>Added</pre>";
         } catch (PDOException $e) {
             $error = 'Error inserting game: ' . $e->getMessage();
         }
@@ -77,8 +77,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 
-<head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet"
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js"></script>
 
@@ -92,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         .btn {
-            padding-left:19px;
+            padding-left: 19px;
 
             font-size: 16px;
             transition-duration: 0.4s;
@@ -108,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         h2,
         form {
 
-            padding-left:19px;
+            padding-left: 19px;
 
         }
 
@@ -128,58 +129,67 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border-bottom: 1px solid #ddd;
         }
 
-        h1{
-            padding-left:19px;
+        h1 {
+            padding-left: 19px;
 
         }
 
         input {
             border-radius: 4px;
             border: 2px solid white;
-            padding-left:19px;
+            padding-left: 19px;
 
         }
 
         label {
-            padding-left:19px;
+            padding-left: 19px;
 
             padding-right: 5px;
         }
 
         .inputs {
-            padding-left:19px;
-                }
+            padding-left: 19px;
+        }
+
+        .card-header,
+        .linkpages:link {
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .card-header {
+            color: black;
+            background-color: #DEB887;
+        }
+
+        li {
+            color: darkslategrey;
+        }
+
+        .linkpages:hover {
+            color: black;
+        }
+
+        #cardadmin2 {
+            padding-left: 19px;
+        }
+
+        @media (min-width:500px) {
+            .priamrykeyupdates {
+                padding-left: 42px;
+                padding-top: 2px;
+                padding-bottom: 2px;
+
+            }
+        }
     </style>
 </head>
 
 <body>
     <h1>Admin Page</h1>
     <div class="e">
-        
-    <style>
-            .card-header,
-            .linkpages:link {
-                text-decoration: none;
-                font-size: 18px;
-            }
 
-            .card-header {
-                color: black;
-                background-color: #DEB887;
-            }
 
-            li  {
-                color: darkslategrey;
-            }
-
-            .linkpages:hover {
-                color: black;
-            }
-
-            #cardadmin2 {
-                padding-left:19px;
-                        }
-        </style>
         <div id="cardadmin2">
             <div class="card " id="cardadmin" style="width: 17rem;">
                 <div class="card-header">
@@ -204,65 +214,100 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </ul>
             </div>
         </div>
-    
-    <br>
 
-    <h2>Add Game</h2>
-    <form method="POST" action="">
-        <div class="inputs">
-            <label for="gameid">Game ID:</label>
-            <input type="text" id="gameid" name="gameid" required>
-            <div></div><br>
-            <label for="gameName">Game Name:</label>
-            <input type="text" id="gameName" name="gameName" required>
-            <div></div><br>
-            <label for="developerName">Developer Name:</label>
-            <input type="text" id="developerName" name="developerName" required>
-            <div></div><br>
-            <label for="publisherName">Publisher Name:</label>
-            <input type="text" id="publisherName" name="publisherName" required>
-            <div></div><br>
-            <label for="price">Price:</label>
-            <input type="number" id="price" name="price" required>
-            <div></div><br>
-            <label for="genre">Genre:</label>
-            <input type="text" id="genre" name="genre" required>
-            <div></div><br>
-            <label for="matureContent">Mature Content:</label>
-            <input type="number" id="matureContent" name="matureContent" required>
-            <div></div><br>
-            <label for="gameSize">Game Size:</label>
-            <input type="text" id="gameSize" name="gameSize" required>
-            <div></div><br>
-            <label for="gameType">Game Type:</label>
-            <input type="text" id="gameType" name="gameType" required>
-            <div></div><br>
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" required></textarea>
-            <div></div><br>
-            <label for="memoryRequired">Memory Required:</label>
-            <input type="number" id="memoryRequired" name="memoryRequired" required>
-            <div></div><br>
-            <label for="operatingSystem">Operating System:</label>
-            <input type="text" id="operatingSystem" name="operatingSystem" required>
-            <div></div><br>
-            <label for="processorRequired">Processor Required:</label>
-            <input type="text" id="processorRequired" name="processorRequired" required>
-            <div></div><br>
-            <label for="storageRequired">Storage Required:</label>
-            <input type="text" id="storageRequired" name="storageRequired" required>
-            <div></div><br>
-            <label for="releaseDate">Release Date:</label>
-            <input type="date" id="releaseDate" name="releaseDate" required>
-            <div></div><br>
-            <button type="submit">Add Game</button>
-        </div>
-        <?php if (!empty($error)): ?>
-            <p style="color: red;">
-                <?php echo $error; ?>
-            </p>
-        <?php endif; ?>
-    </form>
+        <br>
+
+        <h2>Add Game</h2>
+        <form method="POST" action="">
+            <div class="priamrykeyupdates">
+                <pre><?php
+                try {
+                    $query_nuna = "SELECT MAX(gameid) AS last_nuna_gameid FROM games WHERE gameid LIKE 'NUNA__%'";
+                    $stmt_nuna = $pdo->query($query_nuna);
+                    $result_nuna = $stmt_nuna->fetch(PDO::FETCH_ASSOC);
+                    $lastNunaGameID = $result_nuna['last_nuna_gameid'];
+                } catch (PDOException $e) {
+                    die("Error fetching last NUNA__ game ID: " . $e->getMessage());
+                }
+
+                try {
+                    $query_una = "SELECT MAX(gameid) AS last_una_gameid FROM games WHERE gameid LIKE 'UNA__%'";
+                    $stmt_una = $pdo->query($query_una);
+                    $result_una = $stmt_una->fetch(PDO::FETCH_ASSOC);
+                    $lastUnaGameID = $result_una['last_una_gameid'];
+                } catch (PDOException $e) {
+                    die("Error fetching last UNA__ game ID: " . $e->getMessage());
+                }
+
+                try {
+                    $query_nua = "SELECT MAX(gameid) AS last_nua_gameid FROM games WHERE gameid LIKE 'NUA__%'";
+                    $stmt_nua = $pdo->query($query_nua);
+                    $result_nua = $stmt_nua->fetch(PDO::FETCH_ASSOC);
+                    $lastNuaGameID = $result_nua['last_nua_gameid'];
+                } catch (PDOException $e) {
+                    die("Error fetching last NUA__ game ID: " . $e->getMessage());
+                }
+
+                echo "Last NUNA__ Game ID: " . $lastNunaGameID . "<br>";
+                echo "Last UNA__ Game ID: " . $lastUnaGameID . "<br>";
+                echo "Last NUA__ Game ID: " . $lastNuaGameID . "<br>";
+                ?></pre>
+
+            </div>
+            <div class="inputs">
+                <label for="gameid">Game ID:</label>
+                <input type="text" id="gameid" name="gameid" required>
+                <div></div><br>
+                <label for="gameName">Game Name:</label>
+                <input type="text" id="gameName" name="gameName" required>
+                <div></div><br>
+                <label for="developerName">Developer Name:</label>
+                <input type="text" id="developerName" name="developerName" required>
+                <div></div><br>
+                <label for="publisherName">Publisher Name:</label>
+                <input type="text" id="publisherName" name="publisherName" required>
+                <div></div><br>
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" required>
+                <div></div><br>
+                <label for="genre">Genre:</label>
+                <input type="text" id="genre" name="genre" required>
+                <div></div><br>
+                <label for="matureContent">Mature Content:</label>
+                <input type="number" id="matureContent" name="matureContent" required>
+                <div></div><br>
+                <label for="gameSize">Game Size:</label>
+                <input type="text" id="gameSize" name="gameSize" required>
+                <div></div><br>
+                <label for="gameType">Game Type:</label>
+                <input type="text" id="gameType" name="gameType" required>
+                <div></div><br>
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+                <div></div><br>
+                <label for="memoryRequired">Memory Required:</label>
+                <input type="number" id="memoryRequired" name="memoryRequired" required>
+                <div></div><br>
+                <label for="operatingSystem">Operating System:</label>
+                <input type="text" id="operatingSystem" name="operatingSystem" required>
+                <div></div><br>
+                <label for="processorRequired">Processor Required:</label>
+                <input type="text" id="processorRequired" name="processorRequired" required>
+                <div></div><br>
+                <label for="storageRequired">Storage Required:</label>
+                <input type="text" id="storageRequired" name="storageRequired" required>
+                <div></div><br>
+                <label for="releaseDate">Release Date:</label>
+                <input type="date" id="releaseDate" name="releaseDate" required>
+                <div></div><br>
+                <button type="submit">Add Game</button>
+            </div>
+            <?php if (!empty($error)): ?>
+                <p style="color: red;">
+                    <?php echo $error; ?>
+                </p>
+            <?php endif; ?>
+        </form>
 </body>
 
 </html>

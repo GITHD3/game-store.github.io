@@ -246,6 +246,20 @@ include 'navbar.php';
                             /* Adjust the width for mobile screens */
                         }
                     }
+
+                    .btnn {
+                        font-size: 18px;
+                        color: white;
+                        background-color: #b76eef66;
+                        transition: 0.3s;
+                        border-radius: 3px;
+                    }
+
+                    .btnn:hover {
+                        color: #e5dbdb;
+                        background-color: #7d2fb966;
+                        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+                    }
                 </style>
                 <?php
                 if (isset($_POST['submit']) || isset($_POST['listvalue'])) {
@@ -264,7 +278,11 @@ include 'navbar.php';
                                 $searchString = $_POST['listvalue'];
 
 
-                            $sql = "SELECT * FROM `games` WHERE gamename LIKE :searchString OR publisher_name LIKE :searchString OR developer_name LIKE :searchString OR genre_name LIKE :searchString";
+                            $sql = "SELECT * FROM `games` WHERE 
+                                gamename LIKE CONCAT('%', :searchString, '%') OR 
+                                publisher_name LIKE CONCAT('%', :searchString, '%') OR 
+                                developer_name LIKE CONCAT('%', :searchString, '%') OR 
+                                genre_name LIKE CONCAT('%', :searchString, '%')";
                             $stmt = $db->prepare($sql);
                             $stmt->bindValue(':searchString', '%' . $searchString . '%');
                             $stmt->execute();
@@ -300,7 +318,8 @@ include 'navbar.php';
                                                                     echo "Rs." . $row['price'];
                                                                 } ?>
                                                             </p>
-                                                            <input type="submit" name="submit2" value="Buy">
+                                                            <input type="submit" class="btnn pt-2 pb-2 pl-3 pr-3" name="submit2"
+                                                                value="Buy">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -367,10 +386,11 @@ include 'navbar.php';
                     <li><button class="genrelist" type="Submit" name="listvalue"
                             value="Action-Adventure">Action-Adventure</button></li>
                     <li><button class="genrelist" type="Submit" name="listvalue" value="Racing">Racing</button></li>
-                    <li><button class="genrelist" type="Submit" name="listvalue" value="First Person Shooter">First Person Shooter</button></li>
-                    <li><button class="genrelist" type="Submit" name="listvalue" value="Action Role-Play Game">Action
-                        Role-Play</button></li>
-                        <li><button class="genrelist" type="Submit" name="listvalue" value="Open World">Open World</button>
+                    <li><button class="genrelist" type="Submit" name="listvalue" value="First Person Shooter">First
+                            Person Shooter</button></li>
+                    <li><button class="genrelist" type="Submit" name="listvalue" value="Action Role-Play">Action
+                            Role-Play</button></li>
+                    <li><button class="genrelist" type="Submit" name="listvalue" value="Open-World">Open World</button>
                     <li><button class="genrelist" type="Submit" name="listvalue" value="Fighting">Fighting</button></li>
                     <li><button class="genrelist" type="Submit" name="listvalue" value="3D sandbox game">3D sandbox
                             game</button></li>
@@ -389,7 +409,8 @@ include 'navbar.php';
                     <li><button class="genrelist" type="Submit" name="listvalue"
                             value="Science-Fiction">Science-Fiction</button></li>
                     <li><button class="genrelist" type="Submit" name="listvalue" value="Horror">Horror</button></li>
-                    <li><button class="genrelist" type="Submit" name="listvalue" value="Simulation">Simulation</button></li>
+                    <li><button class="genrelist" type="Submit" name="listvalue" value="Simulation">Simulation</button>
+                    </li>
                     <li><button class="genrelist" type="Submit" name="listvalue" value="Survival">Survival</button></li>
                     </li>
                     <li><button class="genrelist" type="Submit" name="listvalue" value="Card Game">Card Game</button>

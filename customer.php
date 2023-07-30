@@ -44,7 +44,18 @@
       /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
       background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
     }
-
+    #changebtn{
+      padding: 3px 11px;
+      border:2px Solid slateblue;
+      border-radius: 0px;
+      background-color: rgba(255, 255, 255, 0.1);
+      transition: 0.2s;
+    }
+    #changebtn:hover{
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      border:2px Solid dodgerblue;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
     
   </style>
 </head>
@@ -91,6 +102,9 @@ if (!isset($_SESSION['name'])) {
               style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
               <img src="img/user.png" alt="Avatar" class="img-fluid my-6" style="width: 80px;" />
               <h5><?php echo $fn . " " . $ln; ?></h5>
+              <form method="POST">
+              <button type="submit" id="changebtn">Change Details</button>
+              </form>
               <i class="far fa-edit mb-5"></i>
             </div>
             <div class="col-md-8">
