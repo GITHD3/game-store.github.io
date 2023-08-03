@@ -370,14 +370,25 @@ include 'navbar.php';
         border-radius: 3px;
         color: whitesmoke;
         border: none;
+        overflow:hidden;
         height: 320px;
         transition: 0.4s;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
-    
+   
     .smallcards:hover {
         box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
         background-color: rgba(255, 255, 255, 0.28);
+    }
+    
+    .smallcards:hover .imgsmallcard{
+        transform: scale(1.06);
+  transition: transform 0.3s ease;
+  transform-origin: center center;
+        backface-visibility:hidden;
+        z-index: 1000;
+        position:relative;
+
     }
 
     .hrtag2 {
