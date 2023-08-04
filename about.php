@@ -47,10 +47,10 @@
             }
 
             body {
-                background-image: url("img/walltech.jpg");
+                background: linear-gradient(120deg, slateblue , #1F456E);
+                background-repeat: no-repeat;
                 background-attachment: fixed;
                 background-size: cover;
-                height: 100%;
             }
 
             #about-section {

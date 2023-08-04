@@ -13,9 +13,10 @@ include 'navbar.php';
 
     <style>
         body {
-            background-image: url(img/wallpaper.webp);
+            background: linear-gradient(0deg ,#48AAAD, slateblue);
             background-repeat: no-repeat;
             background-attachment: fixed;
+            background-size: cover;
             height: 100%;
             padding-bottom: 20px;
         }

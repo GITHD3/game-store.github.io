@@ -58,7 +58,7 @@ if (isset($_POST['show_game'])) {
     <title class="f">Admin Page</title>
     <style>
         body {
-            background-image: linear-gradient(#0C97FA, #16E1F5);
+            background-image: linear-gradient(#146aa7,#48aaadb0);
             background-repeat: no-repeat;
             background-attachment: fixed;
             height: 100%;
