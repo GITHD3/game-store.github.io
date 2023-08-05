@@ -11,8 +11,8 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background-color: #333333; /* Initial background color */
-      animation: backgroundAnimation 4s ease-in-out forwards; /* Animation to transition the background color */
+      background-color: #0096F4; /* Initial background color */
+      animation: backgroundAnimation 2s ease-in-out forwards; /* Animation to transition the background color */
     }
 
     .logo-img {
@@ -21,9 +21,8 @@
     }
 
     @keyframes backgroundAnimation {
-      0% { background-color: #333333; }
-      50% { background-color: whitesmoke; }
-      100% { background-color: #333333; }
+      0% { background-color: #0096F4; }
+      100% { background-color: whitesmoke; }
     }
   </style>
 </head>
@@ -36,7 +35,7 @@
   <script>
     setTimeout(function() {
       window.location.href = "main1.php";
-    }, 4000); // Redirect after 4 seconds (2 seconds of each color)
+    }, 2000);
 
   </script>
 

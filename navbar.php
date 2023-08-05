@@ -69,8 +69,8 @@
           </li>
           <li class="vc nav-item">
             <div class="row d-flex justify-content-center">
-              <div class="col-md-auto  ">
-                <button id="btns" class="blue-btn">News</button>
+              <div class="col-md-auto"><a href="news.php">
+                <button id="btns" class="blue-btn">News</button></a>
               </div>
             </div>
           </li>

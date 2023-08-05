@@ -7,7 +7,7 @@ $password = "";
 
 $dbconn = new PDO($dsn, $username, $password);
 $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    ?>
+?>
 
 <!DOCTYPE html>
 <html>
@@ -21,7 +21,6 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 </head>
 
-<link rel="stylesheet" type="text/css" href="engine1/style.css" />
 
 <body>
     <div class="container main">
@@ -253,7 +252,6 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 </body>
 
-</html>
 <style>
     .imgsmallcard {
         border-radius: 7px;
@@ -286,7 +284,8 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         border: none;
         overflow: hidden;
         height: 320px;
-        transition: transform 0.4s cubic-bezier(1, 0.44, 0.25, 1);
+
+        transition: all 0.3s ease-in-out;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
 
@@ -591,3 +590,5 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
     }
 </style>
+</html>
+<?php include 'footer.php'; ?>

@@ -2,75 +2,51 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js"></script>
-
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
-  <link rel="stylesheet" href="footer2.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
 </head>
-
-<body>
-  <footer class="footer">
-    <div class="footer__container">
-      <div class="footer__top">
-        <div>
-          <h6 class="footer__title">The Paracrash</h6>
-          <ul class="footer__list">
-            <li class="footer__list-item">
-              <a href="about.php" class="footer__list-link">About Us</a>
-            </li>
-            <li class="footer__list-item">
-              <a href="login.php" class="footer__list-link">Log In</a>
-            </li>
-            <li class="footer__list-item">
-              <a href="registeration.php" class="footer__list-link">Sign Up</a>
-            </li>
-            <li class="footer__list-item">
-              <a href="" class="footer__list-link">Sale</a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h6 class="footer__title">Contact Us</h6>
-          <ul class="footer__list">
-
-            <li class="footer__list-item">
-              <a class="footer__list-link">Contact Number - +91 8320966748</a>
-            </li>
-            <li class="footer__list-item">
-              <a class="footer__list-link">Email - dedakiya000@gmail.com</a>
-            </li>
-            <li class="footer__list-item">
-              <a class="footer__list-link">Instagram - @harsh.dedakiya </a>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-      <hr class="footer__divider" />
-      <div class="footer__bottom">
-        <span class="copyright">&copy; 2023 Company. All rights reserved.</span>
-
-      </div>
-    </div>
-    <style>
-      position: relative;
-    </style>
-  </footer>
-</body>
 <style>
-  .footer {
-    background-color: #2a2a2a;
-    color: #d3d3d3;
-    padding-block: 17px;
-    padding-bottom: 9px;
-
+  footer {
+    background-color: #333333;
+    margin-top: 10px;
+  }
+  .btnFOOTER{
+    border-radius: 100%;
+    border: none;
+    padding: 15px;
+  }
+  .btnFOOTER:hover{
+    border-radius: 100%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   }
 </style>
+<body>
+  <footer class="bg text-center text-white">
+    <div class="p-4 pb-0">
+      <section class="mb-4">
+
+        <!-- Google -->
+        <a class="btnFOOTER text-white btn-floating m-1" style="background-color: #dd4b39;" target="_blank" href="index.php" role="button"><i
+            class="fab fa-google"></i></a>
+
+        <!-- Instagram -->
+        <a class="btnFOOTER text-white btn-floating m-1" style="background-color: #ac2bac;" target="_blank" href="https://www.instagram.com/thisis__harsh/" role="button"><i
+            class="fab fa-instagram"></i></a>
+
+        <!-- Linkedin -->
+        <a class="btnFOOTER text-white btn-floating m-1" style="background-color: #0082ca;" target="_blank" href="https://www.linkedin.com/in/harsh-dedakiya-93694a269/" role="button"><i
+            class="fab fa-linkedin-in"></i></a>
+        <!-- Github -->
+        <a class="btnFOOTER text-white btn-floating m-1" style="background-color: #333333;" target="_blank" href="https://github.com/GITHD3" role="button"><i
+            class="fab fa-github"></i></a>
+      </section>
+    </div>
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2020 Copyright:
+      <a class="text-white" href="index.php">ParaCrash Game Store</a>
+    </div>
+  </footer>
+</body>
 
 </html>
