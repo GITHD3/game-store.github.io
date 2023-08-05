@@ -85,38 +85,29 @@
         <ul id="UL3" class="navbar-nav ml-auto mb-7 mb-lg-0  w-0 p-0">
           <li class="vc nav-item">
             <div class="p-0 mr-auto">
+              <a href="cart.php">
+                <button id="btns" class="blue-btn" role="button">Cart</button>
+              </a>
+            </div>
+          </li>
+          <li class="vc nav-item">
+            <div class="p-0 mr-auto">
               <a href="about.php">
                 <button id="btns" class="blue-btn" role="button">About Us</button>
               </a>
             </div>
           </li>
           <?php if (isset($_SESSION['name'])) { ?>
+           
             <li class="vc nav-item">
-              <div class=" d-inline-block">
-                <a href="customer.php">
-                  <button id="btns" class="blue-btn" role="button">Profile</button>
-                </a>
-                </a>
-              </div>
-            </li>
-          <?php }
-          //  else {
-          ?>
-          <!-- <li class="vc nav-item">
-              <div class="mr-auto d-inline-block">
-                <button id="btns2" class="blue-btn one-line-button" style="min-width:120px; max-width:200px"
-                  onclick="alert('Please login or Register First.');">
-                  <span class="btn-text">
-                    Welcome
-                  </span>
-                </button>
-              </div>
-            </li> 
-          <?php ?>-->
-          <li class="vc nav-item">
             <div class="p-0 mr-auto">
-              <button class="blue-btn" role="button" data-bs-toggle="dropdown">Sign Up &#9660;</button>
+              <button class="blue-btn" role="button" data-bs-toggle="dropdown">Profile &#9660;</button>
               <ul class="dropdown-menu mr-1" style="left: auto;">
+                <li style="margin: 0;padding-bottom: 5px">
+                  <a href="customer.php">
+                    <button class="blue-btn dropdown-item" role="button" style="margin: 0;">Profile</button>
+                  </a>
+                </li>
                 <li style="margin: 0;padding-bottom: 5px">
                   <a href="registeration.php">
                     <button class="blue-btn dropdown-item" role="button" style="margin: 0;">Sign Up</button>
@@ -137,6 +128,43 @@
               </ul>
             </div>
           </li>
+          <?php 
+          }
+          else{?>
+            <li class="vc nav-item">
+            <div class="p-0 mr-auto">
+              <button class="blue-btn" role="button" data-bs-toggle="dropdown">Sign Up &#9660;</button>
+              <ul class="dropdown-menu mr-1" style="left: auto;">
+              <li style="margin: 0;padding-bottom: 5px">
+                  <a href="customer.php">
+                    <button class="blue-btn dropdown-item" role="button" style="margin: 0;">Profile</button>
+                  </a>
+                </li>
+                <?php if (isset($_SESSION['name']) && $_SESSION['name'] == "harsh" && isset($_SESSION['id']) && $_SESSION['id'] == "3") { ?>
+                              <li style="margin: 0;">
+                    <a href="admin1.php">
+                      <button class="blue-btn dropdown-item" role="button" style="margin: 0;">Admin</button>
+                    </a>
+                  </li>
+                <?php } ?>
+                <li style="margin: 0;padding-bottom: 5px">
+                  <a href="registeration.php">
+                    <button class="blue-btn dropdown-item" role="button" style="margin: 0;">Sign Up</button>
+                  </a>
+                </li>
+                <li style="margin: 0;">
+                  <a href="login.php">
+                    <button class="blue-btn dropdown-item" role="button" style="margin: 0;">Log In</button>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <?php }
+         
+          ?>
+         
+          
         </ul>
       </div>
     </div>

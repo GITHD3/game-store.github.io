@@ -1,7 +1,13 @@
 <?php
 session_start();
 include 'navbar.php';
-?>
+$dsn = "mysql:host=localhost;dbname=game4";
+$username = "root";
+$password = "";
+
+$dbconn = new PDO($dsn, $username, $password);
+$dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    ?>
 
 <!DOCTYPE html>
 <html>
@@ -20,7 +26,7 @@ include 'navbar.php';
 <body>
     <div class="container main">
         <div class="A">
-            <h4 class="heading pt-2" style="font-family: 'Press Start 2P'; font-size: 22px; color: black;">
+            <h4 class="heading pt-2" style="font-family: 'Press Start 2P'; font-size: 22px;  color: #dfdfdf;">
                 <strong>Welcome to <br>ParaCrash Game Store</strong>
             </h4>
         </div>
@@ -60,180 +66,95 @@ include 'navbar.php';
         <hr id="hrtag">
     </div>
     <div class="c">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <div class="container w-1000">
             <div class="section Flipcards">
                 <header class="p-2 text-center">
-                    <h2>Latest Games</h2>
+                    <h2 style="color:#dfdfdf;">Latest Games</h2>
                 </header>
                 <div class="row pl-3 pr-3 rowcards">
-                    <div class="i pt-2">
-                        <div class="c text-center">
-                            <div class="wrap">
-                                <img src="img/Call Of Duty Modern Warfare.webp" alt="#" class="img-responsive pt-2">
-                                <div class="info pt-2">
-                                    <h5 class="name">Call Of Duty Modern Warfare</h5>
-                                    <p class="position text-muted">Action Game </p>
-                                </div>
-                            </div>
-                            <div class="more pt-1">
-                                <p>Prepare for Unstoppable Action in Modern Warfare - Where Combatants Evolve to Conquer
-                                    the Dynamic and Evolving Battlefield!</p>
-                                <form class="formbutton text-center pb-5" method="POST" action="seppage.php">
-                                    <input type="hidden" value="Call Of Duty Modern Warfare" name="gameName">
-                                    <button type="submit" class="btn">Buy</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="i pt-2">
-                        <div class="c text-center">
-                            <div class="wrap">
-                                <img src="img/Grand Theft Auto V.webp" alt="#" class="img-responsive pt-2">
-                                <div class="info pt-2">
-                                    <h5 class="name">Grand Theft Auto V</h5>
-                                    <p class="position text-muted">Action-Adventure Game </p>
-                                </div>
-                            </div>
-                            <div class="more pt-1">
-                                <p>Grand Theft Auto V: Unleash Your Inner Outlaw in this Thrilling Action-Adventure!
-                                    Embrace the Freedom of the Open World and Dive into Epic Missions!
-                                </p>
-                                <form class="formbutton text-center pb-5" method="POST" action="seppage.php">
-                                    <input type="hidden" value="Grand Theft Auto V" name="gameName">
-                                    <button type="submit" class="btn">Buy</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="i pt-2">
-                        <div class="c text-center">
-                            <div class="wrap">
-                                <img src="img/Ghostwire Tokyo.webp" alt="#" class="img-responsive pt-2">
-                                <div class="info pt-2">
-                                    <h5 class="name">Ghostwire Tokyo</h5>
-                                    <p class="position text-muted">Action Game </p>
-                                </div>
-                            </div>
-                            <div class="more pt-1">
-                                <p>Unleash the Magic Within - Ghostwire: Tokyo, an Action-Adventure Thrill Ride! Embrace
-                                    Your Psychic Abilities, Defeat Haunting Spirits, and Upgrade Your Powers in the
-                                    Mystical Streets of Tokyo!
-                                </p>
-                                <form class="formbutton text-center pb-5" method="POST" action="seppage.php">
-                                    <input type="hidden" value="Ghostwire Tokyo" name="gameName">
-                                    <button type="submit" class="btn">Buy</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="i pt-2">
-                        <div class="c text-center">
-                            <div class="wrap">
-                                <img src="img/Wolfenstein New Order.webp" alt="#" class="img-responsive pt-2">
-                                <div class="info pt-2">
-                                    <h5 class="name">Wolfenstein New Order</h5>
-                                    <p class="position text-muted">Action Game </p>
-                                </div>
-                            </div>
-                            <div class="more pt-1">
-                                <p>Unleash the Resistance in Wolfenstein: The New Order - Embark on an Epic
-                                    First-Person Journey through Two Timelines. Your Choices Shape the Story,
-                                    Characters, and Destiny!
-                                </p>
-                                <form class="formbutton text-center pb-5" method="POST" action="seppage.php">
-                                    <input type="hidden" value="Wolfenstein New Order" name="gameName">
-                                    <button type="submit" class="btn">Buy</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="i pt-2">
-                        <div class="c text-center">
-                            <div class="wrap">
-                                <img src="img/Cyberpunk2077.webp" alt="#" class="img-responsive pt-2">
-                                <div class="info pt-2">
-                                    <h5 class="name">Cyberpunk2077</h5>
-                                    <p class="position text-muted">Action Open-World Game </p>
-                                </div>
-                            </div>
-                            <div class="more pt-1">
-                                <p>Embrace the Future in Cyberpunk 2077 - Venture into Night City's Dark Megalopolis,
-                                    Where Power, Glamor, and Body Modification Collide in an Open-World RPG Adventure!
-                                </p>
-                                <form class="formbutton text-center pb-5" method="POST" action="seppage.php">
-                                    <input type="hidden" value="Cyberpunk2077" name="gameName">
-                                    <button type="submit" class="btn">Buy</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="i pt-2">
-                        <div class="c text-center">
-                            <div class="wrap">
-                                <img src="img/Resident Evil 2.webp" alt="#" class="img-responsive pt-2">
-                                <div class="info pt-2">
-                                    <h5 class="name">Resident Evil 2</h5>
-                                    <p class="position text-muted">Survival Horror Game</p>
-                                </div>
-                            </div>
-                            <div class="more pt-1">
-                                <p>Escape the zombie-infested Raccoon City and unravel the dark secrets in this
-                                    reimagined survival horror, controlling both Leon S. Kennedy and Claire Redfield.
-                                </p>
-                                <form class="formbutton text-center pb-5" method="POST" action="seppage.php">
-                                    <input type="hidden" value="Resident Evil 2" name="gameName">
-                                    <button type="submit" class="btn">Buy</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="i pt-2">
-                        <div class="c text-center">
-                            <div class="wrap">
-                                <img src="img/DayZ.webp" alt="#" class="img-responsive pt-2">
-                                <div class="info pt-2">
-                                    <h5 class="name">DayZ</h5>
-                                    <p class="position text-muted">Action, Adventure, Massively Multiplayer</p>
+                    <?php
+                    $query2 = "SELECT gamename , mini_description FROM games ORDER BY release_date DESC LIMIT 4";
+                    $stmt = $dbconn->prepare($query2);
+                    $stmt->execute();
+                    $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                    foreach ($games as $game) {
+                        $description = $game['mini_description'];
+                        $description = explode('.', $description, 2);
+                        $description = implode('. ', $description);
+                        ?>
+                        <div class="i pt-2">
+                            <div class="c text-center">
+                                <div class="wrap">
+                                    <img src="img/<?php echo $game['gamename']; ?>.webp" alt="#"
+                                        class="img-responsive pt-2">
+                                    <div class="info pt-2">
+                                        <h5 class="name">
+                                            <?php echo $game['gamename']; ?>
+                                        </h5>
+                                        <p class="position text-muted">Action Game</p>
+                                    </div>
+                                </div>
+                                <div class="more pt-1">
+                                    <p>
+                                        <?php echo $description; ?>
+                                    </p>
+                                    <form class="formbutton text-center pb-5" method="POST" action="seppage.php">
+                                        <input type="hidden" value="<?php echo $game['gamename']; ?>" name="gameName">
+                                        <button type="submit" class="btn">Buy</button>
+                                    </form>
                                 </div>
                             </div>
-                            <div class="more pt-1">
-                                <p>DAYZ: Survive the unforgiving post-Soviet wasteland of Chernarus, where death is
-                                    permanent, and your choices shape your destiny. </p>
-                                <form class="formbutton text-center pb-5" method="POST" action="seppage.php">
-                                    <input type="hidden" value="DayZ" name="gameName">
-                                    <button type="submit" class="btn">Buy</button>
-                                </form>
-                            </div>
                         </div>
-                    </div>
-                    <div class="i pt-2">
-                        <div class="c text-center">
-                            <div class="wrap">
-                                <img src="img/Assassins Creed Odyssey.webp" alt="#" class="img-responsive pt-2">
-                                <div class="info pt-2">
-                                    <h5 class="name">Assassins Creed Odyssey</h5>
-                                    <p class="position text-muted">Action Role-Play Game</p>
+                        <?php
+                    }
+                    ?>
+
+                </div>
+                <div class="row pl-3 pr-3 rowcards">
+
+                    <?php
+                    $query2 = "SELECT gamename , mini_description FROM games ORDER BY release_date DESC LIMIT 4 OFFSET 4";
+                    $stmt = $dbconn->prepare($query2);
+                    $stmt->execute();
+                    $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                    foreach ($games as $game) {
+                        $description = $game['mini_description'];
+                        $description = explode('.', $description, 2);
+                        $description = implode('. ', $description);
+                        ?>
+                        <div class="i pt-2">
+                            <div class="c text-center">
+                                <div class="wrap">
+                                    <img src="img/<?php echo $game['gamename']; ?>.webp" alt="#"
+                                        class="img-responsive pt-2">
+                                    <div class="info pt-2">
+                                        <h5 class="name">
+                                            <?php echo $game['gamename']; ?>
+                                        </h5>
+                                        <p class="position text-muted">Action Game</p>
+                                    </div>
+                                </div>
+                                <div class="more pt-1">
+                                    <p>
+                                        <?php echo $description; ?>
+                                    </p>
+                                    <form class="formbutton text-center pb-5" method="POST" action="seppage.php">
+                                        <input type="hidden" value="<?php echo $game['gamename']; ?>" name="gameName">
+                                        <button type="submit" class="btn">Buy</button>
+                                    </form>
                                 </div>
                             </div>
-                            <div class="more pt-1">
-                                <p>Embark on an epic odyssey as either Alexios or Kassandra, Greek mercenaries with
-                                    royal Spartan blood, in the action-packed role-playing adventure of Assassin's Creed
-                                    Odyssey. </p>
-                                <form class="formbutton text-center pb-5" method="POST" action="seppage.php">
-                                    <input type="hidden" value="DayZ" name="gameName">
-                                    <button type="submit" class="btn">Buy</button>
-                                </form>
-                            </div>
                         </div>
-                    </div>
+                        <?php
+                    }
+                    ?>
 
                 </div>
 
             </div>
-
-
         </div>
     </div>
     <div class="hrtag">
@@ -242,98 +163,93 @@ include 'navbar.php';
 
 
     <div class="container main">
-        <h4>Top Action Games</h4>
+        <h4 style="color:#dfdfdf;">Top Action Games</h4>
         <hr class="hrtag2">
         <div class="row p-1 g-4">
-    <?php 
-    try {
-        $dsn = "mysql:host=localhost;dbname=game4";
-        $username = "root";
-        $password = "";
-
-        $dbconn = new PDO($dsn, $username, $password);
-        $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        // Perform the SQL query using PDO
-        $sql = "SELECT * FROM games WHERE genre_name LIKE '%Action%' LIMIT 4";
-        $result = $dbconn->query($sql);
-
-        // Loop through the results and generate the HTML
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            echo '<div class="col">';
-            echo '<div class="card smallcards" style="width: 13rem;">';
-            echo '<img class="card-img-top imgsmallcard" style="height: 13rem;" src="img/' . $row['gamename'] . '.webp">';
-            echo '<div class="card-body bodysmallcard pt-0">';
-            echo '<p class="card-text">' . $row['gamename'] . '</p>';
-            echo '<form class="formbutton formbutton2 text-center pb-1" method="POST" action="seppage.php">';
-            echo '<input type="hidden" value="' . $row['gamename'] . '" name="gameName">';
-            echo '<button type="submit" class="btn">Buy</button>';
-            echo '</form>';
-            echo '</div>';
-            echo '</div>';
-            echo '</div>';
-        }
-
-        // Close the database connection (not needed for PDO)
-        // mysqli_close($connection);
-    } catch (Exception $e) {
-        echo "<pre><center>Sorry Can't Load Now</center></pre>";
-    }
-    ?>
-</div>
+            <?php
+            try {
 
 
-         
+                // Perform the SQL query using PDO
+                $sql = "SELECT * FROM games WHERE genre_name LIKE '%Action%' LIMIT 4";
+                $result = $dbconn->query($sql);
+
+                // Loop through the results and generate the HTML
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    echo '<div class="col">';
+                    echo '<div class="card smallcards" style="width: 13rem;">';
+                    echo '<img class="card-img-top imgsmallcard" style="height: 13rem;" src="img/' . $row['gamename'] . '.webp">';
+                    echo '<div class="card-body bodysmallcard pt-0">';
+                    echo '<p class="card-text">' . $row['gamename'] . '</p>';
+                    echo '<form class="formbutton formbutton2 text-center pb-1" method="POST" action="seppage.php">';
+                    echo '<input type="hidden" value="' . $row['gamename'] . '" name="gameName">';
+                    echo '<button type="submit" class="btn">Buy</button>';
+                    echo '</form>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+
+                // Close the database connection (not needed for PDO)
+                // mysqli_close($connection);
+            } catch (Exception $e) {
+                echo "<pre><center>Sorry Can't Load Now</center></pre>";
+            }
+            ?>
         </div>
+
+
+
+    </div>
 
     <div class="hrtag">
         <hr id="hrtag">
     </div>
 
     <div class="container main">
-        <h4>Top Racing Games</h4>
+        <h4 style="color:#dfdfdf;">Top Racing Games</h4>
         <hr class="hrtag2">
         <div class="row p-1 g-4">
-    <?php 
-    try {
-        $dsn = "mysql:host=localhost;dbname=game4";
-        $username = "root";
-        $password = "";
+            <?php
+            try {
+                $dsn = "mysql:host=localhost;dbname=game4";
+                $username = "root";
+                $password = "";
 
-        $dbconn = new PDO($dsn, $username, $password);
-        $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $dbconn = new PDO($dsn, $username, $password);
+                $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Perform the SQL query using PDO
-        $sql = "SELECT * FROM games WHERE genre_name LIKE '%Racing%' LIMIT 4";
-        $result = $dbconn->query($sql);
+                // Perform the SQL query using PDO
+                $sql = "SELECT * FROM games WHERE genre_name LIKE '%Racing%' LIMIT 4";
+                $result = $dbconn->query($sql);
 
-        // Loop through the results and generate the HTML
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            echo '<div class="col">';
-            echo '<div class="card smallcards" style="width: 13rem;">';
-            echo '<img class="card-img-top imgsmallcard" style="height: 13rem;" src="img/' . $row['gamename'] . '.webp">';
-            echo '<div class="card-body bodysmallcard pt-0">';
-            echo '<p class="card-text">' . $row['gamename'] . '</p>';
-            echo '<form class="formbutton formbutton2 text-center pb-1" method="POST" action="seppage.php">';
-            echo '<input type="hidden" value="' . $row['gamename'] . '" name="gameName">';
-            echo '<button type="submit" class="btn">Buy</button>';
-            echo '</form>';
-            echo '</div>';
-            echo '</div>';
-            echo '</div>';
-        }
+                // Loop through the results and generate the HTML
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    echo '<div class="col">';
+                    echo '<div class="card smallcards" style="width: 13rem;">';
+                    echo '<img class="card-img-top imgsmallcard" style="height: 13rem;" src="img/' . $row['gamename'] . '.webp">';
+                    echo '<div class="card-body bodysmallcard pt-0">';
+                    echo '<p class="card-text">' . $row['gamename'] . '</p>';
+                    echo '<form class="formbutton formbutton2 text-center pb-1" method="POST" action="seppage.php">';
+                    echo '<input type="hidden" value="' . $row['gamename'] . '" name="gameName">';
+                    echo '<button type="submit" class="btn">Buy</button>';
+                    echo '</form>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                }
 
-        // Close the database connection (not needed for PDO)
-        // mysqli_close($connection);
-    } catch (Exception $e) {
-        echo "<pre><center>Sorry Can't Load Now</center></pre>";
-    }
-    ?>
-</div>
-
-
-         
+                // Close the database connection (not needed for PDO)
+                // mysqli_close($connection);
+            } catch (Exception $e) {
+                echo "<pre><center>Sorry Can't Load Now</center></pre>";
+            }
+            ?>
         </div>
+
+
+
+    </div>
 
 </body>
 
@@ -360,34 +276,37 @@ include 'navbar.php';
         font-weight: bold;
         transition: 0.2s;
     }
-    .bodysmallcard:hover{
 
-    }
 
     .smallcards {
         background-color: transparent;
-        outline: 2px solid beige; 
+        outline: 2px solid beige;
         border-radius: 3px;
         color: whitesmoke;
         border: none;
-        overflow:hidden;
+        overflow: hidden;
         height: 320px;
-        transition: 0.4s;
+        transition: transform 0.4s cubic-bezier(1, 0.44, 0.25, 1);
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
-   
+
+    .smallcards {
+        transition: all 0.3s ease;
+    }
+
     .smallcards:hover {
+        transition: all 0.4s ease;
         box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
         background-color: rgba(255, 255, 255, 0.28);
     }
-    
-    .smallcards:hover .imgsmallcard{
+
+    .smallcards:hover .imgsmallcard {
         transform: scale(1.06);
-  transition: transform 0.3s ease;
-  transform-origin: center center;
-        backface-visibility:hidden;
+        transition: transform 0.3s ease;
+        transform-origin: center center;
+        backface-visibility: hidden;
         z-index: 1000;
-        position:relative;
+        position: relative;
 
     }
 
