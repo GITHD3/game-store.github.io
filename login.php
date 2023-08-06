@@ -129,4 +129,4 @@ if (isset($_POST['submit'])) {
   }
 </style>
 
-</html>
+</html><?php include 'footer.php'; ?>

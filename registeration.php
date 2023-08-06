@@ -114,4 +114,4 @@
         justify-content: flex-end;
     }
 </style>
-</html>
+</html><?php include 'footer.php'; ?>

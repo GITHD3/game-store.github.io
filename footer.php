@@ -10,36 +10,48 @@
   footer {
     background-color: #333333;
     margin-top: 10px;
+    bottom: 0;
+    width: 98%;
   }
-  .btnFOOTER{
+  
+  body {
+    justify-self: center;
+    position: relative;
+    min-height: 100vh;
+  }
+
+  .btnFOOTER {
     border-radius: 100%;
     border: none;
     padding: 15px;
   }
-  .btnFOOTER:hover{
+
+  .btnFOOTER:hover {
     border-radius: 100%;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   }
 </style>
-<body>
+
+<body >
   <footer class="bg text-center text-white">
     <div class="p-4 pb-0">
       <section class="mb-4">
 
         <!-- Google -->
-        <a class="btnFOOTER text-white btn-floating m-1" style="background-color: #dd4b39;" target="_blank" href="index.php" role="button"><i
-            class="fab fa-google"></i></a>
+        <a class="btnFOOTER text-white btn-floating m-1" style="background-color: #dd4b39;" target="_blank"
+          href="index.php" role="button"><i class="fab fa-google"></i></a>
 
         <!-- Instagram -->
-        <a class="btnFOOTER text-white btn-floating m-1" style="background-color: #ac2bac;" target="_blank" href="https://www.instagram.com/thisis__harsh/" role="button"><i
-            class="fab fa-instagram"></i></a>
+        <a class="btnFOOTER text-white btn-floating m-1" style="background-color: #ac2bac;" target="_blank"
+          href="https://www.instagram.com/thisis__harsh/" role="button"><i class="fab fa-instagram"></i></a>
 
         <!-- Linkedin -->
-        <a class="btnFOOTER text-white btn-floating m-1" style="background-color: #0082ca;" target="_blank" href="https://www.linkedin.com/in/harsh-dedakiya-93694a269/" role="button"><i
+        <a class="btnFOOTER text-white btn-floating m-1" style="background-color: #0082ca;" target="_blank"
+          href="https://www.linkedin.com/in/harsh-dedakiya-93694a269/" role="button"><i
             class="fab fa-linkedin-in"></i></a>
         <!-- Github -->
-        <a class="btnFOOTER text-white btn-floating m-1" style="background-color: #333333;" target="_blank" href="https://github.com/GITHD3" role="button"><i
-            class="fab fa-github"></i></a>
+        <a class="btnFOOTER text-white btn-floating m-1" style="background-color: #333333;" target="_blank"
+          href="https://github.com/GITHD3" role="button"><i class="fab fa-github"></i></a>
       </section>
     </div>
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">

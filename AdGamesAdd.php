@@ -310,4 +310,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
 </body>
 
-</html>
+</html><?php include 'footer.php'; ?>

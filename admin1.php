@@ -181,4 +181,4 @@ try {
 </body>
 
 
-</html>
+</html><?php include 'footer.php'; ?>

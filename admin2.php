@@ -275,4 +275,4 @@ if (isset($_POST['show_game'])) {
     
 </style>
 
-</html>
+</html><?php include 'footer.php'; ?>

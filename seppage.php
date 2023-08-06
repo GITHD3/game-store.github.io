@@ -223,4 +223,4 @@ if ($games) {
 
 
 
-</html>
+</html><?php include 'footer.php'; ?>

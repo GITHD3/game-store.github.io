@@ -17,8 +17,6 @@ include 'navbar.php';
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
-            height: 100%;
-            padding-bottom: 20px;
         }
 
         .container {
@@ -58,7 +56,7 @@ include 'navbar.php';
             width: 20%;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 830px) {
             .container {
                 flex-wrap: wrap;
             }
@@ -66,6 +64,7 @@ include 'navbar.php';
             .main,
             .sidebar {
                 width: 100%;
+                text-align: center;
             }
 
             .sidebar {
@@ -425,4 +424,4 @@ include 'navbar.php';
     </div>
 </body>
 
-</html>
+</html><?php include 'footer.php'; ?>

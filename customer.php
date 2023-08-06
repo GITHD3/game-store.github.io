@@ -282,4 +282,4 @@ if (!isset($_SESSION['name'])) {
 
 </body>
 
-</html>
+</html><?php include 'footer.php'; ?>

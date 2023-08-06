@@ -306,4 +306,4 @@ if (isset($_POST['update'])) {
     <?php endif; ?>
 </body>
 
-</html>
+</html><?php include 'footer.php'; ?>

@@ -158,4 +158,4 @@
     </div>
 </body>
 
-</html>
+</html><?php include 'footer.php'; ?>
