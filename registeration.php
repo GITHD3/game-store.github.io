@@ -31,7 +31,7 @@
                 <label>Last Name</label>
             </div>
             <div class="user-box">
-                <input type="date" name="dob" required="">
+                <input type="text" id="customDateInput" name="dob" required="">
                 <label>Date of Birth</label>
             </div>
             <div class="user-box">
@@ -197,5 +197,17 @@ body {
 }
 
 
-</style>
+</style><script>
+    const dateInput = document.getElementById('customDateInput');
+    
+    dateInput.addEventListener('focus', function() {
+        this.type = 'date';
+    });
+
+    dateInput.addEventListener('blur', function() {
+        if (!this.value) {
+            this.type = 'text';
+        }
+    });
+</script>
 </html><?php include 'footer.php'; ?>
