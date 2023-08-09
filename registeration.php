@@ -4,7 +4,7 @@
 
 <head>
     <title>Registeration Form</title>
-    <link rel="stylesheet" href="login.css">
+   
     <?php include 'cdns.php'; ?>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet"
@@ -19,7 +19,7 @@
     include 'navbar.php';
     ?></div>
     <div class="contain">
-    <div class="login-box" style="    margin-top: 32px;">
+    <div class="login-box" >
         <h2>Sign-Up</h2>
         <form action="Welcome.php" method='POST'>
             <div class="user-box">
@@ -97,11 +97,8 @@
     }
 
     #navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 999;
+        position: relative;
+        
     }
 
     #footer {
@@ -112,6 +109,93 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
+        
     }
+    /*add css Code*/
+
+
+
+body {
+    font-family: sans-serif;
+    background: linear-gradient(#404ccc, #03e9f4);
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+.contain{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.login-box {
+    margin-bottom: 0px  ;
+    width: 400px;
+    padding: 40px;
+    
+    background: rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    border-radius: 7px;
+    z-index: 10;
+    transition: all 0.4s ease;
+}
+.login-box:hover{
+    box-shadow: 0px 20px 30px -10px #171717;
+}
+
+.login-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+}
+
+.login-box .user-box {
+    position: relative;
+}
+
+.login-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.login-box .user-box label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.login-box .user-box input:focus~label,
+.login-box .user-box input:valid~label {
+    top: -20px;
+    left: 0;
+    color: #03e9f4;
+    font-size: 12px;
+}
+
+
 </style>
 </html><?php include 'footer.php'; ?>
