@@ -127,6 +127,13 @@ if (isset($_POST['submit'])) {
     padding-top: 9px;
     padding-bottom: 33px;
   }
+  .login-box{
+    transition: all 0.4s ease;
+  }
+  .login-box:hover{
+    box-shadow: 0px 20px 30px -10px #171717;
+}
+
 </style>
 
 </html><?php include 'footer.php'; ?>
