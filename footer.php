@@ -18,11 +18,10 @@
     footer {
       background-color: #333333;
       width: 100%;
-      
+      margin-top: 16px;
       padding: 1rem;
       color: white;
       text-align: center;
-      margin-top: auto; /* Push the footer to the bottom */
     }
 
     .btnFOOTER {

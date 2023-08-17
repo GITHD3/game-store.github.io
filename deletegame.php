@@ -108,57 +108,36 @@
         $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
 
-        <form method="post" action="" style="padding-left: 16px;">
-            <div class="mb-3">
-                <label for="GAMENAME" class="form-label">Select a Game to Delete :</label>
-                <select name="GAMENAME" id="GAMENAME" class="form-select" required>
-                    <option value="">Select a game</option>
-                    <?php foreach ($games as $g): ?>
-                        <option value="<?= $g['gamename'] ?>"> <?= $g['gamename'] ?> </option>
-                    <?php endforeach; ?>
-                </select>
-                <button type="submit" name="selectgame" id="select" class="btn btn-primary">Select</button>
-            </div>
-        </form>
-        <?php if(isset($_POST['selectgame'])) { ?>
-            <form method="post" style="padding-left: 16px;">
-                <h2>Confirm the Deletion</h2>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="YES">
-                    <label class="form-check-label" for="inlineRadio1">Yes</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="NO">
-                    <label class="form-check-label" for="inlineRadio2">No</label>
-                </div>
-                <button type="submit" name="confirm" id="select" class="btn btn-primary">Submit</button>
-            </form>
-            <?php
-        }
+<form method="post" action="" style="padding-left: 16px;">
+      <div class="mb-3">
+        <label for="GAMENAME" class="form-label">Select a Game to Delete :</label>
+        <select name="GAMENAME" id="GAMENAME" class="form-select" required>
+          <option value="">Select a game</option>
+          <?php foreach ($games as $g): ?>
+            <option value="<?= $g['gamename'] ?>"> <?= $g['gamename'] ?> </option>
+          <?php endforeach; ?>
+        </select>
+        <button type="submit" name="selectgame" id="select" class="btn btn-primary">Select</button>
+      </div>
+    </form>
 
-        if (isset($_POST['selectgame']) && isset($_POST['confirm'])) {
-            if ($_POST['inlineRadioOptions'] == "YES") {
-                $sg = $_POST['GAMENAME'];
-                $q2 = 'DELETE FROM `games` WHERE gamename = ?';
-                $stmt2 = $pdo->prepare($q2);
-                $stmt2->execute([$sg]);
-                if ($stmt2->rowCount() > 0) {
-                    ?>
-                    <h2 style="padding-left: 16px;">Deleted:
-                        <?= $sg ?>
-                    </h2>
-                    <?php
-                } else {
-                    echo "<br><pre>Not Delete";
-                }
-            }
-            else {
-                header("Location: deletegame.php");
-                exit;
-            }
+    <?php if (isset($_POST['selectgame'])) { 
+        $sg = $_POST['GAMENAME'];
+        $q2 = 'DELETE FROM `games` WHERE gamename = ?';
+        $stmt2 = $pdo->prepare($q2);
+        $stmt2->execute([$sg]);
+        if ($stmt2->rowCount() > 0) {
+    ?>
+          <h2 style="padding-left: 16px;">Deleted:
+            <?= $sg ?>
+          </h2>
+        <?php } else {
+          echo "<br><pre>Not Deleted";
         }
     }
-    ?>
+  }
+  ?>
 </body>
+
 </html>
 <?php include 'footer.php'; ?>

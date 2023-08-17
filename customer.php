@@ -22,8 +22,8 @@
 
     .container {
       margin-top: 50px;
-      padding-top: 200px;
-      padding-bottom: 310px;
+      padding-top: 100px;
+      padding-bottom: 100px;
     }
 
     .card {
@@ -109,7 +109,6 @@
     }
   </style>
 </head>
-
 <?php
 if (!isset($_SESSION['name'])) {
   echo "Please Log in or Sign up !!";
@@ -128,7 +127,7 @@ if (!isset($_SESSION['name'])) {
   $stmt->bindParam(":customername", $customername);
   $stmt->execute();
 
-  $stmt->setFetchMode(PDO::FETCH_NUM); // Set the fetch mode to numeric array (row)
+  $stmt->setFetchMode(PDO::FETCH_NUM);
   $customer = $stmt->fetch();
 
   $Id = $customer[0];
@@ -143,7 +142,7 @@ if (!isset($_SESSION['name'])) {
 <body>
   <?php include "navbar.php"; ?>
 
-  <div class="container h-100 pt-20">
+  <div class="container h-90 pt-10">
     <div class="row d-flex justify-content-center align-items-center h-100 full-height">
       <div class="col col-lg-6 mb-4 mb-lg-0">
         <div class="card mb-3" style="border-radius: .5rem;">
@@ -193,7 +192,8 @@ if (!isset($_SESSION['name'])) {
       </div>
     </div>
     <?php
-    if (isset($_POST['submit'])) { ?>
+    if (isset($_POST['submit'])) {
+    ?>
       <center>
         <div class="changetable col-lg-6 mb-1 mb-lg-0">
           <form method="POST" action="">
@@ -206,16 +206,16 @@ if (!isset($_SESSION['name'])) {
                 <th style="width: 50%;">Last Name</th>
               </tr>
               <tr>
-                <td><input type="text" class="inputtable" name="FN"></input></td>
-                <td><input type="text" class="inputtable" name="LN"></input></td>
+                <td><input type="text" class="inputtable" name="new_FN"></input></td>
+                <td><input type="text" class="inputtable" name="new_LN"></input></td>
               </tr>
               <tr>
                 <th style="width: 50%;">Phone</th>
                 <th style="width: 50%;">Date of Birth</th>
               </tr>
               <tr>
-                <td><input type="contact" class="inputtable" name="PHONE"></input></td>
-                <td><input type="date" class="inputtable" name="DATE"></input></td>
+                <td><input type="contact" class="inputtable" name="new_PHONE"></input></td>
+                <td><input type="date" class="inputtable" name="new_DATE"></input></td>
               </tr>
               <tr>
                 <td><br>
@@ -228,58 +228,56 @@ if (!isset($_SESSION['name'])) {
       </center>
       <?php
       if (isset($_POST['submit2'])) {
-        $newFirstName = $_POST['FN'];
-        $newLastName = $_POST['LN'];
-        $newPhone = $_POST['PHONE'];
-        $newDateOfBirth = $_POST['DATE'];
-    
-        // Prepare the SQL statement with placeholders for variables
-        $sql = "UPDATE customer SET ";
-        $params = array();
-    
+        $newFirstName = $_POST['new_FN'];
+        $newLastName = $_POST['new_LN'];
+        $newPhone = $_POST['new_PHONE'];
+        $newDateOfBirth = $_POST['new_DATE'];
+
         if (!empty($newFirstName)) {
-            $sql .= "firstname = :firstname, ";
-            $params[':firstname'] = $newFirstName;
+          $sql = "UPDATE customer SET firstname = :firstname WHERE customerid = :customerid";
+        } elseif (!empty($newLastName)) {
+          $sql = "UPDATE customer SET lastname = :lastname WHERE customerid = :customerid";
+        } elseif (!empty($newPhone)) {
+          $sql = "UPDATE customer SET contactno = :contactno WHERE customerid = :customerid";
+        } elseif (!empty($newDateOfBirth)) {
+          $sql = "UPDATE customer SET dob = :dob WHERE customerid = :customerid";
         }
-    
-        if (!empty($newLastName)) {
-            $sql .= "lastname = :lastname, ";
-            $params[':lastname'] = $newLastName;
-        }
-    
-        if (!empty($newPhone)) {
-            $sql .= "contactno = :contactno, ";
-            $params[':contactno'] = $newPhone;
-        }
-    
-        if (!empty($newDateOfBirth)) {
-            $sql .= "dob = :dob, ";
-            $params[':dob'] = $newDateOfBirth;
-        }
-    
-        // Remove the trailing comma and space
-        $sql = rtrim($sql, ', ');
-    
-        // Add the WHERE clause to update the specific customer
-        $sql .= " WHERE customerid = :customerid";
-        $params[':customerid'] = $Id;
-    
-        try {
-            // Prepare and execute the UPDATE query
+
+        if (isset($sql)) {
+          try {
             $stmt = $conn->prepare($sql);
-            $stmt->execute($params);
-    
+            $stmt->bindValue(':customerid', $Id);
+
+            if (isset($newFirstName)) {
+              $stmt->bindValue(':firstname', $newFirstName);
+            }
+
+            if (isset($newLastName)) {
+              $stmt->bindValue(':lastname', $newLastName);
+            }
+
+            if (isset($newPhone)) {
+              $stmt->bindValue(':contactno', $newPhone);
+            }
+
+            if (isset($newDateOfBirth)) {
+              $stmt->bindValue(':dob', $newDateOfBirth);
+            }
+
+            $stmt->execute();
+
             echo "Customer information updated successfully.";
-        } catch (PDOException $e) {
+          } catch (PDOException $e) {
             echo "Error updating customer information: " . $e->getMessage();
+          }
         }
-    }
+      }
     }
     ?>
-
 
   </div>
 
 </body>
 
-</html><?php include 'footer.php'; ?>
+</html>
+<?php include 'footer.php'; ?>

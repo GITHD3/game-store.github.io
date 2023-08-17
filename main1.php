@@ -25,6 +25,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 <body>
     <div class="container main">
         <div class="A">
+
             <h4 class="heading pt-2" style="font-family: 'Press Start 2P'; font-size: 22px;  color: #dfdfdf;">
                 <strong>Welcome to <br>ParaCrash Game Store</strong>
             </h4>
@@ -589,6 +590,34 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             text-align: center;
         }
     }
+
+    @keyframes glowing {
+        0% {
+            color: #dfdfdf;
+            text-shadow: none;
+        }
+
+        50% {
+            color: #03e9f4;
+            text-shadow: 0 0 10px #03e9f4, 0 0 11px #03e9f4;
+                }
+
+        100% {
+            color: #dfdfdf;
+            text-shadow: none;
+        }
+    }
+
+    .A {
+        padding: 0px inherit;
+    }
+
+    .heading {
+        font-family: 'Press Start 2P';
+        font-size: 22px;
+        animation: glowing 3s infinite;
+    }
 </style>
+
 </html>
 <?php include 'footer.php'; ?>
