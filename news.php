@@ -222,45 +222,53 @@
         }
 
         @keyframes borderAnimation {
-      0% {
-        border-width: 2px;
-        border-color: #03e9f4;
-      }
-      25% {
-        border-color: black;
-      }
-      50% {
-        border-width: 2px;
-        border-color: #03e9f4;
-      }
-      75% {
-        border-color: #171717;
-      }
-      100% {
-        border-width: 2px;
-        border-color: #03e9f4;
-      }
-    }
+            0% {
+                border-width: 2px;
+                border-color: #03e9f4;
+            }
 
-    .headingmain {
-      display: flex;
-      justify-content: center;
-    }
+            25% {
+                border-color: black;
+            }
 
-    .headingnews {
-      text-align: center;
-      padding: 20px;
-      border: 2px solid #03e9f4;
-      animation: borderAnimation 4s infinite;
-      width: fit-content;
-    }
+            50% {
+                border-width: 2px;
+                border-color: #03e9f4;
+            }
 
-    .headingnews2 {
-      font-size: 24px;
-      color: #03e9f4;
-      margin: 0;
-      font-family: sans-serif;
-    }
+            75% {
+                border-color: #171717;
+            }
+
+            100% {
+                border-width: 2px;
+                border-color: #03e9f4;
+            }
+        }
+
+        .headingmain {
+            display: flex;
+            justify-content: center;
+        }
+
+        .headingnews {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #03e9f4;
+            animation: borderAnimation 4s infinite;
+            width: fit-content;
+        }
+
+        .headingnews2 {
+            font-size: 24px;
+            color: #03e9f4;
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        .hover-text .formbutton2 button {
+            display: block !important;
+        }
     </style>
 </head>
 
@@ -268,31 +276,44 @@
     <?php include 'navbar.php'; ?>
 
     <div class="Maincontent container">
-    <div class="heading-container headingmain">
-    <div class="headingnews">
-      <h2 class="headingnews2">News</h2>
-    </div>
-  </div>
+        <div class="heading-container headingmain">
+            <div class="headingnews">
+                <h2 class="headingnews2">News</h2>
+            </div>
+        </div>
         <div class="row main">
             <div class="col card1">
                 <div class="image-container">
                     <img class="cardimage" src="img/Ghostwire Tokyo.webp" alt="Image">
-                    <div class="hover-text">Step into the bewitching world of GhostWire Tokyo - a thrilling new game
-                        where typos come to life and spellbinding adventures await</div>
+                    <div class="hover-text">
+                        This free update adds new areas, missions, powers, collectibles, enemies,
+                        and a new roguelite mode to the game. It also brings Ghostwire: Tokyo to Xbox consoles for the
+                        first time.
+                        <div class="fb"><form class="formbutton2" method="POST" action="seppage.php">
+                            <input type="hidden" value="Ghostwire Tokyo" name="gameName">
+                            <button type="submit" class="btn">More</button>
+                        </form></div>
+
+                    </div>
                 </div>
             </div>
             <div class="col card2">
                 <div class="image-container">
                     <img class="cardimage imgcard2" src="img/Watch Dogs.webp" alt="Image">
-                    <div class="hover-text">Step into the thrilling world of Watch Dogs - a game where hacking is your
-                        weapon</div>
+                    <div class="hover-text">The games are set in a near-future where technology has become increasingly
+                        pervasive.
+                        The games focus on hacking and social engineering as gameplay mechanics.
+                        The games have been praised for their graphics and gameplay, but criticized for their story and
+                        characters.</div>
                 </div>
             </div>
             <div class="col card2">
                 <div class="image-container">
                     <img class="cardimage imgcard2" src="img/DayZ.webp" alt="Image">
-                    <div class="hover-text">Survive in the post-apocalyptic world of DayZ - a game of survival and
-                        exploration</div>
+                    <div class="hover-text">The latest update for DayZ, 1.21 Update 3, was released on June 20, 2023.
+                        This update focused on fixing bugs and improving the overall gameplay experience.
+                        The developers have confirmed that they will continue to support DayZ throughout 2023. They have
+                        also teased some new content that is in the works, such as a new map and a new zombie AI.</div>
                 </div>
             </div>
         </div>
@@ -301,14 +322,19 @@
             <div class="col a1">
                 <div class="image-container2">
                     <img class="a1card" src="img 2/Cyberpunk2077.webp" alt="Image">
-                    <div class="texta1card">Step into a Neon-Drenched Future: Unleash the Future of Gaming with
-                        Unmissable Deals on Cyberpunk Adventures!</div>
+                    <div class="texta1card">: The upcoming expansion, Phantom Liberty, is set to be released on
+                        September
+                        26, 2023. It will add new quests, weapons, and enemies to the game.<br>
+                        : CD Projekt Red is also working on a sequel to Cyberpunk 2077, but it is still in the early
+                        stages of development.</div>
                 </div>
                 <br>
                 <div class="image-container2">
                     <img class="a1card" src="img 2/Grand Theft Auto V.webp" alt="Image">
-                    <div class="texta1card">Rev your engine for action in Los Santos! Grab Grand Theft Auto V now on
-                        SALE. Own the legacy, rule the streets, and embrace the Rockstar heritage.</div>
+                    <div class="texta1card">GTA V is still the most-watched game on Twitch. In 2021, GTA V was the
+                        most-watched game on Twitch, with over 3.1 billion hours watched. This is likely due to the
+                        popularity of GTA RP, a mode where players join a dedicated GTA server and roleplay as different
+                        characters.</div>
                 </div>
                 <br>
             </div>

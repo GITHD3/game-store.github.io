@@ -14,15 +14,17 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 <head>
     <link href='https://fonts.googleapis.com/css?family=Press Start 2P' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Aspekta' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Satoshi' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Nohemi' rel='stylesheet'>
     <title>Home Page</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <!-- Include Bootstrap CSS from CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
-</head>
+  </head>  
 
 
-<body>
+<body style="font-family: 'Aspekta', sans-serif;">
     <div class="container main">
         <div class="A">
 
@@ -423,7 +425,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         font-size: 14px;
         color: dodgerblue;
         font-weight: bold;
-
+        font-family: 'Satoshi', sans-serif !important;
     }
 
     .Flipcards .i .c .wrap .info .position {
@@ -480,10 +482,14 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         border-radius: 16px;
         padding: 4px;
     }
-
+    .text-muted{
+        
+        font-family: 'Satoshi', sans-serif;
+    }
     .card-text {
         font-size: 17px;
         padding: 1px 2px;
+        font-family: 'Nohemi', sans-serif;
     }
 
     .formbutton {
@@ -515,7 +521,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
     .bcard {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-family: 'Nohemi', sans-serif;
         background: linear-gradient(135deg, #9D7ABD, #E1A2B7, #F4E3EE);
         background-color: rgba(255, 255, 255, 0.15) !important;
         backdrop-filter: blur(10px);
@@ -590,7 +596,9 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             text-align: center;
         }
     }
-
+    .name {
+        font-family: 'Nohemi', sans-serif !important;
+    }
     @keyframes glowing {
         0% {
             color: #dfdfdf;

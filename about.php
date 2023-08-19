@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+<head><link href='https://fonts.googleapis.com/css?family=Aspekta' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Satoshi' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Nohemi' rel='stylesheet'>
     <title>About Us</title>
     <style>
         .navbar {
@@ -64,7 +66,6 @@
 
             .blockabout2 {
                 padding: 20px;
-                font-family: Arial, Helvetica, sans-serif;
                 font-size: 20px;
                 font-weight: bold;
                 background: linear-gradient(to right, dodgerblue 0%, lightpink 100%);
@@ -78,6 +79,13 @@
                 border: 1px solid rgba(32, 33, 36, 0.1);
                 box-shadow: rgba(0, 0, 0, 0.8) 0px 30px 100px 10px;
 
+            }
+            p{
+                
+        font-family: 'Satoshi', sans-serif;
+            }
+            h3{
+                font-family: 'Aspekta', sans-serif;
             }
         </style>
 

@@ -7,13 +7,16 @@ include 'navbar.php';
 <html>
 
 <head>
+    <link href='https://fonts.googleapis.com/css?family=Aspekta' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Satoshi' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Nohemi' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Press Start 2P' rel='stylesheet'>
     <title>Home Page</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
     <style>
         body {
-            background: linear-gradient(0deg ,#48AAAD, slateblue);
+            background: linear-gradient(0deg, #48AAAD, slateblue);
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
@@ -260,6 +263,19 @@ include 'navbar.php';
                         background-color: #7d2fb966;
                         box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
                     }
+
+                    h1,
+                    h2,
+                    h3,
+                    h4,
+                    h5,
+                    h6 {
+                        font-family: 'Nohemi', sans-serif;
+                    }
+
+                    p {
+                        font-family: 'Satoshi', sans-serif;
+                    }
                 </style>
                 <?php
                 if (isset($_POST['submit']) || isset($_POST['listvalue'])) {
@@ -372,6 +388,7 @@ include 'navbar.php';
                 color: whitesmoke;
                 text-align: left;
                 padding-top: 7px;
+                font-family: 'Aspekta', sans-serif;
             }
 
             .rigthsidelist {
@@ -424,4 +441,5 @@ include 'navbar.php';
     </div>
 </body>
 
-</html><?php include 'footer.php'; ?>
+</html>
+<?php include 'footer.php'; ?>
