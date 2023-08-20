@@ -49,7 +49,8 @@ try {
             background-image: linear-gradient(slateblue , #0C97FA);
             background-repeat: no-repeat;
             background-attachment: fixed;
-            height: 100%;
+            background-size: cover;
+            height: 100% !important;
         }
         @media (min-width:700px){
             body{

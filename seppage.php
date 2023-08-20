@@ -76,7 +76,7 @@ if ($games) {
             background: linear-gradient(#404ccc, #03e9f4);
             background-repeat: no-repeat;
             background-attachment: fixed;
-            height: 100%;
+            height: 100% !important;
             overflow-y: smooth;
         }
 

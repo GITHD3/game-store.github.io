@@ -21,7 +21,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
-  </head>  
+</head>
 
 
 <body style="font-family: 'Aspekta', sans-serif;">
@@ -482,10 +482,12 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         border-radius: 16px;
         padding: 4px;
     }
-    .text-muted{
-        
+
+    .text-muted {
+
         font-family: 'Satoshi', sans-serif;
     }
+
     .card-text {
         font-size: 17px;
         padding: 1px 2px;
@@ -566,10 +568,11 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     body {
         font-family: sans-serif;
-        background: linear-gradient(#404ccc, slateblue);
+        background: linear-gradient(#404ccc, slateblue) !important;
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: cover;
+        height: 100% !important;
     }
 
     @media (max-width: 768px) {
@@ -596,9 +599,12 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             text-align: center;
         }
     }
-    .name , .card-title {
+
+    .name,
+    .card-title {
         font-family: 'Nohemi', sans-serif !important;
     }
+
     @keyframes glowing {
         0% {
             color: #dfdfdf;
@@ -608,7 +614,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         50% {
             color: #03e9f4;
             text-shadow: 0 0 10px #03e9f4, 0 0 11px #03e9f4;
-                }
+        }
 
         100% {
             color: #dfdfdf;

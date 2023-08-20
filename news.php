@@ -2,19 +2,22 @@
 <html>
 
 <head>
+    <link href='https://fonts.googleapis.com/css?family=Aspekta' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Satoshi' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Nohemi' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <title>News Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         body {
-            background: linear-gradient(#404ccc, slateblue);
+            background: linear-gradient(#3f4797, #404ccc) !important;
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             margin: 0;
             padding: 0;
+            height: max-content !important;
         }
 
         .Maincontent {
@@ -224,25 +227,33 @@
         @keyframes borderAnimation {
             0% {
                 border-width: 2px;
-                border-color: #03e9f4;
+                border-color: orange;
+                color: orange;
+                box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
             }
 
             25% {
-                border-color: black;
+                color: peru;
+                border-color: peru;
             }
 
             50% {
+                color: Orange;
                 border-width: 2px;
-                border-color: #03e9f4;
+                border-color: orange;
+                box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
             }
 
             75% {
-                border-color: #171717;
+                color: peru;
+                border-color: peru;
             }
 
             100% {
+                color: Orange;
                 border-width: 2px;
-                border-color: #03e9f4;
+                border-color: Orange;
+                box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
             }
         }
 
@@ -254,14 +265,16 @@
         .headingnews {
             text-align: center;
             padding: 20px;
-            border: 2px solid #03e9f4;
-            animation: borderAnimation 4s infinite;
-            width: fit-content;
+            border: 2px solid Orange;
+            width: calc(fit-content() + 20px);
+            animation: borderAnimation 7s infinite;
         }
 
         .headingnews2 {
             font-size: 24px;
-            color: #03e9f4;
+            animation: borderAnimation 7s infinite;
+            color: Orange;
+            font-family: 'Satoshi' , sans-serif !important;
             margin: 0;
             font-family: sans-serif;
         }
@@ -289,10 +302,12 @@
                         This free update adds new areas, missions, powers, collectibles, enemies,
                         and a new roguelite mode to the game. It also brings Ghostwire: Tokyo to Xbox consoles for the
                         first time.
-                        <div class="fb"><form class="formbutton2" method="POST" action="seppage.php">
-                            <input type="hidden" value="Ghostwire Tokyo" name="gameName">
-                            <button type="submit" class="btn">More</button>
-                        </form></div>
+                        <div class="fb">
+                            <form class="formbutton2" method="POST" action="seppage.php">
+                                <input type="hidden" value="Ghostwire Tokyo" name="gameName">
+                                <button type="submit" class="btn">More</button>
+                            </form>
+                        </div>
 
                     </div>
                 </div>

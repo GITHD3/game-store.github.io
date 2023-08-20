@@ -26,8 +26,9 @@ include 'navbar.php';
             display: flex;
             justify-content: center;
             padding-top: 20px;
-            gap: 10px;
+            gap: 30px;
             max-width: 98%;
+            padding-bottom: 20px;
         }
 
         .main,
@@ -386,7 +387,8 @@ include 'navbar.php';
                 text-decoration: none;
                 border: none;
                 background: none;
-                color: whitesmoke;
+                color: black;
+                font-weight: 550;
                 text-align: left;
                 padding-top: 7px;
                 font-family: 'Aspekta', sans-serif;
@@ -394,7 +396,7 @@ include 'navbar.php';
 
             .rigthsidelist {
                 list-style-type: circle;
-                color: grey;
+                color: #1e1e1e;
             }
         </style>
         <div class="sidebar">

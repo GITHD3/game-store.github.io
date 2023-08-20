@@ -54,21 +54,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $gameSize = $_POST['gameSize'];
             $gameType = $_POST['gameType'];
             $description = $_POST['description'];
+            $mini_description = $_POST['mini_description'];
             $memoryRequired = $_POST['memoryRequired'];
             $operatingSystem = $_POST['operatingSystem'];
             $processorRequired = $_POST['processorRequired'];
             $storageRequired = $_POST['storageRequired'];
 
             // Insert game into the database
-            $insertQuery = "INSERT INTO games (gameid,gamename, developer_name, publisher_name, price, genre_name, mature_content, gamesize, gametype, description, memory_required, operating_system, processor_required, storage_required, release_date) 
-            VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $insertQuery = "INSERT INTO games (gameid,gamename, developer_name, publisher_name, price, genre_name, mature_content, gamesize, gametype, description,mini_description, memory_required, operating_system, processor_required, storage_required, release_date) 
+            VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
             $stmt = $pdo->prepare($insertQuery);
-            $stmt->execute([$gameid, $gameName, $developerName, $publisherName, $price, $genre, $matureContent, $gameSize, $gameType, $description, $memoryRequired, $operatingSystem, $processorRequired, $storageRequired, $releaseDate]);
+            $stmt->execute([$gameid, $gameName, $developerName, $publisherName, $price, $genre, $matureContent, $gameSize, $gameType, $description, $mini_description, $memoryRequired, $operatingSystem, $processorRequired, $storageRequired, $releaseDate]);
 
             // Redirect to the game page or display a success message
             echo "<br><pre>Added</pre>";
         } catch (PDOException $e) {
-            $error = 'Error inserting game: ' . $e->getMessage();
+            $error = 'Error inserting game: In Query';
         }
     }
 }
@@ -285,6 +286,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="description">Description:</label>
                 <textarea id="description" name="description" required></textarea>
                 <div></div><br>
+                <label for="mini_description">Mini - Description:</label>
+                <textarea id="mini_description" name="mini_description" required></textarea>
+                <div></div><br>
                 <label for="memoryRequired">Memory Required:</label>
                 <input type="number" id="memoryRequired" name="memoryRequired" required>
                 <div></div><br>
@@ -310,4 +314,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
 </body>
 
-</html><?php include 'footer.php'; ?>
+</html>
+<?php include 'footer.php'; ?>

@@ -60,6 +60,7 @@ if (isset($_POST['update'])) {
     $mature_content = $_POST['mature_content'];
     $gametype = $_POST['gametype'];
     $description = $_POST['description'];
+    $mini_description = $_POST['mini_description'];
     $memory_required = $_POST['memory_required'];
     $operating_system = $_POST['operating_system'];
     $processor_required = $_POST['processor_required'];
@@ -67,10 +68,10 @@ if (isset($_POST['update'])) {
     $release_date = $_POST['release_date'];
 
     // Prepare the update statement
-    $stmt = $pdo->prepare("UPDATE games SET gamename=?, publisher_name=?, developer_name=?, gamesize=?, genre_name=?, price=?, mature_content=?, gametype=?, description=?, memory_required=?, operating_system=?, processor_required=?, storage_required=?, release_date=? WHERE gameid=?");
+    $stmt = $pdo->prepare("UPDATE games SET gamename=?, publisher_name=?, developer_name=?, gamesize=?, genre_name=?, price=?, mature_content=?, gametype=?, description=?,mini_description=?,memory_required=?, operating_system=?, processor_required=?, storage_required=?, release_date=? WHERE gameid=?");
 
     // Execute the update statement
-    $stmt->execute([$gamename, $publisher_name, $developer_name, $gamesize, $genre_name, $price, $mature_content, $gametype, $description, $memory_required, $operating_system, $processor_required, $storage_required, $release_date, $gameid]);
+    $stmt->execute([$gamename, $publisher_name, $developer_name, $gamesize, $genre_name, $price, $mature_content, $gametype, $description, $mini_description ,$memory_required, $operating_system, $processor_required, $storage_required, $release_date, $gameid]);
 
     // Check if the update was successful
     if ($stmt->rowCount() > 0) {
@@ -95,9 +96,9 @@ if (isset($_POST['update'])) {
     <style>
         body {
             background: linear-gradient(#404ccc, #03e9f4);
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            height: 100%;
+            background-repeat: no-repeat !important;
+            background-attachment: fixed !important;
+            height: 100% !important;
         }
 
 
@@ -299,6 +300,11 @@ if (isset($_POST['update'])) {
                     <label for="release_date" class="form-label">Release Date:</label>
                     <input type="text" name="release_date" id="release_date" class="form-control"
                         value="<?= $selectedGame['release_date'] ?>" required>
+                </div>
+                <div class="col">
+                    <label for="mini_description" class="form-label">Mini Description:</label>
+                    <input type="text" name="mini_description" id="mini_description" class="form-control"
+                        value="<?= $selectedGame['mini_description'] ?>" required>
                 </div>
             </div>
             <button type="submit" name="update" id="sel" class="Select btn btn-primary">Update</button>

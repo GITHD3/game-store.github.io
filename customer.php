@@ -8,11 +8,11 @@
     body {
       margin: 0;
       padding: 0;
-      background-image: url('img/wallpaper.webp');
+      background-color: #0e4377 !important;
+      background-image: none !important;
       background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center center;
-      overflow-y: smooth;
+      background-size: auto !important;
+      height: 100% !important;
     }
 
     /* Hide scrollbar */
@@ -30,18 +30,13 @@
       background-color: rgba(255, 255, 255, 0.8);
     }
 
-    .full-height {
-      height: 100vh;
-    }
+    .full-height {}
 
     .gradient-custom {
-      /* fallback for old browsers */
       background: #f6d365;
 
-      /* Chrome 10-25, Safari 5.1-6 */
       background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
 
-      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
       background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
     }
 
@@ -193,7 +188,7 @@ if (!isset($_SESSION['name'])) {
     </div>
     <?php
     if (isset($_POST['submit'])) {
-    ?>
+      ?>
       <center>
         <div class="changetable col-lg-6 mb-1 mb-lg-0">
           <form method="POST" action="">

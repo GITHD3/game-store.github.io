@@ -25,7 +25,7 @@
             margin-left: auto;
             border-radius: 13px;
             outline: 1px solid #171717;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.65);
             backdrop-filter: blur(10px);
             font-family: 'Aspekta', sans-serif !important;
             z-index: 20;
@@ -76,13 +76,13 @@
         }
 
         ul {
-            gap: 8px;
+            gap: 7px;
             justify-content: space-evenly;
         }
 
         li {
 
-            padding: 0px 7px;
+            padding: 0px 12px;
         }
     </style>
 </head>
