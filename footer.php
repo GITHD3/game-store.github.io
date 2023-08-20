@@ -7,21 +7,21 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
   <style>
     body {
+      background: linear-gradient(#404ccc, #03e9f4);
+      position: relative;
+      height: 100vh;
       margin: 0;
-      padding-top: 8px;
-      display: flex;
-      justify-content:center;
-      flex-direction: column;
-      min-height: 100vh;
+      padding: 0;
     }
 
     footer {
+      position: relative;
       background-color: #333333;
       width: 100%;
-      margin-top: 16px;
       padding: 1rem;
       color: white;
       text-align: center;
+      z-index: 20;
     }
 
     .btnFOOTER {
@@ -34,9 +34,10 @@
       border-radius: 100%;
       box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     }
-    .suppose{
-      border : 1px solid #171717;
-      border-radius:8px;
+
+    .suppose {
+      border: 1px solid #171717;
+      border-radius: 8px;
     }
   </style>
 </head>

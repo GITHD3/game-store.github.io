@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'navbar.php'; 
 
 if (isset($_POST['submit'])) {
     $email = $_POST['e'];
@@ -72,7 +73,6 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-  <?php include 'navbar.php'; ?>
 
   <div class="login-box">
     <h2>LOGIN</h2>

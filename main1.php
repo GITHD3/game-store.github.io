@@ -41,7 +41,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                             <div class="col imgcards">
                                 <img src="img 2/Fortnite.webp" class="img-fluid" />
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <div class="card-body">
                                     <h5 class="card-title">Fortnite</h5>
                                     <p class="card-text">
@@ -596,7 +596,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             text-align: center;
         }
     }
-    .name {
+    .name , .card-title {
         font-family: 'Nohemi', sans-serif !important;
     }
     @keyframes glowing {

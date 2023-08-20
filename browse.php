@@ -118,7 +118,7 @@ include 'navbar.php';
 
 
         .flip-card {
-            background-color: rgba(218, 218, 218, 0.3);
+            background-color: rgba(0,0,0, 0.1);
             width: 220px;
             height: 270px;
             display: flex;
@@ -150,13 +150,13 @@ include 'navbar.php';
         }
 
         .flip-card-front {
-            background-color: #bbb;
+            background-color: rgba(0,0,0, 0.1);
             color: black;
         }
 
         .flip-card-back {
-            background-image: linear-gradient(#0652C5, slateblue);
-            color: white;
+            background-image: linear-gradient(slategray, darkgrey);
+            color: black;
             transform: rotateY(180deg);
         }
 
@@ -224,6 +224,7 @@ include 'navbar.php';
                         background-color: rgba(135, 206, 250, 0.9);
                         text-align: center;
                         overflow: hidden;
+                        font-family: 'Nohemi', sans-serif;
                     }
 
                     .input2 {
@@ -252,16 +253,16 @@ include 'navbar.php';
 
                     .btnn {
                         font-size: 18px;
-                        color: white;
-                        background-color: #b76eef66;
+                        background-color: #171717;
                         transition: 0.3s;
-                        border-radius: 3px;
-                    }
-
-                    .btnn:hover {
+                        border-radius: 7px;
                         color: #e5dbdb;
-                        background-color: #7d2fb966;
-                        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+                        font-family: 'Satoshi', sans-serif;
+                    }
+                    
+                    .btnn:hover {
+                        color: white;
+                        background-color: black;
                     }
 
                     h1,

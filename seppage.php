@@ -4,11 +4,9 @@ session_start();
 if (isset($_GET['gameName'])) {
     $gameName = $_GET['gameName'];
 
-}
-elseif(isset($_POST['gameName'])){
+} elseif (isset($_POST['gameName'])) {
     $gameName = $_POST['gameName'];
-} 
-else {
+} else {
     echo "Error Occured";
     exit; // Stop execution if the gameName is not set
 }
@@ -52,9 +50,12 @@ if ($games) {
 <html>
 
 <head>
+    <link href='https://fonts.googleapis.com/css?family=Aspekta' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Satoshi' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Nohemi' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Press Start 2P' rel='stylesheet'>
     <title>Seperate Page</title>
-  <link rel="stylesheet"
+    <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js"></script>
 
@@ -72,7 +73,6 @@ if ($games) {
     </DIV>
     <STYLE>
         body {
-            font-family: sans-serif;
             background: linear-gradient(#404ccc, #03e9f4);
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -80,10 +80,10 @@ if ($games) {
             overflow-y: smooth;
         }
 
-    /* Hide scrollbar */
-    ::-webkit-scrollbar {
-      display: none;
-    }
+        /* Hide scrollbar */
+        ::-webkit-scrollbar {
+            display: none;
+        }
 
         .card {
             max-width: 260px;
@@ -101,7 +101,6 @@ if ($games) {
 
 
     <style>
-        
         .fakeimg1 {
             height: 200px;
             max-width: 210px;
@@ -116,21 +115,37 @@ if ($games) {
         }
 
         #all {
-            border-color: rgb(	255, 255, 159);
-            border-style: solid;
+            outline: rgb(255, 255, 159);
+            outline-style: solid;
+            border-radius: 4px;
         }
 
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Nohemi', sans-serif;
+        }
+        p{
+            font-family: 'satoshi' ,sans-serif;
+        }
         .special {
-            font-family: 'Titillium Web';
+            font-family: 'Aspekta', sans-serif;
+
             align-items: center;
         }
-        #special2{
+
+        #special2 {
             font-size: 22px;
         }
-        #special3{
+
+        #special3 {
             font-style: none;
             font-size: 19px;
         }
+
         #line1 {
             color: yellow;
         }
@@ -142,18 +157,18 @@ if ($games) {
     <div class="container" id="all">
         <div class="row">
             <div class="col-sm-4">
-                
+
                 <br>
                 <div class="card p-0 m-0"> <img class="fakeimg1" src="img/<?php echo $gameName; ?>.webp"> </div>
                 <br>
                 <br>
                 <p>
                     <?php
-                    if($price==0){
+                    if ($price == 0) {
                         echo "Free";
-                    } 
-                    else{
-                    echo "Rs.".$price;} ?>
+                    } else {
+                        echo "Rs." . $price;
+                    } ?>
                 </p>
                 <p>
                     <?php echo $genre; ?>
@@ -177,50 +192,51 @@ if ($games) {
                 <p>Processor Required -
                     <?php echo $processor_required; ?>
                 </p>
-                
+
                 <hr class="hidden-sm hidden-md hidden-lg">
             </div>
             <div class="col-sm-8"><br>
-            <center>
-                <h2 class="special">
-                    <?php echo $gameName; ?>
-                </h2>
-            </center>
-            <hr width="70%" size="20" color="#FFD300" class="hidden-sm hidden-md hidden-lg" id="line1">
-                    <br><br>
-                    <h5>Release Date -
-                        <?php echo $release_date; ?>
-                    </h5>
-                    <h4>By
-                        <?php echo $pname; ?>
-                    </h4>
-                    <h4>Developer -
-                        <?php echo $dname; ?>
-                    </h4>
-                    <hr class="hidden-sm hidden-md hidden-lg">
-                    <br>
-                    <p id="special2">Description</p>
-                    <p id="special3">
-                        <?php echo $description; ?>
-                    </p>
-                    <hr class="hidden-sm hidden-md hidden-lg">
-                    <!-- <div class="fakeimg">Fake Image</div>
+                <center>
+                    <h2 class="special">
+                        <?php echo $gameName; ?>
+                    </h2>
+                </center>
+                <hr id="line1">
+                <br><br>
+                <h5>Release Date -
+                    <?php echo $release_date; ?>
+                </h5>
+                <h4>By
+                    <?php echo $pname; ?>
+                </h4>
+                <h4>Developer -
+                    <?php echo $dname; ?>
+                </h4>
+                <hr class="hidden-sm hidden-md hidden-lg">
+                <br>
+                <p id="special2">Description</p>
+                <p id="special3">
+                    <?php echo $description; ?>
+                </p>
+                <hr class="hidden-sm hidden-md hidden-lg">
+                <!-- <div class="fakeimg">Fake Image</div>
                     <p>Some text..</p>
                     <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do
                         eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                         nostrud exercitation ullamco.</p> -->
-                    </div>
+            </div>
         </div>
     </div>
-    
-<br>
-<br>
-<br>
-<br>
+
+    <br>
+    <br>
+    <br>
+    <br>
 
 </body>
 
 
 
 
-</html><?php include 'footer.php'; ?>
+</html>
+<?php include 'footer.php'; ?>

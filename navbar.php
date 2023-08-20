@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<link href="https://fonts.googleapis.com/css2?family=Aspekta:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aspekta:wght@400;700&display=swap" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -18,7 +18,6 @@
         .navbar {
             position: sticky;
             top: 3px;
-            z-index: 12;
             width: 90%;
             padding-right: 10px;
             padding-left: 10px;
@@ -29,9 +28,9 @@
             background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(10px);
             font-family: 'Aspekta', sans-serif !important;
+            z-index: 20;
         }
 
-        
         #imgnavbar {
             width: 100px;
             margin: 0px;
@@ -50,13 +49,16 @@
         .nav-link {
             width: 90px;
             text-align: center;
-            color: white !important;
+            color: lemonchiffon !important;
             border-radius: 7px;
+            outline: 1px solid slateblue;
             transition: all 0.3s ease !important;
+            background-color: #171717 !important;
         }
 
         .nav-link:hover {
-            background-color: #03e9f4;
+            outline: none;
+            background-color: #03e9f4 !important;
             color: black !important;
             box-shadow: 0px 0px 5px #03e9f4, 0px 0px 25px #03e9f4, 0px 0px 50px #03e9f4, 0px 0px 100px #03e9f4;
         }

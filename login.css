@@ -3,10 +3,8 @@
 
 
 body {
-    font-family: sans-serif;
     background: linear-gradient(#404ccc, #03e9f4);
     position: relative;
-    z-index: 1;
     margin: 0;
     padding: 0;
 }
@@ -26,11 +24,11 @@ body {
     left: 50%;
     width: 400px;
     padding: 40px;
-    transform: translate(-50%, -50%);
     background: rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
     border-radius: 7px;
-    z-index: 10;
+    z-index: 19;
+    transform: translate(-50%, -50%); /* Center horizontally and vertically */
 }
 
 .login-box h2 {
