@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background: linear-gradient(#404ccc, #03e9f4);
             background-repeat: no-repeat;
             background-attachment: fixed;
-            height: 100%;
+            height: 100% !important ;
         }
 
         .btn {
