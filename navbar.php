@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+    <?php
+    ob_start(); 
+    ?>
 
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Aspekta:wght@400;700&display=swap" rel="stylesheet">

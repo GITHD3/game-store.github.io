@@ -29,7 +29,10 @@
             margin-bottom: 20px;
             transition: all 0.5s ease;
         }
-
+        hr {
+           color: #17171e !important;
+           opacity: 1 !important; 
+        }
         .card1,
         .card2 {
             max-width: 300px !important;
@@ -471,7 +474,6 @@
             </div>
             <div class="col b1">
                 <div class="row v1">
-                    <hr class="hrv1">
                     <div class="v1child">
                         <img class="v1childimg" src="img/Froza Horizon 5.webp">
                         <p>Forza Horizon 5 breaks records with its vast 50% larger map than its predecessor. Dynamic
@@ -529,7 +531,6 @@
                 </div>
             </div>
         </div>
-        <hr>
     </div>
 
     <?php include 'footer.php'; ?>
