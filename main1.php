@@ -53,82 +53,83 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                     </p>
                                     <pre>Action , Battle-Royale</pre>
                                     <p class="card-text">
-                                    <div style="display: flex; justify-content: space-evenly;">
-                                        <form class="formbutton" method="POST" action="seppage.php">
-                                            <input type="hidden" value="Fortnite" name="gameName">
-                                            <button type="submit" class="btn">Buy</button>
-                                        </form>
-                                        <?php
+                                        <div style="display: flex; justify-content: space-evenly;">
+                                            <form class="formbutton" method="POST" action="seppage.php">
+                                                <input type="hidden" value="Fortnite" name="gameName">
+                                                <button type="submit" class="btn">Buy</button>
+                                            </form>
+                                            <?php
 
-                                        $GAMEIDquery = "SELECT gameid from games where gamename = 'Fortnite'";
-                                        $gameidResult = $dbconn->query($GAMEIDquery);
+                                            $GAMEIDquery = "SELECT gameid from games where gamename = 'Fortnite'";
+                                            $gameidResult = $dbconn->query($GAMEIDquery);
 
-                                        $gameidRow = $gameidResult->fetch(PDO::FETCH_ASSOC);
-                                        $gameidtemp = $gameidRow['gameid'];
+                                            $gameidRow = $gameidResult->fetch(PDO::FETCH_ASSOC);
+                                            $gameidtemp = $gameidRow['gameid'];
 
-                                        $check_game_cart = "SELECT * FROM `cart` WHERE gameid = :gameid";
-                                        $stmt_check_game_cart = $dbconn->prepare($check_game_cart);
-                                        $stmt_check_game_cart->bindParam(':gameid', $gameidtemp);
-                                        $stmt_check_game_cart->execute();
-                                        if ($stmt_check_game_cart->rowCount() > 0) {
-                                            echo '
+                                            $check_game_cart = "SELECT * FROM `cart` WHERE gameid = :gameid";
+                                            $stmt_check_game_cart = $dbconn->prepare($check_game_cart);
+                                            $stmt_check_game_cart->bindParam(':gameid', $gameidtemp);
+                                            $stmt_check_game_cart->execute();
+                                            if ($stmt_check_game_cart->rowCount() > 0) {
+                                                echo '
                                                 <form class="formbutton" method="POST" action="cart.php">
                                                 <input type="hidden" name="gameid" value="<?php echo $gameidtemp; ?>">
-                                                <button type="submit" class="btn" name="go_to_cart">Go to Cart</button>
-                                                </form>
+                                            <button type="submit" class="btn" name="go_to_cart">Go to Cart</button>
+                                            </form>
                                             ';
-                                        } else {
-                                            echo '
-                                                    <form class="formbutton" method="POST">
-                                                    <input type="hidden" name="gameid" value="<?php echo $gameidtemp; ?>">
-                                                    <button type="submit" class="btn" name="add_to_cart">Add to Cart</button>
-                                                    </form>';
-                                            if (isset($_SESSION['id'])) {
+                                            } else {
+                                                echo '
+                                            <form class="formbutton" method="POST">
+                                                <input type="hidden" name="gameid" value="<?php echo $gameidtemp; ?>">
+                                                <button type="submit" class="btn" name="add_to_cart">Add to
+                                                    Cart</button>
+                                            </form>';
                                                 if (isset($_POST['add_to_cart'])) {
-                                                    $cartid = $_SESSION['id'];
+                                                    if (isset($_SESSION['id'])) {
+                                                        $cartid = $_SESSION['id'];
 
-                                                    $addquery = "INSERT INTO `cart`(`cartid`, `gameid`, `amount`) VALUES (:cartid, :gameid, 0)";
+                                                        $addquery = "INSERT INTO `cart`(`cartid`, `gameid`, `amount`) VALUES
+                                            (:cartid, :gameid, 0)";
 
-                                                    $stmt = $dbconn->prepare($addquery);
-                                                    $stmt->bindParam(':cartid', $cartid);
-                                                    $stmt->bindParam(':gameid', $gameidtemp);
+                                                        $stmt = $dbconn->prepare($addquery);
+                                                        $stmt->bindParam(':cartid', $cartid);
+                                                        $stmt->bindParam(':gameid', $gameidtemp);
 
-                                                    try {
-                                                        $stmt->execute();
-                                                    } catch (PDOException $e) {
-                                                        // Handle the exception if needed
+                                                        try {
+                                                            $stmt->execute();
+                                                        } catch (PDOException $e) {
+                                                            // Handle the exception if needed
+                                                        }
+                                                    } else {
+                                            ?>
+                                                        <script>
+                                                            Swal.fire({
+                                                                text: "It looks like you're trying to add an item to your cart. To start shopping with us and enjoy all the benefits, please sign up or create an account.",
+                                                                showDenyButton: true,
+                                                                showCancelButton: true,
+                                                                confirmButtonText: 'Login',
+                                                                denyButtonText: 'Sign In',
+                                                            }).then((result) => {
+                                                                /* Read more about isConfirmed, isDenied below */
+                                                                if (result.isConfirmed) {
+                                                                    // Redirect to the login page
+                                                                    window.location.href = 'login.php';
+                                                                } else if (result.isDenied) {
+                                                                    // Redirect to the sign in page
+                                                                    window.location.href = 'registeration.php';
+                                                                } else {
+                                                                    // Handle the "Cancel" action or any other scenario
+                                                                    Swal.fire('Continue as Visitor', '', 'info');
+                                                                }
+                                                            });
+                                                        </script>
+                                            <?php
                                                     }
                                                 }
-                                            } else {
-                                                ?>
-                                                <script>
-                                                    Swal.fire({
-                                                        text: "It looks like you're trying to add an item to your cart. To start shopping with us and enjoy all the benefits, please sign up or create an account.",
-                                                        showDenyButton: true,
-                                                        showCancelButton: true,
-                                                        confirmButtonText: 'Login',
-                                                        denyButtonText: 'Sign In',
-                                                    }).then((result) => {
-                                                        /* Read more about isConfirmed, isDenied below */
-                                                        if (result.isConfirmed) {
-                                                            // Redirect to the login page
-                                                            window.location.href = 'login.php';
-                                                        } else if (result.isDenied) {
-                                                            // Redirect to the sign in page
-                                                            window.location.href = 'registeration.php';
-                                                        } else {
-                                                            // Handle the "Cancel" action or any other scenario
-                                                            Swal.fire('Continue as Visitor', '', 'info');
-                                                        }
-                                                    });
-
-                                                </script>
-                                                <?php
                                             }
-                                        }
-                                        ?>
+                                            ?>
 
-                                    </div>
+                                        </div>
                                     </p>
                                 </div>
                             </div>
@@ -150,7 +151,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 <div class="row pl-3 pr-3 rowcards">
 
                     <?php
-                    $query2 = "SELECT gamename , mini_description FROM games ORDER BY release_date DESC LIMIT 4";
+                    $query2 = "SELECT gameid , gamename , mini_description , price FROM games ORDER BY release_date DESC LIMIT 4";
                     $stmt = $dbconn->prepare($query2);
                     $stmt->execute();
                     $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -159,12 +160,11 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                         $description = $game['mini_description'];
                         $description = explode('.', $description, 2);
                         $description = implode('. ', $description);
-                        ?>
+                    ?>
                         <div class="i pt-2">
                             <div class="c text-center">
                                 <div class="wrap">
-                                    <img src="img/<?php echo $game['gamename']; ?>.webp" alt="#"
-                                        class="img-responsive pt-2">
+                                    <img src="img/<?php echo $game['gamename']; ?>.webp" alt="#" class="img-responsive pt-2">
                                     <div class="info pt-2">
                                         <h5 class="name">
                                             <?php echo $game['gamename']; ?>
@@ -176,14 +176,83 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                     <p>
                                         <?php echo $description; ?>
                                     </p>
-                                    <form class="formbutton text-center pb-5" method="POST" action="seppage.php">
-                                        <input type="hidden" value="<?php echo $game['gamename']; ?>" name="gameName">
-                                        <button type="submit" class="btn">Buy</button>
+
+                                    <div class="formbutton3div">
+
+                                        <form class="formbutton text-center pb-5" method="POST" action="seppage.php">
+                                            <input type="hidden" value="<?php echo $game['gamename']; ?>" name="gameName">
+                                            <button type="submit" class="btn">Buy</button>
+                                        </form>
+                                        <?php
+
+
+                                        $gameidtemp2 = $game['gameid'];
+
+                                        $check_game_cart = "SELECT * FROM `cart` WHERE gameid = :gameid";
+                                        $stmt_check_game_cart = $dbconn->prepare($check_game_cart);
+                                        $stmt_check_game_cart->bindParam(':gameid', $game['gameid']);
+                                        $stmt_check_game_cart->execute();
+                                        if ($stmt_check_game_cart->rowCount() > 0) {
+                                            echo '
+                                                <form class="formbutton3" method="POST" action="cart.php">
+                                                <input type="hidden" name="gameid" value="<?php echo $gameidtemp; ?>">
+                                    <button type="submit" class="btn" name="go_to_cart">Go to Cart</button>
                                     </form>
+                                    ';
+                                        } else {
+                                        ?>
+                                            <form class="formbutton3" method="POST">
+                                                <input type="hidden" name="gameid" value="<?php echo $gameidtemp2; ?>">
+                                                <button type="submit" class="btn" name="add_to_cart_<?php echo $gameidtemp2; ?>">Add to Cart</button>
+                                            </form>
+                                            <?php
+                                            if (isset($_POST['add_to_cart_' . $gameidtemp2])) { // Check the specific button for this game
+                                                if (isset($_SESSION['id'])) {
+                                                    $cartid = $_SESSION['id'];
+                                                    $addquery = "INSERT INTO `cart`(`cartid`, `gameid`, `amount`) VALUES (:cartid, :gameid, :price)";
+                                                    $stmt = $dbconn->prepare($addquery);
+                                                    $stmt->bindParam(':cartid', $cartid);
+                                                    $stmt->bindParam(':gameid', $gameidtemp2); // Use the correct variable here
+                                                    $stmt->bindParam(':price', $game['price']);
+
+                                                    try {
+                                                        $stmt->execute();
+                                                    } catch (PDOException $e) {
+                                                        // Handle the exception if needed
+                                                    }
+                                                } else {
+                                            ?>
+                                                    <script>
+                                                        Swal.fire({
+                                                            text: "It looks like you're trying to add an item to your cart. To start shopping with us and enjoy all the benefits, please sign up or create an account.",
+                                                            showDenyButton: true,
+                                                            showCancelButton: true,
+                                                            confirmButtonText: 'Login',
+                                                            denyButtonText: 'Sign In',
+                                                        }).then((result) => {
+                                                            /* Read more about isConfirmed, isDenied below */
+                                                            if (result.isConfirmed) {
+                                                                // Redirect to the login page
+                                                                window.location.href = 'login.php';
+                                                            } else if (result.isDenied) {
+                                                                // Redirect to the sign in page
+                                                                window.location.href = 'registeration.php';
+                                                            } else {
+                                                                // Handle the "Cancel" action or any other scenario
+                                                                Swal.fire('Continue as Visitor', '', 'info');
+                                                            }
+                                                        });
+                                                    </script>
+                                        <?php
+                                                }
+                                            }
+                                        }
+                                        ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <?php
+                    <?php
                     }
                     ?>
 
@@ -200,12 +269,11 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                         $description = $game['mini_description'];
                         $description = explode('.', $description, 2);
                         $description = implode('. ', $description);
-                        ?>
+                    ?>
                         <div class="i pt-2">
                             <div class="c text-center">
                                 <div class="wrap">
-                                    <img src="img/<?php echo $game['gamename']; ?>.webp" alt="#"
-                                        class="img-responsive pt-2">
+                                    <img src="img/<?php echo $game['gamename']; ?>.webp" alt="#" class="img-responsive pt-2">
                                     <div class="info pt-2">
                                         <h5 class="name">
                                             <?php echo $game['gamename']; ?>
@@ -226,7 +294,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                 </div>
                             </div>
                         </div>
-                        <?php
+                    <?php
                     }
                     ?>
 
@@ -482,10 +550,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         position: absolute;
         top: 100%;
         width: 100%;
-        -webkit-transition: all .3s ease;
-        -moz-transition: all .3s ease;
-        -ms-transition: all .3s ease;
-        -o-transition: all .3s ease;
+        
     }
 
     .Flipcards .i .c .wrap .info .name {
@@ -514,10 +579,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         position: absolute;
         bottom: -100%;
         width: 100%;
-        -webkit-transition: all .3s ease;
-        -moz-transition: all .3s ease;
-        -ms-transition: all .3s ease;
-        -o-transition: all .3s ease;
+        
     }
 
     .Flipcards .i .c .more p {
@@ -573,6 +635,13 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     .formbutton {
         text-decoration: none;
         text-align: left;
+    }
+
+    .formbutton3div {
+        text-decoration: none;
+        text-align: center;
+        display: flex;
+        justify-content: space-evenly;
     }
 
     .btn {
