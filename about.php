@@ -53,6 +53,7 @@
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 background-size: cover;
+                height: 100% !important;
             }
 
             #about-section {
