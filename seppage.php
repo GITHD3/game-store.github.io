@@ -221,10 +221,10 @@ if ($games) {
                 } catch (PDOException $e) {
                 }
                 } else {
-                ?>
+               echo"
                 <script>
                 Swal.fire({
-                    text: "It looks like you're trying to add an item to your cart. To start shopping with us and enjoy all the benefits, please sign up or create an account.",
+                    text: 'It looks like you are trying to add an item to your cart. To start shopping with us and enjoy all the benefits, please sign up or create an account.',
                     showDenyButton: true,
                     showCancelButton: true,
                     confirmButtonText: 'Login',
@@ -238,8 +238,7 @@ if ($games) {
                         Swal.fire('Continue as Visitor', '', 'info');
                     }
                 });
-                </script>
-                <?php
+                </script>";
                                                 }    }}
                                             ?>
 
