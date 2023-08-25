@@ -8,22 +8,26 @@
   <style>
     body {
       background: linear-gradient(#404ccc, #03e9f4);
-      position: relative;
-      height: 100vh;
       margin: 0;
       padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .content {
+      flex: 1;
     }
 
     footer {
       position: relative;
+      bottom: 0;
       background-color: #333333;
       width: 100%;
       padding: 1rem;
       color: white;
       text-align: center;
-      z-index: 20;
     }
-
     .btnFOOTER {
       border-radius: 100%;
       border: none;
@@ -39,12 +43,15 @@
       border: 1px solid #171717;
       border-radius: 8px;
     }
+    
+    
   </style>
 </head>
 
 <body>
+  <Div class="upper">
   <footer>
-    <div class="p-4 pb-0">
+    <div class="p-4 pb-0 content">
       <section class="mb-4">
         <a class="btnFOOTER text-white btn-floating m-1" style="background-color: #dd4b39;" target="_blank"
           href="index.php" role="button"><i class="fab fa-google"></i></a>
@@ -65,6 +72,7 @@
       <a class="text-white" href="index.php">ParaCrash Game Store</a>
     </div>
   </footer>
+  </div>
 </body>
 
 </html>
