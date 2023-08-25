@@ -30,21 +30,26 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     if (!isset($_SESSION['id'])) {
         ?>
         <script>
-            Swal.fire({
-                title: "Login Required",
-                text: "To add an item to your cart, please login or sign up to start shopping and enjoy all the benefits.",
-                icon: "info",
-                showCancelButton: true,
-                confirmButtonText: "Login",
-                cancelButtonText: "Sign Up",
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = 'login.php';
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    window.location.href = 'registration.php';
-                }
-            });
-        </script>
+    Swal.fire({
+      title: "Login Required",
+      text: "To add an item to your cart, please login or sign up to start shopping and enjoy all the benefits.",
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonText: "Login",
+      cancelButtonText: "Sign Up",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = 'login.php';
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        window.location.href = 'registration.php';
+      }
+    });
+
+    setTimeout(function () {
+      window.location.href = 'main1.php';
+    }, 3500); 
+  </script>
+  </script>
         <?php
     } else {
         $cartvar = $_SESSION['id'];
@@ -83,7 +88,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             </script>
             <?php
         }
-    }
+    
     ?>
 
     <div class="container main">
@@ -222,7 +227,9 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         background-attachment: fixed;
         height: 100% !important;
     }
-
+    footer {
+        position: fixed !important;
+    }
     .card-body {
         gap: 30px;
         display: grid;
@@ -230,4 +237,4 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 </style>
 
 </html>
-<?php include 'footer.php'; ?>
+<?php } include 'footer.php'; ?>
