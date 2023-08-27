@@ -91,6 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background-repeat: no-repeat;
             background-attachment: fixed;
             height: 100% !important ;
+            padding: 5px 7px !important;
         }
 
         .btn {

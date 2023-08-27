@@ -11,19 +11,40 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background-color: #0096F4; /* Initial background color */
-      animation: backgroundAnimation 2s ease-in-out forwards; /* Animation to transition the background color */
+      background-color: #0096F4;
+      animation: backgroundAnimation 2s ease-in-out forwards;
     }
 
     .logo-img {
       max-width: 100%;
       height: auto;
+      border: 2px solid transparent;
+      animation: borderAnimation 2s linear infinite;
     }
 
     @keyframes backgroundAnimation {
-      0% { background-color: #0096F4; }
-      100% { background-color: whitesmoke; }
+      0% {
+        background-color: #0096F4;
+      }
+
+      100% {
+        background-color: whitesmoke;
+      }
     }
+
+    @keyframes borderAnimation {
+    0%, 100% {
+      border-color: transparent;
+      border-radius: 50%;
+      box-shadow: none; 
+    }
+    50% {
+      border-color: #0096F4;
+      border-radius: 50%;
+      box-shadow: 0 0 10px 5px #0096F4, 0 0 80px 60px #0096F4;
+      background-color: #0096F4;
+    }
+  }
   </style>
 </head>
 
@@ -33,7 +54,7 @@
   </div>
 
   <script>
-    setTimeout(function() {
+    setTimeout(function () {
       window.location.href = "main1.php";
     }, 2000);
 

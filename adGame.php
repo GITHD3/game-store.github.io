@@ -98,6 +98,7 @@ if (isset($_POST['update'])) {
             background: linear-gradient(#404ccc, #03e9f4);
             background-repeat: no-repeat !important;
             background-attachment: fixed !important;
+            padding: 5px 7px !important;
             height: 100% !important;
         }
 

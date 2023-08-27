@@ -11,7 +11,7 @@ include 'navbar.php';
     <link href='https://fonts.googleapis.com/css?family=Satoshi' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Nohemi' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Press Start 2P' rel='stylesheet'>
-    <title>Home Page</title>
+    <title>Browse Page</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
     <style>
@@ -21,6 +21,7 @@ include 'navbar.php';
         background-attachment: fixed;
         background-size: cover;
         height: 100% !important;
+            padding: 5px 7px !important;
     }
 
     .container {
@@ -292,7 +293,80 @@ include 'navbar.php';
                     font-family: 'Satoshi', sans-serif;
                 }
                 </style>
+                
                 <?php
+                try {
+                    $dsn = "mysql:host=localhost;dbname=game4";
+                    $username = "root";
+                    $password = "";
+                
+                    $db = new PDO($dsn, $username, $password);
+                    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                
+                    $sql = "SELECT * FROM `games`"; // Fetch all games
+                    $stmt = $db->prepare($sql);
+                    $stmt->execute();
+                    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                    if (count($results) > 0) {
+                        ?>
+                        <div class="parent">
+                            <?php
+                            foreach ($results as $row) {
+                                ?>
+                                <form method="POST" action="seppage.php">
+                                    <input type="hidden" name="gameName" value="<?php echo $row['gamename']; ?>">
+                                    <div class="flip-card">
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-front">
+                                                <div class="card-content">
+                                                    <img id="img1" src="img/<?php echo $row['gamename']; ?>.webp">
+                                                </div>
+                                            </div>
+                                            <div class="flip-card-back">
+                                                <a href="seppage.php?gameName=<?php echo $row['gamename']; ?>" class="texta1card-a">
+                                                    <div class="card-content">
+                                                        <h2><?php echo $row['gamename']; ?></h2>
+                                                        <p>
+                                                            <?php echo $row['genre_name']; ?><br>
+                                                            <?php
+                                                            if ($row['price'] == 0) {
+                                                                echo "Free";
+                                                            } else {
+                                                                echo "Rs." . $row['price'];
+                                                            }
+                                                            ?>
+                                                        </p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <?php
+                            }
+                            ?>
+                        </div>
+                        <?php
+                    } else {
+                        ?>
+                        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+                        <p class="ngf">No Results Found</p>
+                        <style>
+                            .ngf {
+                                font-family: "Trebuchet MS", Tahoma, sans-serif;
+                                color: white;
+                                padding-left: 63px;
+                                font-weight: bold;
+                            }
+                        </style>
+                        <?php
+                    }
+                     
+                } catch (PDOException $e) {
+                    echo "Connection failed: " . $e->getCode() . $e->getLine();
+                }
+                
                 if (isset($_POST['submit']) || isset($_POST['listvalue'])) {
                     try {
                         $dsn = "mysql:host=localhost;dbname=game4";

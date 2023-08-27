@@ -175,7 +175,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                                     <div class="formbutton3div">
 
-                                        <form class="formbutton text-center pb-5" method="POST" action="seppage.php">
+                                        <form class="formbutton text-center pb-2" method="POST" action="seppage.php">
                                             <input type="hidden" value="<?php echo $game['gamename']; ?>" name="gameName">
                                             <button type="submit" class="btn">Buy</button>
                                         </form>
@@ -282,7 +282,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                                     <div class="formbutton3div">
 
-                                        <form class="formbutton text-center pb-5" method="POST" action="seppage.php">
+                                        <form class="formbutton text-center pb-2" method="POST" action="seppage.php">
                                             <input type="hidden" value="<?php echo $game['gamename']; ?>" name="gameName">
                                             <button type="submit" class="btn">Buy</button>
                                         </form>
@@ -726,7 +726,12 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 16px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        box-shadow:
+  0px 15.3px 74.2px rgba(0, 0, 0, 0.075),
+  0px 20.7px 73.3px rgba(0, 0, 0, 0.099),
+  0px 25.2px 65.6px rgba(0, 0, 0, 0.124),
+  0px 43px 80px rgba(0, 0, 0, 0.21)
+;
         padding: 8px;
         max-width: 400px;
     }
@@ -770,6 +775,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         background-attachment: fixed;
         background-size: cover;
         height: 100% !important;
+        padding: 5px 7px !important;
     }
 
     @media (max-width: 768px) {
@@ -827,6 +833,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         font-family: 'Press Start 2P';
         font-size: 22px;
         animation: glowing 3s infinite;
+        
     }
 </style>
 

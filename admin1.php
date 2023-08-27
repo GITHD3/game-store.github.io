@@ -51,6 +51,7 @@ try {
             background-attachment: fixed;
             background-size: cover;
             height: 100% !important;
+            padding: 5px 7px !important;
         }
         @media (min-width:700px){
             body{

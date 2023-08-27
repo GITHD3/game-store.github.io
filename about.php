@@ -14,6 +14,7 @@
 
         body {
             overflow-y: smooth;
+            padding: 5px 7px !important;
         }
 
         /* Hide scrollbar */

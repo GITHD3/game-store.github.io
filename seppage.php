@@ -79,6 +79,7 @@ if ($games) {
         background-attachment: fixed;
         height: 100% !important;
         overflow-y: smooth;
+            padding: 5px 7px !important;
     }
 
     /* Hide scrollbar */
@@ -87,7 +88,7 @@ if ($games) {
     }
 
     .card {
-        max-width: 260px;
+        max-width: 310px;
         display: inline-block;
     }
     .card2{
@@ -99,23 +100,17 @@ if ($games) {
         overflow-y: hidden;
         white-space: nowrap;
     }
-    </STYLE>
 
-
-
-
-    <style>
     .fakeimg1 {
-        height: 200px;
+        height: 310px;
         max-width: 210px;
         border-radius: 4px;
         border: 1px solid black;
     }
 
     .fakeimg {
-        height: 200px;
-        max-width: 200px;
-
+        max-width: 100%;
+        padding-bottom: 16px;
     }
 
     #all {
@@ -172,6 +167,13 @@ if ($games) {
         color: blanchedalmond;
         box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     }
+
+.imglarge{
+    width: 100%;
+    height: 350px ;
+    border: none;
+    border-radius: 3px;
+}
     </style>
 
 
@@ -307,11 +309,8 @@ if ($games) {
                     <?php echo $description; ?>
                 </p>
                 <hr class="hidden-sm hidden-md hidden-lg">
-                <!-- <div class="fakeimg">Fake Image</div>
-                    <p>Some text..</p>
-                    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                        nostrud exercitation ullamco.</p> -->
+                <div class="fakeimg"><img class="imglarge" src="img 2/<?php echo $gameName; ?>.webp" alt=" "></div>
+                   
             </div>
         </div>
     </div>

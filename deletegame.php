@@ -12,6 +12,7 @@
         background-repeat: no-repeat;
         background-attachment: fixed;
         height: 100%;
+            padding: 5px 7px !important;
         overflow: hidden;
     }
 

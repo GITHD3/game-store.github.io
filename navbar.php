@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <?php
-    ob_start(); 
-    ?>
+<?php
+ob_start();
+?>
 
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Aspekta:wght@400;700&display=swap" rel="stylesheet">
@@ -56,7 +56,8 @@
             border-radius: 7px;
             outline: 1px solid slateblue;
             transition: all 0.3s ease !important;
-            background-color: #171717 !important;
+            font-weight: 500 !important;
+            background-color: #101014 !important;
         }
 
         .nav-link:hover {

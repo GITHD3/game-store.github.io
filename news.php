@@ -18,6 +18,7 @@
         margin: 0;
         padding: 0;
         height: max-content !important;
+            padding: 5px 7px !important;
     }
 
     .Maincontent {

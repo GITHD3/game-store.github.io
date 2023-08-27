@@ -13,6 +13,8 @@
       background-repeat: no-repeat;
       background-size: auto !important;
       height: 100% !important;
+      padding: 5px 7px !important;
+      W
     }
 
     /* Hide scrollbar */
@@ -47,7 +49,9 @@
       background-color: rgba(255, 255, 255, 0.1);
       transition: 0.2s;
     }
-
+    #changebtn:after .container{
+      padding-top: 0px;
+    }
     #changebtn:hover {
       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
       border: 2px solid dodgerblue;
@@ -101,6 +105,14 @@
 
     html {
       scroll-behavior: smooth;
+    }
+
+    footer {
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
     }
   </style>
 </head>
@@ -186,11 +198,11 @@ if (!isset($_SESSION['name'])) {
         </div>
       </div>
     </div>
-    <?php
+    <!-- <?php
     if (isset($_POST['submit'])) {
       ?>
       <center>
-        <div class="changetable col-lg-6 mb-1 mb-lg-0">
+        <div class="changetable col-lg-6 mb-1 mb-lg-0 pb-2">
           <form method="POST" action="">
             <table class="table2">
               <tr>
@@ -268,11 +280,12 @@ if (!isset($_SESSION['name'])) {
         }
       }
     }
-    ?>
+    ?> -->
 
   </div>
-
+  <div style="position: absolute; bottom: 0; width: 100%;">
+    <?php include 'footer.php'; ?>
+  </div>
 </body>
 
 </html>
-<?php include 'footer.php'; ?>

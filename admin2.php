@@ -63,6 +63,7 @@ if (isset($_POST['show_game'])) {
             background-repeat: no-repeat;
             background-attachment: fixed;
             height: 100% !important;
+            padding: 5px 7px !important;
 
         }
 

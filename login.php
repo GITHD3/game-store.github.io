@@ -87,7 +87,7 @@
 
 </head>
 
-<body>
+<body style="position: relative; min-height: 100vh;">
 
   <div class="login-box">
     <h2>LOGIN</h2>
@@ -105,6 +105,10 @@
       </div>
     </form>
   </div>
+
+  <div style="position: absolute; bottom: 0; width: 100%;">
+    <?php include 'footer.php'; ?>
+  </div>
 </body>
 <style>
   body {
@@ -112,6 +116,7 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     height: 100%;
+            padding-bottom: 5px  !important;
   }
 
   #btn1 {
@@ -150,7 +155,13 @@
   .login-box:hover {
     box-shadow: 0px 20px 30px -10px #171717;
   }
+  footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    text-align: cente r;
+    padding: 10px 0;
+  }
 </style>
 
 </html>
-<?php include 'footer.php'; ?>

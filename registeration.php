@@ -120,8 +120,8 @@ body {
     background: linear-gradient(#404ccc, #03e9f4);
     position: relative;
     z-index: 1;
-    margin: 0;
-    padding: 0;
+    
+            padding: 5px 7px !important;
 }
 
 
