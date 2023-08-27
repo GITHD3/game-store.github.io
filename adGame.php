@@ -61,6 +61,7 @@ if (isset($_POST['update'])) {
     $gametype = $_POST['gametype'];
     $description = $_POST['description'];
     $mini_description = $_POST['mini_description'];
+    
     $memory_required = $_POST['memory_required'];
     $operating_system = $_POST['operating_system'];
     $processor_required = $_POST['processor_required'];
@@ -302,11 +303,11 @@ if (isset($_POST['update'])) {
                     <input type="text" name="release_date" id="release_date" class="form-control"
                         value="<?= $selectedGame['release_date'] ?>" required>
                 </div>
-                <div class="col">
+                <!-- <div class="col">
                     <label for="mini_description" class="form-label">Mini Description:</label>
                     <input type="text" name="mini_description" id="mini_description" class="form-control"
-                        value="<?= $selectedGame['mini_description'] ?>" required>
-                </div>
+                        value="<?= $selectedGame['mini_description'] ?>" >
+                </div> -->
             </div>
             <button type="submit" name="update" id="sel" class="Select btn btn-primary">Update</button>
         </form>
