@@ -54,7 +54,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                     <pre>Action , Battle-Royale</pre>
                                     <p class="card-text">
                                     <div style="display: flex; justify-content: space-evenly;">
-                                        <form class="formbutton" method="POST" action="seppage.php">
+                                        <form class="formbutton" method="GET" action="seppage.php">
                                             <input type="hidden" value="Fortnite" name="gameName">
                                             <button type="submit" class="btn">Buy</button>
                                         </form>

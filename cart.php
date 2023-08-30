@@ -142,7 +142,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                             </div>
                                             <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                                                 <p class="text-start text-md-center">
-                                                    <strong>$
+                                                    <strong>&#8377;
                                                         <?php echo $amount; ?>
                                                     </strong>
                                                 </p>
@@ -192,7 +192,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                         <li
                                             class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                                             Products
-                                            <span>$
+                                            <span>&#8377;
                                                 <?php echo array_sum(array_column($cart_items, 'amount')); ?>
                                             </span>
                                         </li>
@@ -205,7 +205,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                             <div>
                                                 <strong>Total amount</strong>
                                             </div>
-                                            <span><strong>$
+                                            <span><strong>&#8377;
                                                     <?php echo array_sum(array_column($cart_items, 'amount')); ?>
                                                 </strong></span>
                                         </li>
@@ -231,10 +231,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             padding: 5px 7px !important;
         }
 
-        footer {
-            position: fixed !important;
-        }
-
+       
         .card-body {
             gap: 30px;
             display: grid;
