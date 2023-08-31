@@ -199,18 +199,17 @@ if ($games) {
                             <button type="submit" class="btn" name="go_to_cart">Go to Cart</button>
                         </form>
                         <?php
-                    } else {
+                    } 
                         echo '
-                        <form class="formbutton" method="GET">
-    <input type="hidden" name="gameidtemp" value="<?= $gameidtemp ?>">
+                        <form class="formbutton" method="POST">
+    <input type="hidden" name="gameidtemp" value="<?php echo $gameidtemp; ?>">
     <button type="submit" name="add_to_cart" class="btn">Add to Cart</button>
 </form>
 
 
 ';
 
-                        if (isset($_GET['add_to_cart']) && isset($_GET['gameidtemp'])) {
-                            $gameidtemp = $_GET['gameidtemp'];
+                        if (isset($_POST['add_to_cart'])) {
                             if (isset($_SESSION['id'])) {
                                 $cartid = $_SESSION['id'];
 
@@ -246,7 +245,7 @@ if ($games) {
                 </script>";
                             }
                         }
-                    }
+                    
                     ?>
 
 
