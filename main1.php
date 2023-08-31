@@ -175,7 +175,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                                     <div class="formbutton3div">
 
-                                        <form class="formbutton text-center pb-2" method="POST" action="seppage.php">
+                                        <form class="formbutton text-center pb-2" method="GET" action="seppage.php">
                                             <input type="hidden" value="<?php echo $game['gamename']; ?>" name="gameName">
                                             <button type="submit" class="btn">Buy</button>
                                         </form>
@@ -282,7 +282,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                                     <div class="formbutton3div">
 
-                                        <form class="formbutton text-center pb-2" method="POST" action="seppage.php">
+                                        <form class="formbutton text-center pb-2" method="GET" action="seppage.php">
                                             <input type="hidden" value="<?php echo $game['gamename']; ?>" name="gameName">
                                             <button type="submit" class="btn">Buy</button>
                                         </form>
@@ -380,7 +380,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     echo '<img class="card-img-top imgsmallcard" style="height: 13rem;" src="img/' . $row['gamename'] . '.webp">';
                     echo '<div class="card-body bodysmallcard pt-0">';
                     echo '<p class="card-text">' . $row['gamename'] . '</p>';
-                    echo '<form class="formbutton formbutton2 text-center pb-1" method="POST" action="seppage.php">';
+                    echo '<form class="formbutton formbutton2 text-center pb-1" method="GET" action="seppage.php">';
                     echo '<input type="hidden" value="' . $row['gamename'] . '" name="gameName">';
                     echo '<button type="submit" class="btn">Buy</button>';
                     echo '</form>';
@@ -428,7 +428,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     echo '<img class="card-img-top imgsmallcard" style="height: 13rem;" src="img/' . $row['gamename'] . '.webp">';
                     echo '<div class="card-body bodysmallcard pt-0">';
                     echo '<p class="card-text">' . $row['gamename'] . '</p>';
-                    echo '<form class="formbutton formbutton2 text-center pb-1" method="POST" action="seppage.php">';
+                    echo '<form class="formbutton formbutton2 text-center pb-1" method="GET" action="seppage.php">';
                     echo '<input type="hidden" value="' . $row['gamename'] . '" name="gameName">';
                     echo '<button type="submit" class="btn">Buy</button>';
                     echo '</form>';
