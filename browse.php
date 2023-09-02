@@ -296,9 +296,9 @@ include 'navbar.php';
                 </style>
 
                 <?php
-               
-                    
-                    if (isset($_POST['submit']) || isset($_POST['listvalue'])) {
+
+
+                if (isset($_POST['submit']) || isset($_POST['listvalue'])) {
                     try {
                         $dsn = "mysql:host=localhost;dbname=game4";
                         $username = "root";
@@ -314,15 +314,24 @@ include 'navbar.php';
                                 $searchString = $_POST['listvalue'];
 
 
-                            $sql = "SELECT * FROM `games` WHERE 
-                                gamename LIKE CONCAT('%', :searchString, '%') OR 
-                                publisher_name LIKE CONCAT('%', :searchString, '%') OR 
-                                developer_name LIKE CONCAT('%', :searchString, '%') OR 
-                                genre_name LIKE CONCAT('%', :searchString, '%')";
-                            $stmt = $db->prepare($sql);
-                            $stmt->bindValue(':searchString', '%' . $searchString . '%');
-                            $stmt->execute();
-                            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            if ($searchString == "All") {
+                                $sql = "SELECT * FROM `games` ORDER BY release_date DESC";
+                                $stmt = $db->prepare($sql);
+                                $stmt->execute();
+                                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                            } else {
+                                $sql = "SELECT * FROM `games` WHERE 
+                                        gamename LIKE CONCAT('%', :searchString, '%') OR 
+                                        publisher_name LIKE CONCAT('%', :searchString, '%') OR 
+                                        developer_name LIKE CONCAT('%', :searchString, '%') OR 
+                                        genre_name LIKE CONCAT('%', :searchString, '%')";
+                                $stmt = $db->prepare($sql);
+                                $stmt->bindValue(':searchString', '%' . $searchString . '%');
+                                $stmt->execute();
+                                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            }
+
 
                             if (count($results) > 0) {
                                 ?>
@@ -417,6 +426,7 @@ include 'navbar.php';
         <div class="sidebar">
             <form method="POST" action="">
                 <ul class="rigthsidelist">
+                    <li><button class="genrelist" type="Submit" name="listvalue" value="All">Latest</button></li>
                     <li><button class="genrelist" type="Submit" name="listvalue" value="Action">Action</button></li>
                     <li><button class="genrelist" type="Submit" name="listvalue"
                             value="Action-Adventure">Action-Adventure</button></li>

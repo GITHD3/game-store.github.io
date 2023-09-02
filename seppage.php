@@ -19,7 +19,7 @@ $database = "game4";
 
 $conn = new PDO("mysql:host=$host;dbname=$database", $username, $db_password);
 
-$stmt = $conn->prepare("SELECT `gameid`, `gamename`, `developer_name`, `publisher_name`, `genre_name`, `price`, `mature_content`, `gamesize`, `gametype`, `description`, 
+$stmt = $conn->prepare("SELECT `gameid`, `gamename`, `developer_name`, `publisher_name`, `genre_name`, `price`, `gamesize`, `gametype`, `description`, 
     `memory_required`, `operating_system`, `processor_required`, `storage_required`, `release_date` FROM `games` WHERE gamename = :tmp ");
 $stmt->bindParam(":tmp", $gameName);
 $stmt->execute();
@@ -33,7 +33,6 @@ if ($games) {
     $pname = $games['publisher_name'];
     $genre = $games['genre_name'];
     $price = $games['price'];
-    $maturecontent = $games['mature_content'];
     $gamesize = $games['gamesize'];
     $gametype = $games['gametype'];
     $description = $games['description'];
@@ -199,7 +198,7 @@ if ($games) {
                             <button type="submit" class="btn" name="go_to_cart">Go to Cart</button>
                         </form>
                         <?php
-                    } 
+                    } else{
                         echo '
                         <form class="formbutton" method="POST">
     <input type="hidden" name="gameidtemp" value="<?php echo $gameidtemp; ?>">
@@ -244,7 +243,7 @@ if ($games) {
                 });
                 </script>";
                             }
-                        }
+                        }}
                     
                     ?>
 

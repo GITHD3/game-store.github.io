@@ -57,7 +57,6 @@ if (isset($_POST['update'])) {
     $gamesize = $_POST['gamesize'];
     $genre_name = $_POST['genre_name'];
     $price = $_POST['price'];
-    $mature_content = $_POST['mature_content'];
     $gametype = $_POST['gametype'];
     $description = $_POST['description'];
     $mini_description = $_POST['mini_description'];
@@ -69,10 +68,10 @@ if (isset($_POST['update'])) {
     $release_date = $_POST['release_date'];
 
     // Prepare the update statement
-    $stmt = $pdo->prepare("UPDATE games SET gamename=?, publisher_name=?, developer_name=?, gamesize=?, genre_name=?, price=?, mature_content=?, gametype=?, description=?,mini_description=?,memory_required=?, operating_system=?, processor_required=?, storage_required=?, release_date=? WHERE gameid=?");
+    $stmt = $pdo->prepare("UPDATE games SET gamename=?, publisher_name=?, developer_name=?, gamesize=?, genre_name=?, price=?,  gametype=?, description=?,mini_description=?,memory_required=?, operating_system=?, processor_required=?, storage_required=?, release_date=? WHERE gameid=?");
 
     // Execute the update statement
-    $stmt->execute([$gamename, $publisher_name, $developer_name, $gamesize, $genre_name, $price, $mature_content, $gametype, $description, $mini_description ,$memory_required, $operating_system, $processor_required, $storage_required, $release_date, $gameid]);
+    $stmt->execute([$gamename, $publisher_name, $developer_name, $gamesize, $genre_name, $price,  $gametype, $description, $mini_description ,$memory_required, $operating_system, $processor_required, $storage_required, $release_date, $gameid]);
 
     // Check if the update was successful
     if ($stmt->rowCount() > 0) {
@@ -259,11 +258,7 @@ if (isset($_POST['update'])) {
                     <input type="text" name="price" id="price" class="form-control" value="<?= $selectedGame['price'] ?>"
                         required>
                 </div>
-                <div class="col">
-                    <label for="mature_content" class="form-label">Mature Content:</label>
-                    <input type="text" name="mature_content" id="mature_content" class="form-control"
-                        value="<?= $selectedGame['mature_content'] ?>" required>
-                </div>
+                
                 <div class="col">
                     <label for="gametype" class="form-label">Game Type:</label>
                     <input type="text" name="gametype" id="gametype" class="form-control"

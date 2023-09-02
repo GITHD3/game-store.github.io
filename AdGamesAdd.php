@@ -50,7 +50,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $developerName = $_POST['developerName'];
             $publisherName = $_POST['publisherName'];
             $price = $_POST['price'];
-            $matureContent = $_POST['matureContent'];
             $gameSize = $_POST['gameSize'];
             $gameType = $_POST['gameType'];
             $description = $_POST['description'];
@@ -61,10 +60,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $storageRequired = $_POST['storageRequired'];
 
             // Insert game into the database
-            $insertQuery = "INSERT INTO games (gameid,gamename, developer_name, publisher_name, price, genre_name, mature_content, gamesize, gametype, description,mini_description, memory_required, operating_system, processor_required, storage_required, release_date) 
+            $insertQuery = "INSERT INTO games (gameid,gamename, developer_name, publisher_name, price, genre_name, gamesize, gametype, description,mini_description, memory_required, operating_system, processor_required, storage_required, release_date) 
             VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
             $stmt = $pdo->prepare($insertQuery);
-            $stmt->execute([$gameid, $gameName, $developerName, $publisherName, $price, $genre, $matureContent, $gameSize, $gameType, $description, $mini_description, $memoryRequired, $operatingSystem, $processorRequired, $storageRequired, $releaseDate]);
+            $stmt->execute([$gameid, $gameName, $developerName, $publisherName, $price, $genre, $gameSize, $gameType, $description, $mini_description, $memoryRequired, $operatingSystem, $processorRequired, $storageRequired, $releaseDate]);
 
             // Redirect to the game page or display a success message
             echo "<br><pre>Added</pre>";
@@ -274,9 +273,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div></div><br>
                 <label for="genre">Genre:</label>
                 <input type="text" id="genre" name="genre" required>
-                <div></div><br>
-                <label for="matureContent">Mature Content:</label>
-                <input type="number" id="matureContent" name="matureContent" required>
                 <div></div><br>
                 <label for="gameSize">Game Size:</label>
                 <input type="text" id="gameSize" name="gameSize" required>

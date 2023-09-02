@@ -219,11 +219,6 @@ if (isset($_POST['show_game'])) {
         <table>
             <tr>
                 <td>
-                    <p class="statLine"><b>Mature Content : </b>
-                        <?= $show_game['mature_content'] ?>
-                    </p>
-                </td>
-                <td>
                     <p class="statLine"><b>Description : </b>
                         <?= $show_game['description'] ?>
                     </p>
@@ -240,7 +235,7 @@ if (isset($_POST['show_game'])) {
             <tr>
                 <td>
                     <p class="statLine"><b>Mini - Description : </b>
-                    <?= $show_game['mini_description'] ?>
+                        <?= $show_game['mini_description'] ?>
                     </p>
                 </td>
                 <td>
@@ -255,7 +250,7 @@ if (isset($_POST['show_game'])) {
                 </td>
                 <td>
                     <p class="statLine"><b>Storage Required : </b>
-                    <?= $show_game['storage_required'] ?>
+                        <?= $show_game['storage_required'] ?>
                     </p>
                 </td>
             </tr>
