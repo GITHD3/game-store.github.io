@@ -39,7 +39,7 @@
                 <label>Email Adrdess</label>
             </div>
             <div class="user-box">
-                <input type="password" name="pass" required="">
+                <input type="password" id="password" name="pass" required="">
                 <label>Password</label>
             </div>
             <div class="user-box">
@@ -50,6 +50,7 @@
                 <button type="submit" id="btn1" name="submit">Submit</button>
             </div>
         </form>
+        <p id="password-strength-message"></p>
     </div></div>
     
 </body>
@@ -197,7 +198,63 @@ body {
 }
 
 
-</style><script>
+</style>
+<script>
+function validateForm() {
+    var password = document.getElementById("password").value;
+    var passwordStrengthMessage = document.getElementById("password-strength-message");
+
+    // Define regular expressions for each requirement
+    var minLength = 8;
+    var uppercaseRegex = /[A-Z]/;
+    var lowercaseRegex = /[a-z]/;
+    var numberRegex = /[0-9]/;
+    var specialCharRegex = /[!@#\$%\^&\*]/;
+
+    // Check each requirement
+    var isStrong = true;
+
+    if (password.length < minLength) {
+        passwordStrengthMessage.textContent = "Password must be at least " + minLength + " characters long.";
+        isStrong = false;
+    }
+    
+    // Check if the password contains at least one uppercase letter
+    if (!uppercaseRegex.test(password)) {
+        passwordStrengthMessage.textContent = "Password must contain at least one uppercase letter.";
+        isStrong = false;
+    }
+
+    // Check if the password contains at least one lowercase letter
+    if (!lowercaseRegex.test(password)) {
+        passwordStrengthMessage.textContent = "Password must contain at least one lowercase letter.";
+        isStrong = false;
+    }
+
+    // Check if the password contains at least one number
+    if (!numberRegex.test(password)) {
+        passwordStrengthMessage.textContent = "Password must contain at least one number.";
+        isStrong = false;
+    }
+
+    // Check if the password contains at least one special character
+    if (!specialCharRegex.test(password)) {
+        passwordStrengthMessage.textContent = "Password must contain at least one special character (!@#$%^&*).";
+        isStrong = false;
+    }
+
+    if (!isStrong) {
+        passwordStrengthMessage.style.color = "red";
+        return false; // Prevent form submission if password is not strong
+    }
+
+    passwordStrengthMessage.textContent = "Password is strong!";
+    passwordStrengthMessage.style.color = "green";
+    return true; // Allow form submission if password is strong
+}
+
+</script>
+<script>
     const dateInput = document.getElementById('customDateInput');
     
     dateInput.addEventListener('focus', function() {
