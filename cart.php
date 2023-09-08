@@ -47,7 +47,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             setTimeout(function () {
                 window.location.href = 'main1.php';
-            }, 3500); 
+            }, 2300); 
         </script>
         </script>
         <?php

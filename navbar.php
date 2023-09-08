@@ -69,14 +69,14 @@ ob_start();
 
         .navbar-toggler {
             margin-left: 7px;
-            background-color: rgba(3, 233, 244, 0.5);
             border: none;
             border-radius: 7px;
             transition: background-color 0.3s ease;
+            background-color:#03e9f4 !important;
         }
-
+        
         .navbar-toggler:hover {
-            background-color: rgba(3, 233, 244, 1);
+            background-color: rgba(3, 233, 244, 0.5) !important;
         }
 
         ul {

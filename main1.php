@@ -521,6 +521,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     .rowcards {
         display: flex;
         justify-content: space-between;
+  animation: slideFromBottom 1s ease-in-out;
     }
 
     .img-responsive {
@@ -588,6 +589,18 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     .Flipcards .i .c .wrap {
         position: relative;
+    }
+
+    @keyframes slideFromBottom {
+        0% {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .Flipcards .i .c .wrap img {
@@ -742,10 +755,11 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         padding: 8px;
         max-width: 400px;
     }
-    
-        .container2 {
-    padding: 0px 40px
+
+    .container2 {
+        padding: 0px 40px
     }
+
     .card-body {
         max-height: 500px !important;
     }
@@ -820,17 +834,17 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     @keyframes glowing {
         0% {
-            color: #dfdfdf;
+            color: #343434;
             text-shadow: none;
         }
 
         50% {
-            color: #03e9f4;
-            text-shadow: 0 0 10px #03e9f4, 0 0 11px #03e9f4;
+            color: #9D7ABD;
+            text-shadow: 0 0 3px #9D7ABD, 0 0 2px #9D7ABD;
         }
 
         100% {
-            color: #dfdfdf;
+            color: #343434;
             text-shadow: none;
         }
     }
