@@ -198,15 +198,19 @@ if ($games) {
                             <button type="submit" class="btn" name="go_to_cart">Go to Cart</button>
                         </form>
                         <?php
-                    } else{
+                    } else {
                         echo '
                         <form class="formbutton" method="POST">
-    <input type="hidden" name="gameidtemp" value="<?php echo $gameidtemp; ?>">
-    <button type="submit" name="add_to_cart" class="btn">Add to Cart</button>
-</form>
+                        <input type="hidden" name="gameidtemp" value="<?php echo $gameidtemp; ?>">
+                        <button type="submit" name="add_to_cart" class="btn">Add to Cart</button>
+                        </form>
+                        
+                        
+                        ';
+                        ?>
 
 
-';
+                        <?php
 
                         if (isset($_POST['add_to_cart'])) {
                             if (isset($_SESSION['id'])) {
@@ -243,16 +247,48 @@ if ($games) {
                 });
                 </script>";
                             }
-                        }}
-                    
+                        }
+                    }
+
                     ?>
 
 
 
-                    <form class="formbutton text-center p-0 m-0 pt-2" method="POST" action="seppage.php">
+                    <form class="formbutton text-center p-0 m-0 pt-2" method="POST">
                         <input type="hidden" value="<?php echo $game['gamename']; ?>" name="gameName">
                         <button type="submit" class="btn">Buy</button>
                     </form>
+                    <form class="formbutton text-center p-0 m-0 pt-2">
+                        <input type="hidden" value="<?php echo $gamename ?>" id="gameName">
+                        <button id="downloadZipButton" class="btn" type="button">Download</button>
+                    </form>
+
+                    <?php // Replace with the actual game name
+                    $zipfile = "zips/$gamename.zip";
+                    if (file_exists($zipfile)) {
+                        echo "Available!";
+                    } else {
+                        echo "Not Available!";
+                    }
+                    ?>
+
+                    <script>
+                        document.getElementById('downloadZipButton').addEventListener('click', function () {
+                            var gamename = document.getElementById('gameName').value;
+                            var zipUrl = 'zips/' + gamename + '.zip';  // Specify the desired path here
+
+                            var a = document.createElement('a');
+                            a.href = zipUrl;
+                            a.download = gamename + '.zip';
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                        });
+                    </script>
+
+
+
+
                 </div>
                 <br>
                 <p>
