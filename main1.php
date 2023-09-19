@@ -4,9 +4,18 @@ include 'navbar.php';
 $dsn = "mysql:host=localhost;dbname=game4";
 $username = "root";
 $password = "";
+$currentDate = date('Y-m-d'); // This assumes you want to use the current date
 
 $dbconn = new PDO($dsn, $username, $password);
 $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+if (isset($_SESSION['dob'])) {
+    $dob = $_SESSION['dob'];
+    $dobObj = new DateTime($dob);
+    $currentDateObj = new DateTime($currentDate);
+    $age = $currentDateObj->diff($dobObj)->y;
+} else {
+    $age = 18; 
+}
 ?>
 
 <!DOCTYPE html>
@@ -147,7 +156,12 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     <div class="row pl-3 pr-3 rowcards">
 
                         <?php
-                        $query2 = "SELECT gameid , gamename , mini_description , price FROM games ORDER BY release_date DESC LIMIT 3";
+                        
+                        if ($age >= 18) {
+                            $query2 = "SELECT gameid, gamename, mini_description, price FROM games ORDER BY release_date DESC LIMIT 3";
+                        } else {
+                            $query2 = "SELECT gameid, gamename, mini_description, price FROM games WHERE gameid  LIKE '%NA%' ORDER BY release_date DESC LIMIT 3";
+                        }
                         $stmt = $dbconn->prepare($query2);
                         $stmt->execute();
                         $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -255,7 +269,11 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     <div class="row pl-3 pr-3 rowcards">
 
                         <?php
-                        $query2 = "SELECT gameid , gamename , mini_description , price FROM games ORDER BY release_date DESC LIMIT 3 OFFSET 3";
+                         if ($age >= 18) {
+                            $query2 = "SELECT gameid, gamename, mini_description, price FROM games ORDER BY release_date DESC LIMIT 3 OFFSET 3";
+                        } else {
+                            $query2 = "SELECT gameid, gamename, mini_description, price FROM games WHERE gameid LIKE '%NA%' ORDER BY release_date DESC LIMIT 3 OFFSET 3";
+                        }
                         $stmt = $dbconn->prepare($query2);
                         $stmt->execute();
                         $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -371,11 +389,15 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             <div class="row p-1 g-4">
                 <?php
                 try {
-
-
-                    // Perform the SQL query using PDO
-                    $sql = "SELECT * FROM games WHERE genre_name LIKE '%Action%' LIMIT 4";
-                    $result = $dbconn->query($sql);
+                    if ($age >= 18) {
+                        $actionQuery = "SELECT * FROM games WHERE genre_name LIKE '%Action%' LIMIT 4";
+                        $racingQuery = "SELECT * FROM games WHERE genre_name LIKE '%Racing%' LIMIT 4";
+                    } else {
+                        $actionQuery = "SELECT * FROM games WHERE genre_name LIKE '%Action%' AND gameid  LIKE '%NA%' LIMIT 4";
+                        $racingQuery = "SELECT * FROM games WHERE genre_name LIKE '%Racing%' AND gameid  LIKE '%NA%' LIMIT 4";
+                    }
+                    
+                    $result = $dbconn->query($actionQuery);
 
                     // Loop through the results and generate the HTML
                     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -414,16 +436,9 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             <div class="row p-1 g-4">
                 <?php
                 try {
-                    $dsn = "mysql:host=localhost;dbname=game4";
-                    $username = "root";
-                    $password = "";
+                    
 
-                    $dbconn = new PDO($dsn, $username, $password);
-                    $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-                    // Perform the SQL query using PDO
-                    $sql = "SELECT * FROM games WHERE genre_name LIKE '%Racing%' LIMIT 4";
-                    $result = $dbconn->query($sql);
+                    $result = $dbconn->query($racingQuery);
 
                     // Loop through the results and generate the HTML
                     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {

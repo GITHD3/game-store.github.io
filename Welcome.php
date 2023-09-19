@@ -60,6 +60,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['name'] = $fn;
         $_SESSION['cid'] = $newid;
         $_SESSION['email'] = $email;
+        $_SESSION['dob'] = $dob;
 
         // Close the database connection
         $conn = null;

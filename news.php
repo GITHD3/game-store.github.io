@@ -379,8 +379,27 @@
 </head>
 
 <body>
-    <?php include 'navbar.php'; ?>
-
+    <?php include 'navbar.php'; 
+    $currentDate = date('Y-m-d');
+    if (isset($_SESSION['dob'])) {
+        $dob = $_SESSION['dob'];
+        $dobObj = new DateTime($dob);
+        $currentDateObj = new DateTime($currentDate);
+        $age = $currentDateObj->diff($dobObj)->y;
+    } else {
+        $age = 18;
+    }
+?>
+<script>
+    function checkAgeAndSubmit() {
+        var age = <?php echo $age; ?>;
+        if (age >= 18) {
+            document.getElementById('form-btn-2').submit();
+        } else {
+            alert('You must be 18 or older to access this page.');
+        }
+    }
+</script>
     <div class="Maincontent container">
         <div class="heading-container headingmain">
             <div class="headingnews">
@@ -394,10 +413,11 @@
                     <div class="hover-text flex-wrap">
                         This free update adds new areas, missions, powers, collectibles, enemies,
                         and a new roguelite mode to the game. It also brings Ghostwire: Tokyo to Xbox consoles for the
-                        first time. <form id="form-btn-2" method="POST" action="seppage.php">
-                            <input type="hidden" value="Ghostwire Tokyo" name="gameName">
-                            <button type="submit" class="btnn">More</button>
-                        </form>
+                        first time. <form id="form-btn-2" method="POST"  action="seppage.php" onsubmit="checkAgeAndSubmit(); return false;">
+    <input type="hidden" value="Ghostwire Tokyo" name="gameName">
+    <button type="submit" class="btnn">More</button>
+</form>
+
 
 
                     </div>
@@ -413,7 +433,7 @@
                         pervasive.
                         The games focus on hacking and social engineering as gameplay mechanics.
                         The games have been praised for their graphics and gameplay, but criticized for their story and
-                        characters.<form id="form-btn-2" method="POST" action="seppage.php">
+                        characters.<form id="form-btn-2" method="POST" onsubmit="checkAgeAndSubmit(); return false;" action="seppage.php">
                             <input type="hidden" value="Watch Dogs" name="gameName">
                             <button type="submit" class="btnn">More</button>
                         </form>
@@ -429,7 +449,7 @@
                     <div class="hover-text">The latest update for DayZ, 1.21 Update 3, was released on June 20, 2023.
                         The developers have confirmed that they will continue to support DayZ throughout 2023. They have
                         also teased some new content that is in the works, such as a new map and a new zombie AI.
-                        <form id="form-btn-2" method="POST" action="seppage.php">
+                        <form id="form-btn-2" method="POST" onsubmit="checkAgeAndSubmit(); return false;" action="seppage.php">
                             <input type="hidden" value="DayZ" name="gameName">
                             <button type="submit" class="btnn">More</button>
                         </form>
@@ -463,7 +483,11 @@
                         </div>
                     </div>
                 </a>
-                <a href="seppage.php?gameName=Cyberpunk2077" class="texta1card-a">
+                <?php if($age >= 18): ?>
+            <a href="seppage.php?gameName=Cyberpunk2077" class="texta1card-a">Click For More!!</a>
+        <?php else: ?>
+            <a href="#" onclick="alert('You must be 18 or older to access this content.'); return false;">Click For More!!</a>
+        <?php endif; ?>
                     <div class="image-container2">
                         <img class="a1card" src="img 2/Cyberpunk2077.webp" alt="Image">
                         <div class="texta1card">
@@ -474,7 +498,11 @@
                         </div>
                     </div>
                 </a>
-                <a href="seppage.php?gameName=Grand Theft Auto V" class="texta1card-a">
+                <?php if($age >= 18): ?>
+            <a href="seppage.php?gameName=Grand Theft Auto V" class="texta1card-a">Click For More!!</a>
+        <?php else: ?>
+            <a href="#" onclick="alert('You must be 18 or older to access this content.'); return false;">Click For More!!</a>
+        <?php endif; ?>
                     <div class="image-container2">
                         <img class="a1card" src="img 2/Grand Theft Auto V.webp" alt="Image">
                         <div class="texta1card">GTA V is still the most-watched game on Twitch. In 2021, GTA V was the

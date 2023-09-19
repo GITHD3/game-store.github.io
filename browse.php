@@ -296,6 +296,15 @@ include 'navbar.php';
                 </style>
 
                 <?php
+                $temp = true;
+                if (isset($_SESSION['dob'])) {
+                    $dob = $_SESSION['dob'];
+                    $temp = false;
+                    $dobObj = new DateTime($dob);
+                    $currentDateObj = new DateTime();
+                    $age = $currentDateObj->diff($dobObj)->y;
+                }
+
 
 
                 if (isset($_POST['submit']) || isset($_POST['listvalue'])) {
@@ -314,23 +323,37 @@ include 'navbar.php';
                                 $searchString = $_POST['listvalue'];
 
 
-                            if ($searchString == "All") {
-                                $sql = "SELECT * FROM `games` ORDER BY release_date DESC";
-                                $stmt = $db->prepare($sql);
-                                $stmt->execute();
-                                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                            } else {
-                                $sql = "SELECT * FROM `games` WHERE 
-                                        gamename LIKE CONCAT('%', :searchString, '%') OR 
-                                        publisher_name LIKE CONCAT('%', :searchString, '%') OR 
-                                        developer_name LIKE CONCAT('%', :searchString, '%') OR 
-                                        genre_name LIKE CONCAT('%', :searchString, '%')";
-                                $stmt = $db->prepare($sql);
-                                $stmt->bindValue(':searchString', '%' . $searchString . '%');
-                                $stmt->execute();
-                                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                            }
+                                if ($searchString == "All") {
+                                    if ($temp == true or $age >= 18) {
+                                        $sql = "SELECT * FROM `games` ORDER BY release_date DESC";
+                                    } else {
+                                        $sql = "SELECT * FROM `games` WHERE gameid LIKE '%NA%' ORDER BY release_date DESC";
+                                    }
+                                    $stmt = $db->prepare($sql);
+                                    $stmt->execute();
+                                    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                
+                                } else {
+                                    if ($temp == true or $age >= 18) {
+                                        $sql = "SELECT * FROM `games` WHERE 
+                                                (gamename LIKE CONCAT('%', :searchString, '%') OR 
+                                                publisher_name LIKE CONCAT('%', :searchString, '%') OR 
+                                                developer_name LIKE CONCAT('%', :searchString, '%') OR 
+                                                genre_name LIKE CONCAT('%', :searchString, '%'))";
+                                    } else {
+                                        $sql = "SELECT * FROM `games` WHERE 
+                                                (gamename LIKE CONCAT('%', :searchString, '%') OR 
+                                                publisher_name LIKE CONCAT('%', :searchString, '%') OR 
+                                                developer_name LIKE CONCAT('%', :searchString, '%') OR 
+                                                genre_name LIKE CONCAT('%', :searchString, '%'))
+                                                AND gameid LIKE '%NA%'";
+                                    }
+                                    $stmt = $db->prepare($sql);
+                                    $stmt->bindValue(':searchString', '%' . $searchString . '%');
+                                    $stmt->execute();
+                                    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                }
+                                
 
 
                             if (count($results) > 0) {

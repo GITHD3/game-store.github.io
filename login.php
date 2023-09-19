@@ -25,7 +25,7 @@
     }
 
     // Retrieve the hashed password from the database for the given email
-    $stmt = $conn->prepare("SELECT customerid, firstname, emailaddress, password FROM customer WHERE emailaddress=?");
+    $stmt = $conn->prepare("SELECT customerid, firstname, emailaddress,dob, password FROM customer WHERE emailaddress=?");
     $stmt->bind_param("s", $email);
 
     if (!$stmt->execute()) {
@@ -35,7 +35,7 @@
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-      $stmt->bind_result($customerid, $firstname, $emailaddress, $stored_password);
+      $stmt->bind_result($customerid, $firstname, $emailaddress,$dob, $stored_password);
       $stmt->fetch();
 
       // Close the statement after fetching the password
@@ -45,6 +45,7 @@
       if ($password === $stored_password) {
         $_SESSION['id'] = $customerid;
         $_SESSION['name'] = $firstname;
+        $_SESSION['dob'] = $dob;
         ?>
         <script>
   Swal.fire({
@@ -53,7 +54,7 @@
     padding: '3em',
     color: '#716add',
     background: '#fff',
-    imageUrl: 'https://thumbs.gfycat.com/VainRigidFrilledlizard.webp',
+    imageUrl: 'gif /amongus.gif',
     imageWidth: 700, 
     timer: 2500, 
     showCancelButton: false,
