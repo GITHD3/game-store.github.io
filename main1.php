@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+$customername = $_SESSION['name'];
+$custid = $_SESSION['id'];
 include 'navbar.php';
 $dsn = "mysql:host=localhost;dbname=game4";
 $username = "root";
@@ -75,8 +78,9 @@ if (isset($_SESSION['dob'])) {
                                         $gameidRow = $gameidResult->fetch(PDO::FETCH_ASSOC);
                                         $gameidtemp = $gameidRow['gameid'];
 
-                                        $check_game_cart = "SELECT * FROM `cart` WHERE gameid = :gameid";
+                                        $check_game_cart = "SELECT * FROM `cart` WHERE cartid = :cartid AND gameid = :gameid";
                                         $stmt_check_game_cart = $dbconn->prepare($check_game_cart);
+                                        $stmt_check_game_cart->bindParam(':cartid', $custid);
                                         $stmt_check_game_cart->bindParam(':gameid', $gameidtemp);
                                         $stmt_check_game_cart->execute();
                                         if ($stmt_check_game_cart->rowCount() > 0) {
@@ -200,18 +204,19 @@ if (isset($_SESSION['dob'])) {
 
                                             $gameidtemp2 = $game['gameid'];
 
-                                            $check_game_cart = "SELECT * FROM `cart` WHERE gameid = :gameid";
+                                            $check_game_cart = "SELECT * FROM `cart` WHERE cartid = :cartid AND gameid = :gameid";
                                             $stmt_check_game_cart = $dbconn->prepare($check_game_cart);
+                                            $stmt_check_game_cart->bindParam(':cartid', $custid);
                                             $stmt_check_game_cart->bindParam(':gameid', $game['gameid']);
                                             $stmt_check_game_cart->execute();
                                             if ($stmt_check_game_cart->rowCount() > 0) {
-                                                echo '
+                                                ?>
                                                 <form class="formbutton3" method="POST" action="cart.php">
                                                 <input type="hidden" name="gameid" value="<?php echo $gameidtemp; ?>">
                                     <button type="submit" class="btn" name="go_to_cart">Go to Cart</button>
                                     </form>
-                                    ';
-                                            } else {
+                                    <?php
+                                            } else  { 
                                                 ?>
                                                 <form class="formbutton3" method="POST">
                                                     <input type="hidden" name="gameid" value="<?php echo $gameidtemp2; ?>">
@@ -312,8 +317,9 @@ if (isset($_SESSION['dob'])) {
 
                                             $gameidtemp2 = $game['gameid'];
 
-                                            $check_game_cart = "SELECT * FROM `cart` WHERE gameid = :gameid";
+                                            $check_game_cart = "SELECT * FROM `cart` WHERE cartid = :cartid AND gameid = :gameid";
                                             $stmt_check_game_cart = $dbconn->prepare($check_game_cart);
+                                            $stmt_check_game_cart->bindParam(':cartid', $custid);
                                             $stmt_check_game_cart->bindParam(':gameid', $game['gameid']);
                                             $stmt_check_game_cart->execute();
                                             if ($stmt_check_game_cart->rowCount() > 0) {

@@ -112,7 +112,6 @@
       bottom: 0;
       width: 100%;
       text-align: center;
-      padding: 10px 0;
     }
   </style>
 </head>
@@ -160,7 +159,7 @@ if (!isset($_SESSION['name'])) {
               <h5>
                 <?php echo $fn . " " . $ln; ?>
               </h5>
-              <form method="POST">
+              <form method="POST" action="custChange.php">
                 <button type="submit" name="submit" id="changebtn">Change Details</button>
               </form>
               <i class="far fa-edit mb-5"></i>
@@ -198,94 +197,11 @@ if (!isset($_SESSION['name'])) {
         </div>
       </div>
     </div>
-    <!-- <?php
-    if (isset($_POST['submit'])) {
-      ?>
-      <center>
-        <div class="changetable col-lg-6 mb-1 mb-lg-0 pb-2">
-          <form method="POST" action="">
-            <table class="table2">
-              <tr>
-                <p class="texttable text-center"><strong>Change Information</strong><br>
-                  <hr class="p-0 mt-0">
-                </p><br>
-                <th style="width: 50%;">First Name</th>
-                <th style="width: 50%;">Last Name</th>
-              </tr>
-              <tr>
-                <td><input type="text" class="inputtable" name="new_FN"></input></td>
-                <td><input type="text" class="inputtable" name="new_LN"></input></td>
-              </tr>
-              <tr>
-                <th style="width: 50%;">Phone</th>
-                <th style="width: 50%;">Date of Birth</th>
-              </tr>
-              <tr>
-                <td><input type="contact" class="inputtable" name="new_PHONE"></input></td>
-                <td><input type="date" class="inputtable" name="new_DATE"></input></td>
-              </tr>
-              <tr>
-                <td><br>
-                  <button type="submit" name="submit2" id="changebtn2">Submit</button>
-                </td>
-              </tr>
-            </table>
-          </form>
-        </div>
-      </center>
-      <?php
-      if (isset($_POST['submit2'])) {
-        $newFirstName = $_POST['new_FN'];
-        $newLastName = $_POST['new_LN'];
-        $newPhone = $_POST['new_PHONE'];
-        $newDateOfBirth = $_POST['new_DATE'];
-
-        if (!empty($newFirstName)) {
-          $sql = "UPDATE customer SET firstname = :firstname WHERE customerid = :customerid";
-        } elseif (!empty($newLastName)) {
-          $sql = "UPDATE customer SET lastname = :lastname WHERE customerid = :customerid";
-        } elseif (!empty($newPhone)) {
-          $sql = "UPDATE customer SET contactno = :contactno WHERE customerid = :customerid";
-        } elseif (!empty($newDateOfBirth)) {
-          $sql = "UPDATE customer SET dob = :dob WHERE customerid = :customerid";
-        }
-
-        if (isset($sql)) {
-          try {
-            $stmt = $conn->prepare($sql);
-            $stmt->bindValue(':customerid', $Id);
-
-            if (isset($newFirstName)) {
-              $stmt->bindValue(':firstname', $newFirstName);
-            }
-
-            if (isset($newLastName)) {
-              $stmt->bindValue(':lastname', $newLastName);
-            }
-
-            if (isset($newPhone)) {
-              $stmt->bindValue(':contactno', $newPhone);
-            }
-
-            if (isset($newDateOfBirth)) {
-              $stmt->bindValue(':dob', $newDateOfBirth);
-            }
-
-            $stmt->execute();
-
-            echo "Customer information updated successfully.";
-          } catch (PDOException $e) {
-            echo "Error updating customer information: " . $e->getMessage();
-          }
-        }
-      }
-    }
-    ?> -->
-
-  </div>
-  <div style="position: absolute; bottom: 0; width: 100%;">
-    <?php include 'footer.php'; ?>
-  </div>
-</body>
-
-</html>
+    </div>
+ 
+  </body>
+  
+  </html>
+    <div style="position: absolute; bottom: 0; width: 100%;">
+      <?php include 'footer.php'; ?>
+    </div>
