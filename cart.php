@@ -49,29 +49,36 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 window.location.href = 'main1.php';
             }, 2300); 
         </script>
-        </script>
         <?php
     } else {
         $cartvar = $_SESSION['id'];
-        $sql = "SELECT cartid, gameid, amount FROM cart WHERE cartid = $cartvar";
-        $result = $dbconn->query($sql);
+        $sql = "SELECT cartid, gameid FROM cart WHERE cartid = $cartvar";
+        $stmt = $dbconn->query($sql);
+
         $cart_items = array();
 
-        if ($result->rowCount() > 0) {
-            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                $gameId = $row['gameid'];
-                $sql2 = "SELECT gamename FROM games WHERE gameid = ?";
-                $stmt2 = $dbconn->prepare($sql2);
-                $stmt2->execute([$gameId]);
-                $result2 = $stmt2->fetch(PDO::FETCH_ASSOC);
-                $gameName = $result2['gamename'];
+        if ($stmt->rowCount() > 0) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $gameId = isset($row['gameid']) ? $row['gameid'] : '';
                 $cart_items[] = [
-                    'gameid' => $row['gameid'],
-                    'amount' => $row['amount'],
-                    'gameName' => $gameName
+                    'gameid' => $gameId
                 ];
+            }
 
-                $gameidtemp = $row['gameid'];
+            $gameIds = array_column($cart_items, 'gameid');
+            $sql2 = "SELECT gamename, price FROM games WHERE gameid = ?";
+            $stmt2 = $dbconn->prepare($sql2);
+            foreach ($gameIds as $gameId) {
+                $stmt2->execute([$gameId]);
+                $gameData = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+                foreach ($cart_items as &$item) {
+                    if ($gameData['gameid'] == $item['gameid']) {
+                        $item['gameName'] = $gameData['gamename'];
+                        $item['gamePrice'] = $gameData['price'];
+                        break;
+                    }
+                }
             }
         } else {
             ?>
@@ -88,7 +95,6 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             </script>
             <?php
         }
-
         ?>
 
         <div class="container main">
@@ -96,7 +102,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 <div class="container py-5">
                     <div class="row d-flex justify-content-center my-4">
                         <div class="col-md-8">
-                            <div class="card mb-4">
+                            <div class="card mb-4 card1">
                                 <div class="card-header py-3">
                                     <h4 class="heading"
                                         style="font-family: 'Press Start 2P'; font-size: 20px; color:slateblue;">
@@ -105,108 +111,90 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                     </h4>
                                 </div>
                                 <div class="card-body">
-                                    <?php foreach ($cart_items as $item) {
-                                        $gameName = $item['gameName'];
-                                        $amount = $item['amount'];
-                                        ?>
-                                        <div class="row">
-                                            <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
-                                                <div class="bg-image hover-overlay hover-zoom ripple rounded"
-                                                    data-mdb-ripple-color="light">
-                                                    <img src="img/<?php echo $gameName; ?>.webp" class="w-100"
-                                                        alt="<?php echo $gameName; ?>" />
-                                                    <a href="#!">
-                                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)">
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                                                <p><strong>
-                                                        <?php echo $gameName; ?>
-                                                    </strong></p>
-                                                <p>Price:
-                                                    <?php echo $amount; ?>
-                                                </p>
-                                                <form class="deletecart" method="POST">
-                                                    <input type="hidden" name="gameid"
-                                                        data-gameid="<?php echo $item['gameid']; ?>"
-                                                        value="<?php echo $item['gameid']; ?>">
-                                                    <button type="submit" name="deletecart"
-                                                        class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
-                                                        title="Remove item">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </form>
+                                <?php foreach ($cart_items as $item) {
 
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                                                <p class="text-start text-md-center">
-                                                    <strong>&#8377;
-                                                        <?php echo $amount; ?>
-                                                    </strong>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <?php
-                                        if (isset($_POST['deletecart'])) {
-                                            $gameidToDelete = $_POST['gameid'];
-                                            $q = "DELETE FROM `cart` WHERE gameid = '$gameidToDelete'";
-                                            $resultsecond = $dbconn->query($q);
-                                        }
+$queryforamount = "SELECT price FROM games WHERE gamename = ?";
+$stmtPrice = $dbconn->prepare($queryforamount);
+$stmtPrice->execute([$item['gameName']]);
+$gameprice = $stmtPrice->fetchColumn();
 
-                                        ?>
-                                    <?php } ?>
-                                    <script>
-                                        $(document).ready(function () {
-                                            $('.delete-item').click(function () {
-                                                var gameid = $(this).parent().data('gameid');
-                                                $.ajax({
-                                                    type: 'POST',
-                                                    url: '',
-                                                    data: {
-                                                        'deletecart': true,
-                                                        'gameid': gameid
-                                                    },
-                                                    success: function (response) {
+?>
+    <div class="row">
+        <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+            <div class="bg-image hover-overlay hover-zoom ripple rounded"
+                data-mdb-ripple-color="light">
+                <img src="img/<?php echo isset($item['gameName']) ? $item['gameName'] : ''; ?>.webp" class="w-100"
+                    alt="<?php echo isset($item['gameName']) ? $item['gameName'] : ''; ?>" />
+                <a href="#!">
+                    <div class="mask"
+                        style="background-color: rgba(251, 251, 251, 0.2)">
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+            <p><strong>
+                    <?php echo isset($item['gameName']) ? $item['gameName'] : ''; ?>
+                </strong></p>
 
-                                                    }
-                                                });
-                                            });
-                                        });
-                                    </script>
+            <form class="deletecart" method="POST">
+                <input type="hidden" name="gameid"
+                    data-gameid="<?php echo isset($item['gameid']) ? $item['gameid'] : ''; ?>"
+                    value="<?php echo isset($item['gameid']) ? $item['gameid'] : ''; ?>">
+                <button type="submit" name="deletecart"
+                    class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
+                    title="Remove item">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </form>
 
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+            <p class="text-start text-md-center">
+                <strong>&#8377;
+                    <?php echo isset($gameprice) ? $gameprice : ''; ?>
+                </strong>
+            </p>
+        </div>
+    </div>
+<?php
+}
+?>
                                 </div>
                             </div>
                         </div>
 
-
-
                         <div class="col-md-4">
-                            <div class="card mb-4">
+                            <div class="card mb-4 card2">
                                 <div class="card-header py-3">
                                     <h5 class="mb-0">Summary</h5>
                                 </div>
                                 <div class="card-body">
                                     <ul class="list-group list-group-flush">
-                                        <li
-                                            class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                                             Products
-                                            <span>&#8377;
-                                                <?php echo array_sum(array_column($cart_items, 'amount')); ?>
+                                            <span>
+                                                <?php
+                                                $totalPrice = 0;
+                                                foreach ($cart_items as $item) {
+                                                    $totalPrice += $item['gamePrice'];
+                                                }
+                                                echo '&#8377;' . $totalPrice;
+                                                ?>
                                             </span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                            Shipping
+                                            Discount
                                             <span>-</span>
                                         </li>
-                                        <li
-                                            class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                                             <div>
                                                 <strong>Total amount</strong>
                                             </div>
-                                            <span><strong>&#8377;
-                                                    <?php echo array_sum(array_column($cart_items, 'amount')); ?>
+                                            <span><strong>
+                                                    <?php
+                                                    echo '&#8377;' . $totalPrice;
+                                                    ?>
                                                 </strong></span>
                                         </li>
                                     </ul>
@@ -225,35 +213,38 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         body {
             font-family: sans-serif;
             background: linear-gradient(#6495ED, #5D3FD3) !important;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            height: 100% !important;
+            background-repeat: no-repeat !important;
+            background-attachment: fixed!important;
+            height: 100vh;
             padding: 5px 7px !important;
         }
 
-       
         .card-body {
             gap: 30px;
             display: grid;
         }
 
         .card {
-            transition: all 0.3s ease;
+            transition: box-shadow 0.3s ease;
         }
 
-        .card:hover {
-            box-shadow:
-                0px 0px 218.8px rgba(0, 0, 0, 0.21),
-                0px 0px 246.1px rgba(0, 0, 0, 0.135),
-                0px 0px 245.3px rgba(0, 0, 0, 0.108),
-                0px 0px 232.9px rgba(0, 0, 0, 0.093),
-                0px 0px 217.9px rgba(0, 0, 0, 0.081),
-                0px 0px 210.6px rgba(0, 0, 0, 0.069),
-                0px 0px 262px rgba(0, 0, 0, 0.053);
-
+        .hovered {
+            box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
         }
     </style>
+    <script>
+        $(document).ready(function () {
+            $('.card1').hover(function () {
+                $('.card2').toggleClass('hovered');
+            });
+            $('.card2').hover(function () {
+                $('.card1').toggleClass('hovered');
+            });
+        });
+    </script>
 
     </html>
-<?php }
-    include 'footer.php'; ?>
+<?php } ?>
+<div class="b-0">
+    <?php include 'footer.php'; ?>
+</div>

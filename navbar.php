@@ -131,7 +131,7 @@ ob_start();
                 <?php if (isset($_SESSION['name'])) { ?>
                     <li class="nav-item navitems  dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            Profile &#9660;
+                            Profile
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="customer.php">Profile</a></li>

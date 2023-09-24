@@ -1,8 +1,8 @@
 <?php
 session_start();
-
+if(isset($_SESSION['name'])){
 $customername = $_SESSION['name'];
-$custid = $_SESSION['id'];
+$custid = $_SESSION['id'];}
 include 'navbar.php';
 $dsn = "mysql:host=localhost;dbname=game4";
 $username = "root";
@@ -101,8 +101,7 @@ if (isset($_SESSION['dob'])) {
                                                 if (isset($_SESSION['id'])) {
                                                     $cartid = $_SESSION['id'];
 
-                                                    $addquery = "INSERT INTO `cart`(`cartid`, `gameid`, `amount`) VALUES
-                                            (:cartid, :gameid, 0)";
+                                                    $addquery = "INSERT INTO `cart`(`cartid`, `gameid`) VALUES (:cartid, :gameid)";
 
                                                     $stmt = $dbconn->prepare($addquery);
                                                     $stmt->bindParam(':cartid', $cartid);
@@ -227,7 +226,7 @@ if (isset($_SESSION['dob'])) {
                                                 if (isset($_POST['add_to_cart_' . $gameidtemp2])) { // Check the specific button for this game
                                                     if (isset($_SESSION['id'])) {
                                                         $cartid = $_SESSION['id'];
-                                                        $addquery = "INSERT INTO `cart`(`cartid`, `gameid`, `amount`) VALUES (:cartid, :gameid, :price)";
+                                                        $addquery = "INSERT INTO `cart`(`cartid`, `gameid`) VALUES (:cartid, :gameid)";
                                                         $stmt = $dbconn->prepare($addquery);
                                                         $stmt->bindParam(':cartid', $cartid);
                                                         $stmt->bindParam(':gameid', $gameidtemp2); // Use the correct variable here
@@ -340,11 +339,10 @@ if (isset($_SESSION['dob'])) {
                                                 if (isset($_POST['add_to_cart_' . $gameidtemp2])) { // Check the specific button for this game
                                                     if (isset($_SESSION['id'])) {
                                                         $cartid = $_SESSION['id'];
-                                                        $addquery = "INSERT INTO `cart`(`cartid`, `gameid`, `amount`) VALUES (:cartid, :gameid, :price)";
+                                                        $addquery = "INSERT INTO `cart`(`cartid`, `gameid`) VALUES (:cartid, :gameid)";
                                                         $stmt = $dbconn->prepare($addquery);
                                                         $stmt->bindParam(':cartid', $cartid);
                                                         $stmt->bindParam(':gameid', $gameidtemp2); // Use the correct variable here
-                                                        $stmt->bindParam(':price', $game['price']);
 
                                                         try {
                                                             $stmt->execute();
@@ -815,7 +813,7 @@ if (isset($_SESSION['dob'])) {
 
     body {
         font-family: sans-serif;
-        background: linear-gradient(#404ccc, slateblue) !important;
+        background: linear-gradient(180deg, slateblue,#404ccc) !important;
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: cover;
