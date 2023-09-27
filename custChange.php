@@ -38,13 +38,49 @@ if (!isset($_SESSION['name'])) {
     $email = $customer[3];
     $no = $customer[4];
 }
+    if (isset($_POST['submit'])) {
+        $first_name = $_POST['First'];
+        $last_name = $_POST['Last'];
+        $contact_number = $_POST['number'];
+        $date_of_birth = $_POST['dob'];
+
+        try {
+            $stmt = $conn->prepare("UPDATE `customer` SET `firstname`=:first_name, `lastname`=:last_name, `contactno`=:contact_number, `dob`=:date_of_birth WHERE `customerid`=:customer_id");
+
+            $stmt->bindParam(":first_name", $first_name);
+            $stmt->bindParam(":last_name", $last_name);
+            $stmt->bindParam(":contact_number", $contact_number);
+            $stmt->bindParam(":date_of_birth", $date_of_birth);
+            $stmt->bindParam(":customer_id", $customerid);
+
+            $stmt->execute();
+
+// Display the success message
+echo '<script>
+    Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Profile updated successfully!",
+        showConfirmButton: false, // Hide the OK button
+        timer: 2000, // Auto-close the message after 2 seconds
+        onClose: () => {
+            location.reload(); // Reload the page after the message closes
+        }
+    });
+</script>';
+    } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+}
 ?>
 <?php include "navbar.php"; ?><br>
 
 <head>
     <title>Customer</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+ <style>
         body {
             margin: 0;
             padding-bottom: 40px;
@@ -151,29 +187,6 @@ if (!isset($_SESSION['name'])) {
         </div>
     </div>
 </body>
-<?php
-    try{
-if (isset($_POST['submit'])) {
-    $first_name = $_POST['First'];
-    $last_name = $_POST['Last'];
-    $contact_number = $_POST['number'];
-    $date_of_birth = $_POST['dob'];
-
-        $stmt = $conn->prepare("UPDATE customer SET firstname = :first_name, lastname = :last_name, contactno = :contact_number, dob = :date_of_birth WHERE customerid = :customer_id");
-
-        $stmt->bindParam(':first_name', $first_name);
-        $stmt->bindParam(':last_name', $last_name);
-        $stmt->bindParam(':contact_number', $contact_number);
-        $stmt->bindParam(':date_of_birth', $date_of_birth);
-        $stmt->bindParam(':customer_id', $Id);
-
-        $stmt->execute();
-        
-    }
-}catch(Exception $e){
-    echo "Can't Change Now , Try after Some Time";
-}
-?>
 
 </html>
 <div style="position: absolute; bottom: 0; width: 100%;">
