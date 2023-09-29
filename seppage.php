@@ -216,8 +216,8 @@ if ($games) {
                             if (isset($_SESSION['id'])) {
                                 $cartid = $_SESSION['id'];
 
-                                $addquery = "INSERT INTO `cart`(`cartid`, `gameid`, `amount`) VALUES
-                (:cartid, :gameid, 0)";
+                                $addquery = "INSERT INTO `cart`(`cartid`, `gameid`) VALUES
+                (:cartid, :gameid)";
 
                                 $stmt = $conn->prepare($addquery);
                                 $stmt->bindParam(':cartid', $cartid);

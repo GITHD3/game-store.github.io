@@ -91,26 +91,24 @@ if (isset($_SESSION['dob'])) {
                                             </form>
                                             ';
                                         } else {
-                                            echo '
-                                            <form class="formbutton" method="POST">
-                                                <input type="hidden" name="gameid" value="<?php echo $gameidtemp; ?>">
-                                                <button type="submit" class="btn" name="add_to_cart">Add to
-                                                    Cart</button>
-                                            </form>';
-                                            if (isset($_POST['add_to_cart'])) {
-                                                if (isset($_SESSION['id'])) {
-                                                    $cartid = $_SESSION['id'];
-
-                                                    $addquery = "INSERT INTO `cart`(`cartid`, `gameid`) VALUES (:cartid, :gameid)";
-
-                                                    $stmt = $dbconn->prepare($addquery);
-                                                    $stmt->bindParam(':cartid', $cartid);
-                                                    $stmt->bindParam(':gameid', $gameidtemp);
-
-                                                    try {
-                                                        $stmt->execute();
-                                                    } catch (PDOException $e) {
-                                                    }
+                                            ?>
+                                                <form class="formbutton3" method="POST">
+                                                    <input type="hidden" name="gameid" value="Fortnite">
+                                                    <button type="submit" class="btn"
+                                                        name="add_to_cart_Fortnite">Add to Cart</button>
+                                                </form>
+                                                <?php
+                                                if (isset($_POST['add_to_cart_Fortnite'])) { 
+                                                    if (isset($_SESSION['id'])) {
+                                                        $cartid = $_SESSION['id'];
+                                                        $fortniteid = 'NUNA105'; // Assuming this is the valid game ID
+                                                
+                                                        $addquery = "INSERT INTO `cart`(`cartid`, `gameid`) VALUES ($cartid, '$fortniteid')";
+                                                
+                                                        try {
+                                                            $stmt = $dbconn->query($addquery);
+                                                        } catch (PDOException $e) {
+                                                        }
                                                 } else {
                                                     ?>
                                                     <script>
@@ -230,7 +228,6 @@ if (isset($_SESSION['dob'])) {
                                                         $stmt = $dbconn->prepare($addquery);
                                                         $stmt->bindParam(':cartid', $cartid);
                                                         $stmt->bindParam(':gameid', $gameidtemp2); // Use the correct variable here
-                                                        $stmt->bindParam(':price', $game['price']);
 
                                                         try {
                                                             $stmt->execute();

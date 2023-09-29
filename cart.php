@@ -6,6 +6,7 @@ $username = "root";
 $password = "";
 $dbconn = new PDO($dsn, $username, $password);
 $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$total = 0;
 ?>
 
 <!DOCTYPE html>
@@ -65,21 +66,7 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 ];
             }
 
-            $gameIds = array_column($cart_items, 'gameid');
-            $sql2 = "SELECT gamename, price FROM games WHERE gameid = ?";
-            $stmt2 = $dbconn->prepare($sql2);
-            foreach ($gameIds as $gameId) {
-                $stmt2->execute([$gameId]);
-                $gameData = $stmt2->fetch(PDO::FETCH_ASSOC);
 
-                foreach ($cart_items as &$item) {
-                    if ($gameData['gameid'] == $item['gameid']) {
-                        $item['gameName'] = $gameData['gamename'];
-                        $item['gamePrice'] = $gameData['price'];
-                        break;
-                    }
-                }
-            }
         } else {
             ?>
             <script>
@@ -111,55 +98,74 @@ $dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                     </h4>
                                 </div>
                                 <div class="card-body">
-                                <?php foreach ($cart_items as $item) {
+                                    <?php foreach ($cart_items as $item) {
+                                        $tempvarid = " ";
+                                        $tempvarid = $item['gameid'];
+                                        $queryforamount = "SELECT price  FROM games WHERE gameid = ?";
+                                        $queryforname = "SELECT gamename FROM games WHERE gameid = ?";
+                                        $stmtPrice = $dbconn->prepare($queryforamount);
+                                        $stmtname = $dbconn->prepare($queryforname);
+                                        $stmtPrice->execute([$item['gameid']]);
+                                        $stmtname->execute([$item['gameid']]);
+                                        $gameprice = $stmtPrice->fetchColumn();
+                                        $gameName = $stmtname->fetchColumn();
+                                        $total += $gameprice;
+                                        ?>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                                                <div class="bg-image hover-overlay hover-zoom ripple rounded"
+                                                    data-mdb-ripple-color="light">
+                                                    <img src="img/<?php echo isset($gameName) ? $gameName : ''; ?>.webp"
+                                                        class="w-100" alt="<?php echo isset($gameName) ? $gameName : ''; ?>" />
+                                                    <a href="#!">
+                                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)">
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                                                <p><strong>
+                                                        <?php echo isset($gameName) ? $gameName : ''; ?>
+                                                    </strong></p>
 
-$queryforamount = "SELECT price FROM games WHERE gamename = ?";
-$stmtPrice = $dbconn->prepare($queryforamount);
-$stmtPrice->execute([$item['gameName']]);
-$gameprice = $stmtPrice->fetchColumn();
+                                                <form class="deletecart" method="POST">
+                                                        <input type="hidden" name="gameids"
+                                                            value="<?php echo $item['gameid']; ?>">
+                                                    <button type="submit" name="delete" class="btn btn-primary btn-sm me-1 mb-2"
+                                                        data-mdb-toggle="tooltip" title="Remove item">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
 
-?>
-    <div class="row">
-        <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
-            <div class="bg-image hover-overlay hover-zoom ripple rounded"
-                data-mdb-ripple-color="light">
-                <img src="img/<?php echo isset($item['gameName']) ? $item['gameName'] : ''; ?>.webp" class="w-100"
-                    alt="<?php echo isset($item['gameName']) ? $item['gameName'] : ''; ?>" />
-                <a href="#!">
-                    <div class="mask"
-                        style="background-color: rgba(251, 251, 251, 0.2)">
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-            <p><strong>
-                    <?php echo isset($item['gameName']) ? $item['gameName'] : ''; ?>
-                </strong></p>
+                                                <?php
+                                                if (isset($_POST['delete'])) {
+                                                    $gameid = $_POST['gameids'];
+                                                    try {
+                                                        $query = "DELETE FROM `cart` WHERE gameid = :gameid AND cartid = :cartid";
+                                                        $stmt = $dbconn->prepare($query);
+                                                        $stmt->bindParam(':gameid', $gameid, PDO::PARAM_STR);
+                                                        $stmt->bindParam(':cartid', $cartvar, PDO::PARAM_INT);
+                                                        $stmt->execute();
+                                                    } catch (Exception $e) {
+                                                        echo $e->getLine();
+                                                        echo $e->getMessage();
+                                                    }
+                                                }
+                                                ?>
 
-            <form class="deletecart" method="POST">
-                <input type="hidden" name="gameid"
-                    data-gameid="<?php echo isset($item['gameid']) ? $item['gameid'] : ''; ?>"
-                    value="<?php echo isset($item['gameid']) ? $item['gameid'] : ''; ?>">
-                <button type="submit" name="deletecart"
-                    class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
-                    title="Remove item">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </form>
 
-        </div>
-        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-            <p class="text-start text-md-center">
-                <strong>&#8377;
-                    <?php echo isset($gameprice) ? $gameprice : ''; ?>
-                </strong>
-            </p>
-        </div>
-    </div>
-<?php
-}
-?>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                                                <p class="text-start text-md-center">
+                                                    <strong>&#8377;
+                                                        <?php echo isset($gameprice) ? $gameprice : ''; ?>
+                                                    </strong>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <?php
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -171,15 +177,13 @@ $gameprice = $stmtPrice->fetchColumn();
                                 </div>
                                 <div class="card-body">
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                                        <li
+                                            class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                                             Products
                                             <span>
                                                 <?php
-                                                $totalPrice = 0;
-                                                foreach ($cart_items as $item) {
-                                                    $totalPrice += $item['gamePrice'];
-                                                }
-                                                echo '&#8377;' . $totalPrice;
+
+                                                echo '&#8377;' . $total;
                                                 ?>
                                             </span>
                                         </li>
@@ -187,13 +191,14 @@ $gameprice = $stmtPrice->fetchColumn();
                                             Discount
                                             <span>-</span>
                                         </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                                        <li
+                                            class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                                             <div>
                                                 <strong>Total amount</strong>
                                             </div>
                                             <span><strong>
                                                     <?php
-                                                    echo '&#8377;' . $totalPrice;
+                                                    echo '&#8377;' . $total;
                                                     ?>
                                                 </strong></span>
                                         </li>
@@ -214,7 +219,7 @@ $gameprice = $stmtPrice->fetchColumn();
             font-family: sans-serif;
             background: linear-gradient(#6495ED, #5D3FD3) !important;
             background-repeat: no-repeat !important;
-            background-attachment: fixed!important;
+            background-attachment: fixed !important;
             height: 100vh;
             padding: 5px 7px !important;
         }
