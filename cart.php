@@ -129,8 +129,7 @@ $total = 0;
                                                     </strong></p>
 
                                                 <form class="deletecart" method="POST">
-                                                        <input type="hidden" name="gameids"
-                                                            value="<?php echo $item['gameid']; ?>">
+                                                    <input type="hidden" name="gameids" value="<?php echo $item['gameid']; ?>">
                                                     <button type="submit" name="delete" class="btn btn-primary btn-sm me-1 mb-2"
                                                         data-mdb-toggle="tooltip" title="Remove item">
                                                         <i class="fas fa-trash"></i>
@@ -203,9 +202,11 @@ $total = 0;
                                                 </strong></span>
                                         </li>
                                     </ul>
-                                    <button type="button" class="btn btn-primary btn-lg btn-block">
-                                        Go to checkout
-                                    </button>
+                                    <a href="bill.php"> <button type="submit" class="btn btn-primary btn-lg btn-block"
+                                            id="checkoutButton">
+                                            Go to checkout
+                                            <span id="loader" class="border-loader"></span>
+                                        </button></a>
                                 </div>
                             </div>
                         </div>
@@ -233,11 +234,27 @@ $total = 0;
             transition: box-shadow 0.3s ease;
         }
 
+        .card1 {
+            height: 500px;
+        }
+
         .hovered {
             box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
         }
+        #checkoutButton{
+            width: 100%;
+            border-radius: 10px;
+            background-color: #7e3fa5;
+            border: none;
+            transition:all 0.6s;
+        }
+        #checkoutButton:hover{
+            border-radius: 12px;
+background-color: #603FEF;
+        }
     </style>
     <script>
+
         $(document).ready(function () {
             $('.card1').hover(function () {
                 $('.card2').toggleClass('hovered');
