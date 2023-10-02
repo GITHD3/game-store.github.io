@@ -202,11 +202,16 @@ $total = 0;
                                                 </strong></span>
                                         </li>
                                     </ul>
-                                    <a href="bill.php"> <button type="submit" class="btn btn-primary btn-lg btn-block"
-                                            id="checkoutButton">
+                                    <form action="bill.php" method="GET">
+                                        <input type="hidden" name="cartid" value="<?php echo $cartvar; ?>">
+                                        <input type="hidden" name="total" value="<?php echo $total; ?>">
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block"
+                                            name="checkoutButton">
                                             Go to checkout
-                                            <span id="loader" class="border-loader"></span>
-                                        </button></a>
+                                        </button>
+                                    </form>
+
+
                                 </div>
                             </div>
                         </div>
@@ -222,7 +227,6 @@ $total = 0;
             background-repeat: no-repeat !important;
             background-attachment: fixed !important;
             height: 100vh;
-            padding: 5px 7px !important;
         }
 
         .card-body {
@@ -235,22 +239,24 @@ $total = 0;
         }
 
         .card1 {
-            height: 500px;
+            height: 100%;
         }
 
         .hovered {
             box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
         }
-        #checkoutButton{
+
+        #checkoutButton {
             width: 100%;
             border-radius: 10px;
             background-color: #7e3fa5;
             border: none;
-            transition:all 0.6s;
+            transition: all 0.6s;
         }
-        #checkoutButton:hover{
+
+        #checkoutButton:hover {
             border-radius: 12px;
-background-color: #603FEF;
+            background-color: #603FEF;
         }
     </style>
     <script>
@@ -267,6 +273,6 @@ background-color: #603FEF;
 
     </html>
 <?php } ?>
-<div class="b-0">
+<div class="b-0 p-0" style="position: absoulte; bottom: 0; left: 0; right: 0;">
     <?php include 'footer.php'; ?>
 </div>

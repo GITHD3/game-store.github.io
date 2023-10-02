@@ -58,7 +58,7 @@ if (isset($_POST['submit'])) {
 
         // Store the name in a session variable
         $_SESSION['name'] = $fn;
-        $_SESSION['cid'] = $newid;
+        $_SESSION['id'] = $newid;
         $_SESSION['email'] = $email;
         $_SESSION['dob'] = $dob;
 

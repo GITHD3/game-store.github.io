@@ -172,6 +172,18 @@ if ($games) {
             border: none;
             border-radius: 3px;
         }
+
+        #carticon {
+            width: 36%;
+        }
+
+        .cartbutton {
+            width: 100px;
+            transition: all 0.4s ease-in-out;
+        }
+        .cartbutton:hover {
+            background-color: transparent;
+        }
     </style>
 
 
@@ -185,7 +197,7 @@ if ($games) {
                 <div class="card p-0 m-0">
                     <img class="fakeimg1" src="img/<?php echo $gameName; ?>.webp">
                 </div>
-                <div class="card2 p-0 pt-2 m-0">
+                <div class="card2 p-0 pt-2 m-0 inline-block">
                     <?php
                     $check_game_cart = "SELECT * FROM `cart` WHERE gameid = :gameid";
                     $stmt_check_game_cart = $conn->prepare($check_game_cart);
@@ -200,10 +212,15 @@ if ($games) {
                         <?php
                     } else {
                         echo '
-                        <form class="formbutton" method="POST">
+                        <form class="formbutton"method="POST">
                         <input type="hidden" name="gameidtemp" value="<?php echo $gameidtemp; ?>">
-                        <button type="submit" name="add_to_cart" class="btn">Add to Cart</button>
-                        </form>
+                        <div class="d-flex justify-content-center">
+    <button type="submit" class="cartbutton btn p-0 " name="add_to_cart">
+        <img id="carticon" src="gif/carticon.png" class="m-0">
+    </button>
+</div>
+
+                                            </form>
                         
                         
                         ';
@@ -254,23 +271,18 @@ if ($games) {
 
 
 
-                    <form class="formbutton text-center p-0 m-0 pt-2" method="POST">
-                        <input type="hidden" value="<?php echo $game['gamename']; ?>" name="gameName">
+                    <form class="formbutton text-center p-0 m-0 pt-2" method="POST" action="bill.php">
+                        <input type="hidden" value="<?php echo $gameidtemp; ?>" name="gameid">
                         <button type="submit" class="btn">Buy</button>
                     </form>
-                    <form class="formbutton text-center p-0 m-0 pt-2">
+                    <!-- <form class="formbutton text-center p-0 m-0 pt-2">
                         <input type="hidden" value="<?php echo $gamename ?>" id="gameName">
                         <button id="downloadZipButton" class="btn" type="button">Download</button>
                     </form>
 
-                    <?php // Replace with the actual game name
-                    $zipfile = "zips/$gamename.zip";
-                    if (file_exists($zipfile)) {
-                        echo "Available!";
-                    } else {
-                        echo "Not Available!";
-                    }
-                    ?>
+                     <?php
+                     $zipfile = "zips/$gamename.zip";
+                     ?>
 
                     <script>
                         document.getElementById('downloadZipButton').addEventListener('click', function () {
@@ -284,7 +296,7 @@ if ($games) {
                             a.click();
                             document.body.removeChild(a);
                         });
-                    </script>
+                    </script> -->
 
 
 

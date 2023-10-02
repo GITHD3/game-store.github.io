@@ -5,7 +5,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
 
-
   <?php
   session_start();
   include 'navbar.php';
@@ -35,7 +34,7 @@
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-      $stmt->bind_result($customerid, $firstname, $emailaddress,$dob, $stored_password);
+      $stmt->bind_result($customerid, $firstname, $emailaddress, $dob, $stored_password);
       $stmt->fetch();
 
       // Close the statement after fetching the password
@@ -48,21 +47,21 @@
         $_SESSION['dob'] = $dob;
         ?>
         <script>
-  Swal.fire({
-    title: 'Welcome Back <?php echo $_SESSION['name'] ?>!!',
-    width: 600,
-    padding: '3em',
-    color: '#716add',
-    background: '#fff',
-    imageUrl: 'gif /amongus.gif',
-    imageWidth: 700, 
-    timer: 2500, 
-    showCancelButton: false,
-    willClose: () => {
-      window.location.href = 'main1.php';
-    }
-  });
-</script>
+          Swal.fire({
+            title: 'Welcome Back <?php echo $_SESSION['name'] ?>!!',
+            width: 600,
+            padding: '3em',
+            color: '#716add',
+            background: '#fff',
+            imageUrl: 'gif /amongus.gif',
+            imageWidth: 700,
+            timer: 2500,
+            showCancelButton: false,
+            willClose: () => {
+              window.location.href = 'main1.php';
+            }
+          });
+        </script>
 
         <?php
         exit;
@@ -76,8 +75,6 @@
     }
   }
   ?>
-
-
 
   <title>Login Form</title>
   <link rel="stylesheet" href="login.css">
@@ -98,8 +95,12 @@
         <label>Email</label>
       </div>
       <div class="user-box">
-        <input type="password" name="pass" required="">
-        <label>Password</label>
+        <input type="password" id="password" name="pass" required="">
+        <div class="show-password">
+          <img id="showPassword" src="gif/eyeclose.png" alt="Show Password" onclick="togglePasswordVisibility()">
+        </div>
+        <label>Password
+        </label>
       </div>
       <div Class="btnbox">
         <button type="submit" id="btn1" name="submit">Submit</button>
@@ -110,14 +111,54 @@
   <div style="position: absolute; bottom: 0; width: 100%;">
     <?php include 'footer.php'; ?>
   </div>
+
+  <script>
+    function togglePasswordVisibility() {
+      var passwordField = document.getElementById('password');
+      var eyeIcon = document.getElementById('showPassword');
+
+      if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        eyeIcon.src = 'gif/eyeopen.png';
+      } else {
+        passwordField.type = 'password';
+        eyeIcon.src = 'gif/eyeclose.png';
+      }
+    }
+  </script>
+
+
 </body>
+
 <style>
+  .user-box {
+    position: relative;
+  }
+
+  .show-password {
+    position: absolute;
+    top: 30%;
+    right: 5px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+
+  .show-password img {
+    height: 20px;
+    width: 130%;
+  }
+
+  .show-password img[src="gif/eyeopen.png"] {
+    height: 30px;
+    width: 140%;
+  }
+
   body {
     background: linear-gradient(#404ccc, #03e9f4);
     background-repeat: no-repeat;
     background-attachment: fixed;
     height: 100%;
-            padding-bottom: 5px  !important;
+    padding-bottom: 5px !important;
   }
 
   #btn1 {
@@ -129,7 +170,6 @@
     color: white;
     cursor: pointer;
     font-size: 14px;
-    /* border: 1px solid #03e9f4; */
     background: rgb(33 37 41);
     font-family: 'Raleway', sans-serif;
     color: #c3dfe0;
@@ -141,7 +181,6 @@
   #btn1:hover {
     background: #03e9f4;
     color: black;
-
   }
 
   .btnbox {
@@ -156,11 +195,12 @@
   .login-box:hover {
     box-shadow: 0px 20px 30px -10px #171717;
   }
+
   footer {
     position: relative;
     bottom: 0;
     width: 100%;
-    text-align: cente r;
+    text-align: center;
     padding: 10px 0;
   }
 </style>
