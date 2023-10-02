@@ -187,57 +187,73 @@ if (isset($_SESSION['id'])) {
                                                         <?php echo $date; ?>
                                                     </p>
                                                     <p>Name - <span>
-                                                        <?php echo $ln . ' ' . $fn; ?>
-                                                    </span></p>
+                                                            <?php echo $ln . ' ' . $fn; ?>
+                                                        </span></p>
                                                     <p>Game - <span>
-                                                        <?php echo $game_name_seppage; ?>
-                                                    </span></p>
+                                                            <?php echo $game_name_seppage; ?>
+                                                        </span></p>
                                                     <!-- <p>Storage Required - <span><?php echo $total_storage_required * 10; ?> GB</span></p> -->
-                                                    
-                                                    
+
+
                                                     <p>Amount - <span> &#8377;
-                                                        <?php echo $game_price_seppage; ?>
-                                                    </span></p>
+                                                            <?php echo $game_price_seppage; ?>
+                                                        </span></p>
                                                 </div>
                                                 <div class="product-price-btn">
-                                                    <button onclick="printBill()" type="button">Buy Now</button>
+                                                    <form method="POST">
+                                                        <button onclick="printBill()" name="Individualgame" type="submit">
+                                                        Buy Now</button>
+                                                    </form>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="product-img2 inline-block">
-                                                <img src="img 2/<?php echo $game_name_seppage ;?>.webp" class="shop">
-                                                
+                                                <img src="img 2/<?php echo $game_name_seppage; ?>.webp" class="shop">
+
                                             </div>
                                         </div>
-                                        </div>
-                            </div>
-                            <style>
-                                 span {
-            font-family: 'Suranna', serif;
-            font-size: 20px !important; 
-        }
+                                    </div>
+                                </div>
+                                <style>
+                                    span {
+                                        font-family: 'Suranna', serif;
+                                        font-size: 20px !important;
+                                    }
+                                </style>
+                                <?php
+                                echo $game_id, $date, $game_price_seppage, $tempid;
+                                if (isset($_POST['Individualgame'])) {
+                                    echo "here you are";
+                                    $query11 = "INSERT INTO `bill`( `gameid`, `bill_date`, `total_amount`, `customerID`) VALUES
+                                          VALUES ($game_id, $date, $game_price_seppage, $tempid)";
+                                
+                                $statement = $dbconn->query($query11);
                                 
                                 
-                            </style>
-                            <?php
+                                
+                                }
             } else {
                 echo "Invalid Access";
             }
             ?>
+                        </div>
+
                     </div>
 
+                    <?php
+
+
+                    ?>
                 </div>
-
-                <?php
-
-
-                ?>
-            </div>
     </body>
     <script>
         function printBill() {
-            window.print();
+            const downloadBill = confirm("Do you want to download the bill?");
+            if (downloadBill) {
+                window.print();
+            }
         }
+
     </script>
     <style>
         @media print {
@@ -274,12 +290,15 @@ if (isset($_SESSION['id'])) {
             background-color: #a8a8cf;
             transition: all 0.27s ease-in-out;
         }
-        .product-img2:hover .wrapper{
+
+        .product-img2:hover .wrapper {
             box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px !important;
         }
+
         .product-img2:hover {
             filter: blur(2px);
         }
+
         .product-img2 {
             float: left;
             height: 100%;
@@ -291,7 +310,7 @@ if (isset($_SESSION['id'])) {
         .product-img2 img {
             border-radius: 14px;
         }
-            
+
 
         .product-img img {
             border-radius: 7px 0 0 7px;
@@ -475,7 +494,7 @@ if (isset($_SESSION['id'])) {
 
             setTimeout(function () {
                 window.location.href = "Login.php";
-            }, 2900);
+            }, 2500);
         });
     </script>
     <style>
@@ -485,4 +504,6 @@ if (isset($_SESSION['id'])) {
         }
     </style>
 
-<?php }
+<?php 
+}
+?>
