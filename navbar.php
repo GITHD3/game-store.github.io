@@ -137,7 +137,10 @@ ob_start();
                             <li><a class="dropdown-item" href="customer.php">Profile</a></li>
                             <li><a class="dropdown-item" href="registeration.php">Sign Up</a></li>
                             <li><a class="dropdown-item" href="login.php">Log In</a></li>
-                            <?php if (isset($_SESSION['name']) && $_SESSION['name'] == "harsh" && isset($_SESSION['id']) && $_SESSION['id'] == "3") { ?>
+                            <?php 
+                            $fn = $_SESSION['name'];
+                            $email = $_SESSION['email'];
+                            if ($fn == 'Harsh' && $email == 'harshadmin@gmail.com') { ?>
                                 <li><a class="dropdown-item" href="admin1.php">Admin</a></li>
                             <?php } ?>
                         </ul>
@@ -148,9 +151,7 @@ ob_start();
                             Sign Up
                         </a>
                         <ul class="dropdown-menu">
-                            <?php if (isset($_SESSION['name']) && $_SESSION['name'] == "harsh" && isset($_SESSION['id']) && $_SESSION['id'] == "3") { ?>
-                                <li><a class="dropdown-item" href="admin1.php">Admin</a></li>
-                            <?php } ?>
+                    
                             <li><a class="dropdown-item" href="registeration.php">Sign Up</a></li>
                             <li><a class="dropdown-item" href="login.php">Log In</a></li>
                         </ul>

@@ -2,6 +2,7 @@
 session_start();
 
 include 'navbar.php';
+include 'sidebar.php';
 ?>
 
 <link href='https://fonts.googleapis.com/css?family=Press Start 2P' rel='stylesheet'>
@@ -50,13 +51,15 @@ if (isset($_POST['show_game'])) {
 <!DOCTYPE html>
 <html>
 
+
+
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js"></script>
 
-    <title class="f">Admin Page</title>
+    <title class="f">Admin Page - Game Show</title>
     <style>
         body {
             background-image: linear-gradient(#146aa7, #48aaadb0);

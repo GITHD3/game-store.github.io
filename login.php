@@ -45,6 +45,7 @@
         $_SESSION['id'] = $customerid;
         $_SESSION['name'] = $firstname;
         $_SESSION['dob'] = $dob;
+        $_SESSION['email'] = $emailaddress;
         ?>
         <script>
           Swal.fire({
