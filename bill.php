@@ -110,7 +110,10 @@ if (isset($_SESSION['id'])) {
                                                         </span></p>
                                                 </div>
                                                 <div class="product-price-btn">
-                                                    <button onclick="printBill()" type="button">Buy Now</button>
+                                                    <form method="POST">
+                                                        <button onclick="printBill()" name="cartsubmit" type="submit">Buy
+                                                            Now</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -160,78 +163,160 @@ if (isset($_SESSION['id'])) {
                         </div>
 
                         <?php
-            } elseif (isset($_POST['gameid'])) {
-                $game_id = $_POST['gameid'];
-                $querydelta = "SELECT  `gamename`,  `price`, `gamesize`, `storage_required` FROM `games` WHERE gameid = :game_ID";
-                $statement = $dbconn->prepare($querydelta);
-                $statement->bindParam(':game_ID', $game_id);
-                $statement->execute();
-                $res2 = $statement->fetch(PDO::FETCH_ASSOC);
-                $game_name_seppage = $res2['gamename'];
-                $game_price_seppage = $res2['price'];
-                $game_storage_required_seppage = $res2['storage_required'];
-                ?>
-                        <div class="maindiv flex">
-                            <div class="A">
-                                <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-                                    <div class="overflow-hidden">
-                                        <div class="wrapper">
-                                            <div class="product-img">
-                                                <img src="gif/ShopA.png" class="shop">
-                                            </div>
-                                            <div class="product-info">
-                                                <div class="product-text">
-                                                    <h1>ParaCrash Game Store</h1>
-                                                    <h2>by Harsh and Devansh</h2>
-                                                    <p>Date -
-                                                        <?php echo $date; ?>
-                                                    </p>
-                                                    <p>Name - <span>
-                                                            <?php echo $ln . ' ' . $fn; ?>
-                                                        </span></p>
-                                                    <p>Game - <span>
-                                                            <?php echo $game_name_seppage; ?>
-                                                        </span></p>
-                                                    <!-- <p>Storage Required - <span><?php echo $total_storage_required * 10; ?> GB</span></p> -->
+                        if (isset($_POST['cartsubmit'])) {
+                            $billid = 0;
+                            try {
+                                $query = "SELECT bill_id FROM bill ORDER BY bill_id DESC LIMIT 1";
+                                $statement2 = $dbconn->prepare($query);
+                                $statement2->execute();
+                                $lastBillIdEntry = $statement2->fetch(PDO::FETCH_NUM);
+                                $billid = $lastBillIdEntry[0] + 1;
+                                foreach ($gamedetail as $index => $gd) {
+                                    $id = $gd['id'];
+                                    $amt = $gd['price'];
+
+                                    $checkQuery = "SELECT COUNT(*) FROM bill WHERE gameid = :gameid AND customerID = :customerID";
+                                    $checkStatement = $dbconn->prepare($checkQuery);
+                                    $checkStatement->execute([
+                                        ':gameid' => $id,
+                                        ':customerID' => $tempid
+                                    ]);
+                                    $count = $checkStatement->fetchColumn();
+
+                                    if ($count == 0) {
+                                        $query11 = "INSERT INTO `bill` (`bill_id`,`gameid`, `bill_date`, `total_amount`, `customerID`) 
+                                                    VALUES (:bid , :gameid, :bill_date, :total_amount, :customerID)";
+                                        $statement2 = $dbconn->prepare($query11);
+                                        $statement2->execute([
+                                            ':bid' => $billid,
+                                            ':gameid' => $id,
+                                            ':bill_date' => $date,
+                                            ':total_amount' => $amt,
+                                            ':customerID' => $tempid
+                                        ]);
+                                        $billid = 0;
+                                ?>
+                                        <p class="Ack">Purchased Successfully</p>
+                                <?php
+                                    }
+                                else{
+                                    ?><p class="Ack">You have Already Purchased the Game</p><?php
+                                }}
+                            } catch (Exception $e) {
+                                echo "Try Later On";
+                            }
+                        }
+
+            } else if (isset($_GET['gameid'])) {
+                $game_id = $_GET['gameid'];
+                try {
+                    $queryalpha = "Select bill_id from bill where gameid = $game_id and customerid  = $tempid ; ";
+                    $checkexist = $dbconn->query($queryalpha);
+                } catch (Exception $e) {
+                    $checkexist = 1;
+                }
+                if ($checkexist <= 0) {
+                    ?>
+                                <p class="Ack">You have Already Purchased the Game</p>
+                            <?php
+                } else {
+                    $querydelta = "SELECT  `gamename`,  `price`, `gamesize`, `storage_required` FROM `games` WHERE gameid = :game_ID";
+                    $statement = $dbconn->prepare($querydelta);
+                    $statement->bindParam(':game_ID', $game_id);
+                    $statement->execute();
+                    $res2 = $statement->fetch(PDO::FETCH_ASSOC);
+                    $game_name_seppage = $res2['gamename'];
+                    $game_price_seppage = $res2['price'];
+                    $game_storage_required_seppage = $res2['storage_required'];
+                    ?>
+                                <div class="maindiv flex">
+                                    <div class="A">
+                                        <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                                            <div class="overflow-hidden">
+                                                <div class="wrapper">
+                                                    <div class="product-img">
+                                                        <img src="gif/ShopA.png" class="shop">
+                                                    </div>
+                                                    <div class="product-info">
+                                                        <div class="product-text">
+                                                            <h1>ParaCrash Game Store</h1>
+                                                            <h2>by Harsh and Devansh</h2>
+                                                            <p>Date -
+                                                            <?php echo $date; ?>
+                                                            </p>
+                                                            <p>Name - <span>
+                                                                <?php echo $ln . ' ' . $fn; ?>
+                                                                </span></p>
+                                                            <p>Game - <span>
+                                                                <?php echo $game_name_seppage; ?>
+                                                                </span></p>
+                                                            <!-- <p>Storage Required - <span><?php echo $total_storage_required * 10; ?> GB</span></p> -->
 
 
-                                                    <p>Amount - <span> &#8377;
-                                                            <?php echo $game_price_seppage; ?>
-                                                        </span></p>
+                                                            <p>Amount - <span> &#8377;
+                                                                <?php echo $game_price_seppage; ?>
+                                                                </span></p>
+                                                        </div>
+                                                        <div class="product-price-btn">
+                                                            <form method="POST">
+                                                                <button name='submit' onclick="printBill()" id="buyButton" type='submit'>
+                                                                    Buy Now</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="product-img2 inline-block">
+                                                        <img src="img 2/<?php echo $game_name_seppage; ?>.webp" class="shop">
+
+                                                    </div>
                                                 </div>
-                                                <div class="product-price-btn">
-                                                    <form method="POST">
-                                                        <button onclick="printBill()" name="Individualgame" type="submit">
-                                                        Buy Now</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-
-                                            <div class="product-img2 inline-block">
-                                                <img src="img 2/<?php echo $game_name_seppage; ?>.webp" class="shop">
-
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <style>
-                                    span {
-                                        font-family: 'Suranna', serif;
-                                        font-size: 20px !important;
-                                    }
-                                </style>
-                                <?php
-                                echo $game_id, $date, $game_price_seppage, $tempid;
-                                if (isset($_POST['Individualgame'])) {
-                                    echo "here you are";
-                                    $query11 = "INSERT INTO `bill`( `gameid`, `bill_date`, `total_amount`, `customerID`) VALUES
-                                          VALUES ($game_id, $date, $game_price_seppage, $tempid)";
-                                
-                                $statement = $dbconn->query($query11);
-                                
-                                
-                                
-                                }
+                                        <style>
+                                            span {
+                                                font-family: 'Suranna', serif;
+                                                font-size: 20px !important;
+                                            }
+                                        </style>
+                                        <?php
+
+                                        if (isset($_POST['submit'])) {
+                                            $billid = 0;
+                                            $query = "SELECT bill_id FROM bill ORDER BY bill_id DESC LIMIT 1";
+                                            $statement = $dbconn->prepare($query);
+                                            $statement->execute();
+                                            $lastBillIdEntry = $statement->fetch(PDO::FETCH_NUM);
+                                            $billid = $lastBillIdEntry[0] + 1;
+                                            $checkQuery = "SELECT COUNT(*) FROM bill WHERE gameid = :gameid AND customerID = :customerID";
+                                            $checkStatement = $dbconn->prepare($checkQuery);
+                                            $checkStatement->execute([
+                                                ':gameid' => $game_id,
+                                                ':customerID' => $tempid
+                                            ]);
+                                            $count = $checkStatement->fetchColumn();
+
+                                            if ($count == 0) {
+                                                $query11 = "INSERT INTO `bill` (`bill_id`,`gameid`, `bill_date`, `total_amount`, `customerID`) 
+                    VALUES (:id,:gameid, :bill_date, :total_amount, :customerID)";
+                                                $statement = $dbconn->prepare($query11);
+                                                $statement->execute([
+                                                    ':id' => $billid,
+                                                    ':gameid' => $game_id,
+                                                    ':bill_date' => $date,
+                                                    ':total_amount' => $game_price_seppage,
+                                                    ':customerID' => $tempid
+                                                ]);
+
+                                                ?>
+                                                <p class="Ack">Purchased Successfully</p>
+                                            <?php
+                                            } else {
+                                                ?>
+                                                <p class="Ack">You have Already Purchased the Game</p>
+                                            <?php
+                                            }
+                                        }
+                }
             } else {
                 echo "Invalid Access";
             }
@@ -271,6 +356,13 @@ if (isset($_SESSION['id'])) {
             width: 100%;
         }
 
+        .Ack{
+            font-family: 'Press Start 2p';
+            font-size: 20px;
+            text-align: center;
+            color
+        }
+
         .wrapper {
             height: 420px;
             width: 654px;
@@ -296,7 +388,7 @@ if (isset($_SESSION['id'])) {
         }
 
         .product-img2:hover {
-            filter: blur(2px);
+            filter: brightness(150%);
         }
 
         .product-img2 {
@@ -305,6 +397,7 @@ if (isset($_SESSION['id'])) {
             max-width: 654px;
             display: flex;
             align-items: center;
+            transition: all 0.27s ease-in-out;
         }
 
         .product-img2 img {
@@ -504,6 +597,6 @@ if (isset($_SESSION['id'])) {
         }
     </style>
 
-<?php 
+    <?php
 }
 ?>

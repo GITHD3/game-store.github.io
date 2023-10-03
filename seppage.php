@@ -271,7 +271,7 @@ if ($games) {
 
 
 
-                    <form class="formbutton text-center p-0 m-0 pt-2" method="POST" action="bill.php">
+                    <form class="formbutton text-center p-0 m-0 pt-2" method="GET" action="bill.php">
                         <input type="hidden" value="<?php echo $gameidtemp; ?>" name="gameid">
                         <button type="submit" class="btn">Buy</button>
                     </form>
