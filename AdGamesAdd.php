@@ -89,8 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background: linear-gradient(#404ccc, #03e9f4);
             background-repeat: no-repeat;
             background-attachment: fixed;
-            height: 100% !important ;
-            padding: 5px 7px !important;
+            height: 100% !important;
         }
 
         .btn {
@@ -150,6 +149,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         .inputs {
             padding-left: 19px;
+            border: 2px solid beige;
+            border-radius: 10px;
+            padding: 10px 10px;
+            flex: 0 0 48%;
+            box-sizing: border-box;
+            margin: 0 1%;
+        }
+
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
         }
 
         .card-header,
@@ -255,53 +265,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ?></pre>
 
             </div>
-            <div class="inputs">
-                <label for="gameid">Game ID:</label>
-                <input type="text" id="gameid" name="gameid" required>
-                <div></div><br>
-                <label for="gameName">Game Name:</label>
-                <input type="text" id="gameName" name="gameName" required>
-                <div></div><br>
-                <label for="developerName">Developer Name:</label>
-                <input type="text" id="developerName" name="developerName" required>
-                <div></div><br>
-                <label for="publisherName">Publisher Name:</label>
-                <input type="text" id="publisherName" name="publisherName" required>
-                <div></div><br>
-                <label for="price">Price:</label>
-                <input type="number" id="price" name="price" required>
-                <div></div><br>
-                <label for="genre">Genre:</label>
-                <input type="text" id="genre" name="genre" required>
-                <div></div><br>
-                <label for="gameSize">Game Size:</label>
-                <input type="text" id="gameSize" name="gameSize" required>
-                <div></div><br>
-                <label for="gameType">Game Type:</label>
-                <input type="text" id="gameType" name="gameType" required>
-                <div></div><br>
-                <label for="description">Description:</label>
-                <textarea id="description" name="description" required></textarea>
-                <div></div><br>
-                <label for="mini_description">Mini - Description:</label>
-                <textarea id="mini_description" name="mini_description" required></textarea>
-                <div></div><br>
-                <label for="memoryRequired">Memory Required:</label>
-                <input type="number" id="memoryRequired" name="memoryRequired" required>
-                <div></div><br>
-                <label for="operatingSystem">Operating System:</label>
-                <input type="text" id="operatingSystem" name="operatingSystem" required>
-                <div></div><br>
-                <label for="processorRequired">Processor Required:</label>
-                <input type="text" id="processorRequired" name="processorRequired" required>
-                <div></div><br>
-                <label for="storageRequired">Storage Required:</label>
-                <input type="text" id="storageRequired" name="storageRequired" required>
-                <div></div><br>
-                <label for="releaseDate">Release Date:</label>
-                <input type="date" id="releaseDate" name="releaseDate" required>
-                <div></div><br>
-                <button type="submit">Add Game</button>
+            <div class="flex-container">
+                <div class="inputs">
+                    <label for="gameid">Game ID:</label>
+                    <input type="text" id="gameid" name="gameid" required>
+                    <div></div><br>
+                    <label for="gameName">Game Name:</label>
+                    <input type="text" id="gameName" name="gameName" required>
+                    <div></div><br>
+                    <label for="developerName">Developer Name:</label>
+                    <input type="text" id="developerName" name="developerName" required>
+                    <div></div><br>
+                    <label for="publisherName">Publisher Name:</label>
+                    <input type="text" id="publisherName" name="publisherName" required>
+                    <div></div><br>
+                    <label for="price">Price:</label>
+                    <input type="number" id="price" name="price" required>
+                    <div></div><br>
+                    <label for="genre">Genre:</label>
+                    <input type="text" id="genre" name="genre" required>
+                    <div></div><br>
+                    <label for="gameSize">Game Size:</label>
+                    <input type="text" id="gameSize" name="gameSize" required>
+                    <div></div><br>
+                    <label for="gameType">Game Type:</label>
+                    <input type="text" id="gameType" name="gameType" required>
+                    <div></div><br>
+
+                </div>
+                <div class="inputs">
+
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" required></textarea>
+                    <div></div><br>
+                    <label for="mini_description">Mini - Description:</label>
+                    <textarea id="mini_description" name="mini_description" required></textarea>
+                    <div></div><br>
+                    <label for="memoryRequired">Memory Required:</label>
+                    <input type="number" id="memoryRequired" name="memoryRequired" required>
+                    <div></div><br>
+                    <label for="operatingSystem">Operating System:</label>
+                    <input type="text" id="operatingSystem" name="operatingSystem" required>
+                    <div></div><br>
+                    <label for="processorRequired">Processor Required:</label>
+                    <input type="text" id="processorRequired" name="processorRequired" required>
+                    <div></div><br>
+                    <label for="storageRequired">Storage Required:</label>
+                    <input type="text" id="storageRequired" name="storageRequired" required>
+                    <div></div><br>
+                    <label for="releaseDate">Release Date:</label>
+                    <input type="date" id="releaseDate" name="releaseDate" required>
+                    <div></div><br>
+                    <button type="submit">Add Game</button>
+                </div>
             </div>
             <?php if (!empty($error)): ?>
                 <p style="color: red;">

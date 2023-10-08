@@ -12,7 +12,6 @@
         background-repeat: no-repeat;
         background-attachment: fixed;
         height: 100%;
-            padding: 5px 7px !important;
         overflow: hidden;
     }
 
@@ -109,7 +108,7 @@
         $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
 
-<form method="post" action="" style="padding-left: 16px;">
+<form method="post" action="" style="padding-left: 16px; padding-top:10px;">
       <div class="mb-3">
         <label for="GAMENAME" class="form-label">Select a Game to Delete :</label>
         <select name="GAMENAME" id="GAMENAME" class="form-select" required>

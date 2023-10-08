@@ -21,7 +21,6 @@ include 'navbar.php';
             background-attachment: fixed;
             background-size: cover;
             height: 100% !important;
-            padding: 5px 7px !important;
         }
 
         .container {
