@@ -13,8 +13,6 @@
       background-repeat: no-repeat;
       background-size: auto !important;
       height: 100% !important;
-      padding: 5px 7px !important;
-      W
     }
 
     /* Hide scrollbar */
@@ -23,9 +21,7 @@
     }
 
     .container {
-      margin-top: 50px;
-      padding-top: 100px;
-      padding-bottom: 100px;
+      padding-top: 30px;
     }
 
     .card {
@@ -49,9 +45,11 @@
       background-color: rgba(255, 255, 255, 0.1);
       transition: 0.2s;
     }
-    #changebtn:after .container{
+
+    #changebtn:after .container {
       padding-top: 0px;
     }
+
     #changebtn:hover {
       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
       border: 2px solid dodgerblue;
@@ -113,6 +111,16 @@
       width: 100%;
       text-align: center;
     }
+
+    .container2 {
+      padding-bottom: 110px;
+    }
+
+    .bgy {
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+    }
   </style>
 </head>
 <?php
@@ -148,10 +156,10 @@ if (!isset($_SESSION['name'])) {
 <body>
   <?php include "navbar.php"; ?>
 
-  <div class="container h-90 pt-10">
+  <div class="container">
     <div class="row d-flex justify-content-center align-items-center h-100 full-height">
       <div class="col col-lg-6 mb-4 mb-lg-0">
-        <div class="card mb-3" style="border-radius: .5rem;">
+        <div class="card mb-1" style="border-radius: .5rem;">
           <div class="row g-0">
             <div class="col-md-4 gradient-custom text-center text-white"
               style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
@@ -197,11 +205,79 @@ if (!isset($_SESSION['name'])) {
         </div>
       </div>
     </div>
+  </div>
+
+  <?php $query = "Select  `gameid`, `bill_date`, `amount` FROM `bill` WHERE customerID = $Id";
+  $st = $conn->query($query);
+  $resu = $st->fetchAll(PDO::FETCH_ASSOC);
+  if ($resu) {
+    ?>
+
+    <div class="container container2  pt-2">
+      <div class="row d-flex justify-content-center align-items-center h-100 full-height">
+        <div class="col col-lg-8 mb-4 mb-lg-0">
+          <div class="card mb-3" style="border-radius: .5rem;">
+            <div class="card-body p-4">
+              <h6>History</h6>
+              <hr class="mt-0 mb-4">
+              <?php
+              $no = 1;
+              foreach ($resu as $bill) {
+                $tmp = $bill['gameid'];
+                $query2 = "Select  `gamename` FROM `games` WHERE gameid = '$tmp';";
+                $st2 = $conn->query($query2);
+                $resu3 = $st2->fetchAll(PDO::FETCH_COLUMN);
+                ?>
+                <div class="row pt-1 bgy">
+                  <div class="col-md-4 mb-3">
+                    <h6>
+                      <?php echo $no . "."; ?> Game Name
+                    </h6>
+                    <p class="text-muted">
+                      <?php echo implode(', ', $resu3) ?>
+                    </p>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <h6>Bill Date</h6>
+                    <p class="text-muted">
+                      <?php echo $bill['bill_date']; ?>
+                    </p>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <h6>Amount</h6>
+                    <p class="text-muted">
+                      <?php echo $bill['amount']; ?>
+                    </p>
+                  </div>
+                </div>
+                <hr>
+                <?php
+                $no += 1;
+              }
+              ?>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
- 
-  </body>
-  
-  </html>
-    <div style="position: absolute; bottom: 0; width: 100%;">
-      <?php include 'footer.php'; ?>
-    </div>
+
+
+    <?php
+  } else {
+
+  }
+  ?>
+
+
+
+
+
+
+
+
+</body>
+
+</html>
+<div style="position: fixed; bottom: 0; width: 100%;">
+  <?php include 'footer.php'; ?>
+</div>

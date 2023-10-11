@@ -8,6 +8,7 @@ $total_storage_required = 0; ?>
 </div>
 <?php
 try {
+                            $billid = 1;
     $date = date('Y-m-d');
     $dsn = "mysql:host=localhost;dbname=game4";
     $username = "root";
@@ -164,13 +165,16 @@ if (isset($_SESSION['id'])) {
 
                         <?php
                         if (isset($_POST['cartsubmit'])) {
-                            $billid = 0;
                             try {
                                 $query = "SELECT bill_id FROM bill ORDER BY bill_id DESC LIMIT 1";
                                 $statement2 = $dbconn->prepare($query);
                                 $statement2->execute();
                                 $lastBillIdEntry = $statement2->fetch(PDO::FETCH_NUM);
-                                $billid = $lastBillIdEntry[0] + 1;
+                                if ($lastBillIdEntry) {
+                                    $billid = $lastBillIdEntry[0] + 1;
+                                } else {
+                                    $billid = 1;
+                                }
                                 foreach ($gamedetail as $index => $gd) {
                                     $id = $gd['id'];
                                     $amt = $gd['price'];
@@ -184,26 +188,27 @@ if (isset($_SESSION['id'])) {
                                     $count = $checkStatement->fetchColumn();
 
                                     if ($count == 0) {
-                                        $query11 = "INSERT INTO `bill` (`bill_id`,`gameid`, `bill_date`, `total_amount`, `customerID`) 
-                                                    VALUES (:bid , :gameid, :bill_date, :total_amount, :customerID)";
+                                        $query11 = "INSERT INTO `bill` (`bill_id`,`gameid`, `bill_date`, `amount`, `customerID`) 
+                                                    VALUES (:bid , :gameid, :bill_date, :amount, :customerID)";
                                         $statement2 = $dbconn->prepare($query11);
                                         $statement2->execute([
                                             ':bid' => $billid,
                                             ':gameid' => $id,
                                             ':bill_date' => $date,
-                                            ':total_amount' => $amt,
+                                            ':amount' => $amt,
                                             ':customerID' => $tempid
                                         ]);
-                                        $billid = 0;
-                                ?>
+                                        ?>
                                         <p class="Ack">Purchased Successfully</p>
-                                <?php
+                                        <?php
                                     }
                                 else{
-                                    ?><p class="Ack">You have Already Purchased the Game</p><?php
+                                    ?><p class="Ack">Purchased</p><?php
+                                    break;
                                 }}
                             } catch (Exception $e) {
-                                echo "Try Later On";
+                                echo "Try Later On. Error on line " . $e->getLine() . ": " . $e->getMessage();
+
                             }
                         }
 
@@ -281,12 +286,15 @@ if (isset($_SESSION['id'])) {
                                         <?php
 
                                         if (isset($_POST['submit'])) {
-                                            $billid = 0;
                                             $query = "SELECT bill_id FROM bill ORDER BY bill_id DESC LIMIT 1";
                                             $statement = $dbconn->prepare($query);
                                             $statement->execute();
                                             $lastBillIdEntry = $statement->fetch(PDO::FETCH_NUM);
-                                            $billid = $lastBillIdEntry[0] + 1;
+                                            if ($lastBillIdEntry) {
+                                                $billid = $lastBillIdEntry[0] + 1;
+                                            } else {
+                                                $billid = 1;
+                                            }
                                             $checkQuery = "SELECT COUNT(*) FROM bill WHERE gameid = :gameid AND customerID = :customerID";
                                             $checkStatement = $dbconn->prepare($checkQuery);
                                             $checkStatement->execute([
@@ -296,14 +304,14 @@ if (isset($_SESSION['id'])) {
                                             $count = $checkStatement->fetchColumn();
 
                                             if ($count == 0) {
-                                                $query11 = "INSERT INTO `bill` (`bill_id`,`gameid`, `bill_date`, `total_amount`, `customerID`) 
-                    VALUES (:id,:gameid, :bill_date, :total_amount, :customerID)";
+                                                $query11 = "INSERT INTO `bill` (`bill_id`,`gameid`, `bill_date`, `amount`, `customerID`) 
+                    VALUES (:id,:gameid, :bill_date, :amount, :customerID)";
                                                 $statement = $dbconn->prepare($query11);
                                                 $statement->execute([
                                                     ':id' => $billid,
                                                     ':gameid' => $game_id,
                                                     ':bill_date' => $date,
-                                                    ':total_amount' => $game_price_seppage,
+                                                    ':amount' => $game_price_seppage,
                                                     ':customerID' => $tempid
                                                 ]);
 
@@ -312,7 +320,7 @@ if (isset($_SESSION['id'])) {
                                             <?php
                                             } else {
                                                 ?>
-                                                <p class="Ack">You have Already Purchased the Game</p>
+                                                <p class="Ack">Purchased</p>
                                             <?php
                                             }
                                         }

@@ -6,26 +6,7 @@
 <?php include 'navbar.php'; ?>
 
 <div class="flex">
-    <div style="width:6.5rem; margin-top:10px;"
-        class="sidebard flex flex-col items-center pb-3 overflow-hidden text-indigo-300 bg-indigo-900 fixed right-0  rounded">
 
-        <a class="flex items-center justify-center w-12 h-12 mt-2 rounded" href="admin1.php">
-            <h6>Customer</h6>
-        </a>
-        <a class="flex items-center justify-center w-12 h-12 mt-2 rounded" href="admin2.php">
-            <h6>Game Details</h6>
-        </a>
-        <a class="flex items-center justify-center w-12 h-12 mt-2 rounded" href="AdGamesAdd.php">
-            <h6>Add Game</h6>
-        </a>
-        <a class="flex items-center justify-center w-12 h-12 mt-2 rounded" href="adGame.php">
-            <h6>Update Game</h6>
-        </a>
-        <a class="flex items-center justify-center w-12 h-12 mt-2 rounded" href="deletegame.php">
-            <h6>Delete Game</h6>
-        </a>
-
-    </div>
 
     <div class="w-full ml-16">
         <div class="text-center container py-5">
@@ -105,18 +86,38 @@
 
                 table {
                     margin: auto;
-                    width: 90%;
+                    width: 98%;
+                    padding-bottom: 13px;
                     border-collapse: collapse;
-                    border: 2px solid white;
                     margin-top: 13px;
+                    /* border-radius: 0px 0px 20px 20px; */
+                    background-color: rgba(255, 255, 255, 0.4);
                 }
 
                 th,
                 td {
-                    border: 2px solid white;
-                    padding: 8px;
                     text-align: left;
                     border-bottom: 1px solid #ddd;
+                    padding: 15px;
+                }
+
+                th {
+                    border: 1px solid white;
+                    background-color: #4a5568;
+                    color: white;
+                }
+
+                tr:nth-child(even) {
+                    background-color: rgba(255, 255, 255, 0.6);
+                }
+
+                tr:nth-child(odd) {
+                    background-color: rgba(255, 255, 255, 0.4);
+                }
+
+                tr:hover td {
+                    background-color: rgba(106, 90, 205, 0.5);
+                    color: #F5F5DC !important;
                 }
 
                 h1 {
@@ -130,9 +131,7 @@
             <link rel="stylesheet"
                 href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" />
             <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js"></script>
-            <center>
-                <h1>Customer Details</h1>
-            </center>
+
             <style>
                 .card-header,
                 .linkpages:link {
@@ -156,8 +155,13 @@
                 #cardadmin2 {
                     padding-left: 16px;
                 }
+                a{
+                    color:black;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
             </style>
-            <!-- <div id="cardadmin2">
+            <div id="cardadmin2">
                 <div class="card " id="cardadmin" style="width: 17rem;">
                     <div class="card-header">
                         Admin:
@@ -180,41 +184,37 @@
                         </a>
                     </ul>
                 </div>
-            </div> -->
+            </div>
             <br>
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email Address</th>
-                    <th>Contact No</th>
-                </tr>
-                <?php foreach ($customers as $customer): ?>
-                    <tr>
-                        <td>
-                            <?= $customer['customerid']; ?>
-                        </td>
-                        <td>
-                            <?= $customer['firstname']; ?>
-                        </td>
-                        <td>
-                            <?= $customer['lastname']; ?>
-                        </td>
-                        <td>
-                            <?= $customer['emailaddress']; ?>
-                        </td>
-
-                        <td>
-                            <?= $customer['contactno']; ?>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </table>
+            <center>
+                <h1>Customer Details</h1>
+            </center> <br>
     </div>
 </div>
+<div>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email Address</th>
+        <th>Contact No</th>
+    </tr>
+    <?php foreach ($customers as $customer): ?>
+            <tr>
+                <td><a href="admincustomer.php?customerid=<?= $customer['customerid']; ?>">
+                <?= $customer['customerid']; ?></a></td>
+                <td> <a href="admincustomer.php?customerid=<?= $customer['customerid']; ?>"><?= $customer['firstname']; ?></a></td>
+                <td> <a href="admincustomer.php?customerid=<?= $customer['customerid']; ?>"><?= $customer['lastname']; ?></a></td>
+                <td> <a href="admincustomer.php?customerid=<?= $customer['customerid']; ?>"><?= $customer['emailaddress']; ?></a></td>
+                <td> <a href="admincustomer.php?customerid=<?= $customer['customerid']; ?>"><?= $customer['contactno']; ?></a></td>
+            </tr>
+    <?php endforeach; ?>
+</table>
 
-</body>
+        </div>
+        
+    </body>
 
 </html>
 
