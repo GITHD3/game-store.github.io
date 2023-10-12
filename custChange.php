@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php session_start();
-if (!isset($_SESSION['name'])) {
+if (!isset($_SESSION['id'])) {
     echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>';
     echo '<script>
         Swal.fire({
@@ -14,29 +14,20 @@ if (!isset($_SESSION['name'])) {
     </script>';
     exit;
 } else {
-    $customername = $_SESSION['name'];
-    $customerid = $_SESSION['id'];
     $host = "localhost";
     $username = "root";
     $db_password = "";
     $database = "game4";
 
     $conn = new PDO("mysql:host=$host;dbname=$database", $username, $db_password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $stmt = $conn->prepare("SELECT  firstname,lastname,dob, emailaddress , contactno FROM customer WHERE customerid = :customerid");
-    $stmt->bindParam(":customerid", $customerid);
-    $stmt->execute();
+    $d = $_SESSION['id'];
+    $fn = $_POST['fn'];
+    $ln = $_POST['ln'];
+    $dob = $_POST['dob'];
+    $email = $_POST['email'];
+    $no = $_POST['no'];
 
-    $stmt->setFetchMode(PDO::FETCH_NUM);
-    $customer = $stmt->fetch();
-
-   
-    $fn = $customer[0];
-    $ln = $customer[1];
-    $dob = $customer[2];
-    $email = $customer[3];
-    $no = $customer[4];
 }
 include "navbar.php"; ?><br>
 
@@ -45,7 +36,7 @@ include "navbar.php"; ?><br>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
- <style>
+    <style>
         body {
             margin: 0;
             padding-bottom: 40px;
@@ -108,9 +99,9 @@ include "navbar.php"; ?><br>
                         <label class="block inputs text-gray-700 text-sm font-bold mb-2" for="First">
                             First Name
                         </label>
-                        <input 
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                        name="First" id="First" type="text" value="<?php echo $fn; ?>">
+                        <input
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            name="Firstname" id="Firstname" type="text" value="<?php echo $fn; ?>">
 
                     </div>
                     <div>
@@ -119,15 +110,7 @@ include "navbar.php"; ?><br>
                         </label>
                         <input
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            name="Last" id="Last" type="text" value="<?php echo $ln; ?>">
-                    </div>
-                    <div>
-                        <label class="block inputs text-gray-700 text-sm font-bold mb-2" for="number">
-                            Contact Number
-                        </label>
-                        <input
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            name="number" id="number" type="tel" value="<?php echo $no; ?>">
+                            name="Lastname" id="Lastname" type="text" value="<?php echo $ln; ?>">
                     </div>
                     <div>
                         <label class="block inputs text-gray-700 text-sm font-bold mb-2" for="dob">
@@ -135,19 +118,16 @@ include "navbar.php"; ?><br>
                         </label>
                         <input
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            name="dob" id="dob" type="date" value="<?php echo $dob; ?>">
+                            name="dobname" id="dobname" type="date" value="<?php echo $dob; ?>">
                     </div>
             </div>
             <div class=" r mt-4">
                 <button
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    type="submit" name="submit">Submit</button>
+                    type="submit" name="submit2">Submit</button>
 
             </div>
-            <!-- <center>
-                <form class="symbol" action="customer.php">
-                <img src="gif/gamesymbol.png" class="imggame" alt="Game Symbol" onmouseover="this.src='gif/gamesymbol2.png'" onmouseout="this.src='gif/gamesymbol.png'">
-            </center></form> -->
+
             </form>
         </div>
     </div>
@@ -159,35 +139,44 @@ include "navbar.php"; ?><br>
 </div>
 <?php
 
-    if (isset($_POST['submit'])) {
-        try {
-        $first_name = isset($_POST['First']);
-        $last_name = isset($_POST['Last']);
-        $contact_number = isset($_POST['number']);
-        $date_of_birth = isset($_POST['dob']);
+if (isset($_POST['submit2'])) {
+    try {
+        $first_name = $_POST['Firstname'];
+        $last_name = $_POST['Lastname'];
+        $date_of_birth = $_POST['dobname'];
 
-            $stmt = $conn->prepare("UPDATE `customer` SET `firstname`=:first_name, `lastname`=:last_name, `contactno`=:contact_number, `dob`=:date_of_birth WHERE `customerid`=:customer_id");
+        $stmt = $conn->prepare("UPDATE `customer` SET `firstname`=:first_name, `lastname`=:last_name,  `dob`=:dov WHERE `customerid`=:customer_id");
 
-            $stmt->bindParam(":first_name", $first_name);
-            $stmt->bindParam(":last_name", $last_name);
-            $stmt->bindParam(":contact_number", $contact_number);
-            $stmt->bindParam(":date_of_birth", $date_of_birth);
-            $stmt->bindParam(":customer_id", $customerid);
+        $stmt->bindParam(":first_name", $first_name);
+        $stmt->bindParam(":last_name", $last_name);
+        $stmt->bindParam(":dov", $date_of_birth);
+        $stmt->bindParam(":customer_id", $d);
 
-            $stmt->execute();
-if($stmt){
-echo '<script>
-    Swal.fire({
-        icon: "success",
-        title: "Success",
-        text: "Profile updated successfully!",
-        showConfirmButton: false, // Hide the OK button
-        timer: 2000, // Auto-close the message after 2 seconds
-        
-    });
-</script>';
-}    } catch (PDOException $e) {
-            echo " ";
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) { // Check if any rows were affected
+            header('Location: Customer.php'); // Redirect on success
+            exit();
+        } else {
+            echo '<script>
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "No changes were made.",
+                showConfirmButton: false,
+                timer: 2000
+            });
+            </script>';
         }
+    } catch (PDOException $e) {
+        echo '<script>
+        Swal.fire({
+            icon: "error",
+                title: "Error",
+                text: "Can\'t Update Try After Some Time",
+                showConfirmButton: false,
+                timer: 2000
+            });
+            </script>';
+    }
 }
 ?>

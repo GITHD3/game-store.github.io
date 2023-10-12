@@ -129,27 +129,27 @@ if (!isset($_SESSION['name'])) {
   exit;
 } else {
   $customername = $_SESSION['name'];
+  $Id = $_SESSION['id'];
   $host = "localhost";
   $username = "root";
   $db_password = "";
   $database = "game4";
-
   $conn = new PDO("mysql:host=$host;dbname=$database", $username, $db_password);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-  $stmt = $conn->prepare("SELECT customerid, firstname,lastname,dob, emailaddress , contactno FROM customer WHERE firstname = :customername");
-  $stmt->bindParam(":customername", $customername);
+  $stmt = $conn->prepare("SELECT customerid, firstname, lastname, dob, emailaddress, contactno FROM customer WHERE customerid = :customerid");
+  $stmt->bindParam(":customerid", $Id);
   $stmt->execute();
+  $customer = $stmt->fetch(PDO::FETCH_ASSOC);
 
-  $stmt->setFetchMode(PDO::FETCH_NUM);
-  $customer = $stmt->fetch();
+  $fn = $customer['firstname'];
+  $ln = $customer['lastname'];
+  $dob = $customer['dob'];
+  $email = $customer['emailaddress'];
+  $no = $customer['contactno'];
 
-  $Id = $customer[0];
-  $fn = $customer[1];
-  $ln = $customer[2];
-  $dob = $customer[3];
-  $email = $customer[4];
-  $no = $customer[5];
+
+
+
 }
 ?>
 
@@ -168,8 +168,14 @@ if (!isset($_SESSION['name'])) {
                 <?php echo $fn . " " . $ln; ?>
               </h5>
               <form method="POST" action="custChange.php">
+                <input type="hidden" name="fn" value="<?php echo $fn; ?>">
+                <input type="hidden" name="ln" value="<?php echo $ln; ?>">
+                <input type="hidden" name="dob" value="<?php echo $dob; ?>">
+                <input type="hidden" name="email" value="<?php echo $email; ?>">
+                <input type="hidden" name="no" value="<?php echo $no; ?>">
                 <button type="submit" name="submit" id="changebtn">Change Details</button>
               </form>
+
               <i class="far fa-edit mb-5"></i>
             </div>
             <div class="col-md-8">
