@@ -18,7 +18,6 @@
     .logo-img {
       max-width: 100%;
       height: auto;
-      border: 2px solid transparent;
       animation: borderAnimation 2s linear infinite;
     }
 
@@ -34,13 +33,11 @@
 
     @keyframes borderAnimation {
     0%, 100% {
-      border-color: transparent;
-      border-radius: 50%;
-      box-shadow: none; 
+      box-shadow: 80%; 
+      border-radius: 100%;
     }
     50% {
-      border-color: #0096F4;
-      border-radius: 50%;
+      border-radius: 100%;
       box-shadow: 0 0 10px 5px #0096F4, 0 0 80px 60px #0096F4;
       background-color: #0096F4;
     }

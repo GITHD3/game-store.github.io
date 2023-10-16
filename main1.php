@@ -810,12 +810,11 @@ if (isset($_SESSION['dob'])) {
 
     body {
         font-family: sans-serif;
-        background: linear-gradient(180deg, slateblue,#404ccc) !important;
+        background: linear-gradient(180deg, rgba(106, 90, 205, 0.8), rgba(64, 76, 204, 0.8)) !important;
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: cover;
         height: 100% !important;
-        padding: 5px 7px !important;
     }
 
     @media (max-width: 768px) {
@@ -855,8 +854,8 @@ if (isset($_SESSION['dob'])) {
         }
 
         50% {
-            color: #9D7ABD;
-            text-shadow: 0 0 3px #9D7ABD, 0 0 2px #9D7ABD;
+            color: beige;
+            text-shadow: 0 0 8px beige, 0 0 8px beige;
         }
 
         100% {

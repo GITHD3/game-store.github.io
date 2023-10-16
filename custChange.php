@@ -153,7 +153,9 @@ if (isset($_POST['submit2'])) {
         $stmt->bindParam(":customer_id", $d);
 
         $stmt->execute();
-        if ($stmt->rowCount() > 0) { // Check if any rows were affected
+        if ($stmt->rowCount() > 0) {
+            $_SESSION['name']=$first_name;
+            $_SESSION['dob']=$date_of_birth;
             header('Location: Customer.php'); // Redirect on success
             exit();
         } else {

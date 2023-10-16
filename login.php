@@ -109,7 +109,7 @@
     </form>
   </div>
 
-  <div style="position: absolute; bottom: 0; width: 100%;">
+  <div style=" position: fixed; bottom: 0; width: 100%;">
     <?php include 'footer.php'; ?>
   </div>
 
@@ -143,23 +143,22 @@
     transform: translateY(-50%);
     cursor: pointer;
   }
-
+  .show-password img[src="gif/eyeopen.png"] {
+    height: 13px;
+    width: 123%;
+}
   .show-password img {
     height: 20px;
     width: 130%;
   }
 
-  .show-password img[src="gif/eyeopen.png"] {
-    height: 30px;
-    width: 140%;
-  }
+
 
   body {
     background: linear-gradient(#404ccc, #03e9f4);
     background-repeat: no-repeat;
     background-attachment: fixed;
     height: 100%;
-    padding-bottom: 5px !important;
   }
 
   #btn1 {
@@ -197,13 +196,6 @@
     box-shadow: 0px 20px 30px -10px #171717;
   }
 
-  footer {
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    padding: 10px 0;
-  }
 </style>
 
 </html>
