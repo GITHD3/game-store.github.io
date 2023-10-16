@@ -11,13 +11,13 @@
 
   if (isset($_POST['submit'])) {
     $email = $_POST['e'];
-    $password = $_POST['pass'];
-
+    $tmp = $_POST['pass'];
+    $hashed_password = md5($tmp);
+$password = $hashed_password;
     $host = "localhost";
     $username = "root";
     $db_password = "";
     $database = "game4";
-
     $conn = mysqli_connect($host, $username, $db_password, $database);
     if (!$conn) {
       die("Connection failed: " . mysqli_connect_error());
