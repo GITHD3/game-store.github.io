@@ -221,10 +221,10 @@ if (!isset($_SESSION['name'])) {
 
     <div class="container container2  pt-2">
       <div class="row d-flex justify-content-center align-items-center h-100 full-height">
-        <div class="col col-lg-8 mb-4 mb-lg-0">
+        <div class="col col-lg-6 mb-4 mb-lg-0">
           <div class="card mb-3" style="border-radius: .5rem;">
             <div class="card-body p-4">
-              <h6>History</h6>
+              <h6>Library</h6>
               <hr class="mt-0 mb-4">
               <?php
               $no = 1;
@@ -233,6 +233,8 @@ if (!isset($_SESSION['name'])) {
                 $query2 = "Select  `gamename` FROM `games` WHERE gameid = '$tmp';";
                 $st2 = $conn->query($query2);
                 $resu3 = $st2->fetchAll(PDO::FETCH_COLUMN);
+                $gameNames = implode(', ', $resu3);
+                
                 ?>
                 <div class="row pt-1 bgy">
                   <div class="col-md-4 mb-3">
@@ -240,7 +242,7 @@ if (!isset($_SESSION['name'])) {
                       <?php echo $no . "."; ?> Game Name
                     </h6>
                     <p class="text-muted">
-                      <?php echo implode(', ', $resu3) ?>
+                      <?php echo $gameNames; ?>
                     </p>
                   </div>
                   <div class="col-md-4 mb-3">
@@ -254,6 +256,36 @@ if (!isset($_SESSION['name'])) {
                     <p class="text-muted">
                       <?php echo $bill['amount']; ?>
                     </p>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <p class="text-muted">
+                    <form class="formbutton text-center" method="POST">
+    <input type="hidden" value="<?php echo $gameNames; ?>" class="gameNameInput">
+    <button class="btn downloadZipButton" name="submitd" type="submit">Download</button>
+</form>
+
+<?php
+if(isset($_POST['submitd'])){
+?>
+<script>
+document.addEventListener('click', function (event) {
+    if (event.target && event.target.classList.contains('downloadZipButton')) {
+        var gamename = event.target.parentElement.querySelector('.gameNameInput').value;
+        var zipUrl = 'zips/' + gamename + '.zip';
+        var a = document.createElement('a');
+        a.href = zipUrl;
+        a.download = gamename + '.zip';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        return false;
+    }
+});
+</script>
+<?php
+}
+?>
+  
                   </div>
                 </div>
                 <hr>
