@@ -6,7 +6,9 @@ if (isset($_POST['submit'])) {
     $ln = $_POST['last'];
     $dob = $_POST['dob'];
     $email = $_POST['email'];
-    $pw = $_POST['pass'];
+    $tmp = $_POST['pass'];
+    $hashed_password = md5($tmp);
+    $pw = $hashed_password;
     $contact = $_POST['no'];
 
     $host = "localhost";
