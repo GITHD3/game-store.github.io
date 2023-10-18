@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2023 at 09:04 AM
--- Server version: 10.3.15-MariaDB
--- PHP Version: 7.1.30
+-- Generation Time: Oct 18, 2023 at 02:44 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -34,7 +33,7 @@ CREATE TABLE `bill` (
   `bill_date` date DEFAULT NULL,
   `amount` float(10,3) DEFAULT NULL,
   `customerID` int(8) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `bill`
@@ -77,7 +76,7 @@ INSERT INTO `bill` (`bill_id`, `gameid`, `bill_date`, `amount`, `customerID`) VA
 CREATE TABLE `cart` (
   `cartid` int(8) NOT NULL,
   `gameid` varchar(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `cart`
@@ -117,7 +116,7 @@ CREATE TABLE `customer` (
   `lastname` varchar(20) NOT NULL,
   `contactno` varchar(14) NOT NULL,
   `dob` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `customer`
@@ -155,7 +154,7 @@ CREATE TABLE `games` (
   `processor_required` varchar(40) NOT NULL,
   `storage_required` varchar(7) NOT NULL,
   `release_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `games`
@@ -220,7 +219,7 @@ INSERT INTO `games` (`gameid`, `gamename`, `developer_name`, `publisher_name`, `
 
 CREATE TABLE `genre` (
   `category` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `genre`
@@ -238,6 +237,7 @@ INSERT INTO `genre` (`category`) VALUES
 ('City-building'),
 ('Construction and Management Simulation'),
 ('Educational Video Game'),
+('Extra'),
 ('Fighting'),
 ('First Person Shooter'),
 ('Horror'),
@@ -253,8 +253,7 @@ INSERT INTO `genre` (`category`) VALUES
 ('Survival Adventure'),
 ('Survival Horror'),
 ('Tactical RPG'),
-('Tactical Shooter'),
-('Turn-based Strategy');
+('Tactical Shooter');
 
 -- --------------------------------------------------------
 
@@ -270,7 +269,7 @@ CREATE TABLE `payment` (
   `contact_no` varchar(13) DEFAULT NULL,
   `payment_date` date DEFAULT NULL,
   `payment_type` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables

@@ -92,8 +92,8 @@
     }
 
     .show-password img[src="gif/eyeopen.png"] {
-        height: 30px;
-        width: 140%;
+        height: 13px;
+    width: 123%;
     }
 
     body {

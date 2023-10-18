@@ -4,7 +4,7 @@ session_start();
 include 'navbar.php';
 ?>
 <link href='https://fonts.googleapis.com/css?family=Press Start 2P' rel='stylesheet'>
-<div class="text-center container py-5">
+<div class="text-center container pt-4 py-3">
     <h4 class="heading" style="
     font-family: 'Press Start 2P';font-size: 22px; color:black;"><strong>ParaCrash Game Store</strong></h4>
 </DIV>
@@ -162,28 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             justify-content: space-between;
         }
 
-        .card-header,
-        .linkpages:link {
-            text-decoration: none;
-            font-size: 18px;
-        }
-
-        .card-header {
-            color: black;
-            background-color: #DEB887;
-        }
-
-        li {
-            color: darkslategrey;
-        }
-
-        .linkpages:hover {
-            color: black;
-        }
-
-        #cardadmin2 {
-            padding-left: 19px;
-        }
+        
 
         @media (min-width:500px) {
             .priamrykeyupdates {
@@ -197,40 +176,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <h1>Admin Page</h1>
-    <div class="e">
+    <style>
+        #cardadmin {
+            background-color: rgba(106, 90, 205, 0.9) !important;
+            border-radius: 5px;
+            border: 2px solid Black;
+        }
 
+        .linkpages {
+            background-color: #0C97FA;
+            font-size: 18px;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
 
-        <div id="cardadmin2">
-            <div class="card " id="cardadmin" style="width: 17rem;">
-                <div class="card-header">
-                    Admin:
-                </div>
-                <ul class="list-group list-group-flush" id="links">
-                    <a class="linkpages" href="admin1.php">
-                        <li class="list-group-item">Customer Details</li>
-                    </a>
-                    <a class="linkpages" href="admin2.php">
-                        <li class="list-group-item">Game Details</li>
-                    </a>
-                    <a class="linkpages" href="AdGamesAdd.php">
-                        <li class="list-group-item">Create Game</li>
-                    </a>
-                    <a class="linkpages" href="adGame.php">
-                        <li class="list-group-item">Update Game</li>
-                    </a>
-                    <a class="linkpages" href="deletegame.php">
-                        <li class="list-group-item">Delete Game</li>
-                    </a>
-                </ul>
-            </div>
+        .linkpages:hover {
+            color: white;
+            background-color: slateblue;
+        }
+
+        
+    </style>
+
+    <div id="cardadmin" class="card max-w-xs mb-5 mx-auto text-center">
+        <div class="list-group list-group-flush" id="links">
+            <a class="linkpages block list-group-item py-2 px-4" href="admin1.php">Customer Details</a>
+            <a class="linkpages block list-group-item py-2 px-4" href="admin2.php">Game Details</a>
+            <a class="linkpages block list-group-item py-2 px-4" href="AdGamesAdd.php">Create Game</a>
+            <a class="linkpages block list-group-item py-2 px-4" href="adGame.php">Update Game</a>
+            <a class="linkpages block list-group-item py-2 px-4" href="deletegame.php">Delete Game</a>
+            <a class="linkpages block list-group-item py-2 px-4" href="category.php">Category</a>
         </div>
-
-        <br>
-
-        <h2>Add Game</h2>
+    </div>
+    <div class="e ">
+        <h2 class="text-center">Add Game</h2>
         <form method="POST" action="">
-            <div class="priamrykeyupdates">
+            <div class="priamrykeyupdates text-center">
                 <pre><?php
                 try {
                     $query_nuna = "SELECT MAX(gameid) AS last_nuna_gameid FROM games WHERE gameid LIKE 'NUNA__%'";

@@ -109,7 +109,7 @@ $password = $hashed_password;
     </form>
   </div>
 
-  <div style=" position: fixed; bottom: 0; width: 100%;">
+  <div style=" position: fixed; bottom: 0; width: 100%; padding: 0px;">
     <?php include 'footer.php'; ?>
   </div>
 
@@ -159,6 +159,7 @@ $password = $hashed_password;
     background-repeat: no-repeat;
     background-attachment: fixed;
     height: 100%;
+    padding: 0px !important;
   }
 
   #btn1 {

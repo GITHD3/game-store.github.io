@@ -4,7 +4,7 @@ session_start();
 include 'navbar.php';
 ?>
 <link href='https://fonts.googleapis.com/css?family=Press Start 2P' rel='stylesheet'>
-<div class="text-center container py-5">
+<div class="text-center container py-3 pt-4">
     <h4 class="heading" style="font-family: 'Press Start 2P'; font-size: 22px; color: black;"><strong>ParaCrash Game
             Store</strong></h4>
 </div>
@@ -60,7 +60,7 @@ if (isset($_POST['update'])) {
     $gametype = $_POST['gametype'];
     $description = $_POST['description'];
     $mini_description = $_POST['mini_description'];
-    
+
     $memory_required = $_POST['memory_required'];
     $operating_system = $_POST['operating_system'];
     $processor_required = $_POST['processor_required'];
@@ -71,7 +71,7 @@ if (isset($_POST['update'])) {
     $stmt = $pdo->prepare("UPDATE games SET gamename=?, publisher_name=?, developer_name=?, gamesize=?, genre_name=?, price=?,  gametype=?, description=?,mini_description=?,memory_required=?, operating_system=?, processor_required=?, storage_required=?, release_date=? WHERE gameid=?");
 
     // Execute the update statement
-    $stmt->execute([$gamename, $publisher_name, $developer_name, $gamesize, $genre_name, $price,  $gametype, $description, $mini_description ,$memory_required, $operating_system, $processor_required, $storage_required, $release_date, $gameid]);
+    $stmt->execute([$gamename, $publisher_name, $developer_name, $gamesize, $genre_name, $price, $gametype, $description, $mini_description, $memory_required, $operating_system, $processor_required, $storage_required, $release_date, $gameid]);
 
     // Check if the update was successful
     if ($stmt->rowCount() > 0) {
@@ -102,28 +102,7 @@ if (isset($_POST['update'])) {
         }
 
 
-        .card-header,
-        .linkpages:link {
-            text-decoration: none;
-            font-size: 18px;
-        }
 
-        .card-header {
-            color: black;
-            background-color: #DEB887;
-        }
-
-        li {
-            color: darkslategrey;
-        }
-
-        .linkpages:hover {
-            color: black;
-        }
-
-        #cardadmin2 {
-            padding-left: 16px;
-        }
 
         /* Media queries for responsive layout */
         @media (max-width: 576px) {
@@ -171,7 +150,7 @@ if (isset($_POST['update'])) {
             border: 2px solid white;
             border-radius: 13px;
             color: whitesmoke;
-            
+
             font-style: bold;
             text-align: center;
             padding: 7px;
@@ -182,47 +161,55 @@ if (isset($_POST['update'])) {
 </head>
 
 <body>
-    <div id="cardadmin2">
-        <div class="card" id="cardadmin" style="width: 17rem;">
-            <div class="card-header">
-                Admin:
-            </div>
-            <ul class="list-group list-group-flush" id="links">
-                <a class="linkpages" href="admin1.php">
-                    <li class="list-group-item">Customer Details</li>
-                </a>
-                <a class="linkpages" href="admin2.php">
-                    <li class="list-group-item">Game Details</li>
-                </a>
-                <a class="linkpages" href="AdGamesAdd.php">
-                    <li class="list-group-item">Create Game</li>
-                </a>
-                <a class="linkpages" href="adGame.php">
-                    <li class="list-group-item">Update Game</li>
-                </a>
-                <a class="linkpages" href="deletegame.php">
-                    <li class="list-group-item">Delete Game</li>
-                </a>
-            </ul>
+    <style>
+        #cardadmin {
+            background-color: rgba(106, 90, 205, 0.9) !important;
+            border-radius: 5px;
+            border: 2px solid Black;
+        }
+
+        .linkpages {
+            background-color: #0C97FA;
+            font-size: 18px;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .linkpages:hover {
+            color: white;
+            background-color: slateblue;
+        }
+    </style>
+
+    <div id="cardadmin" class="card max-w-xs mb-5 mx-auto text-center">
+        <div class="list-group list-group-flush" id="links">
+            <a class="linkpages block list-group-item py-2 px-4" href="admin1.php">Customer Details</a>
+            <a class="linkpages block list-group-item py-2 px-4" href="admin2.php">Game Details</a>
+            <a class="linkpages block list-group-item py-2 px-4" href="AdGamesAdd.php">Create Game</a>
+            <a class="linkpages block list-group-item py-2 px-4" href="adGame.php">Update Game</a>
+            <a class="linkpages block list-group-item py-2 px-4" href="deletegame.php">Delete Game</a>
+            <a class="linkpages block list-group-item py-2 px-4" href="category.php">Category</a>
         </div>
-    </div><br>
-    <form class="index2" method="post" action="" style="padding-left: 16px;">
+    </div>
+    <form class="index2 " method="post" action="" style="padding-left:19px; width:fit-content;">
         <div class="mb-3">
             <label for="gameid" class="form-label">Select a game to update:</label>
             <select name="gameid" id="gameid" class="form-select" required>
                 <option value="">Select a game</option>
                 <?php foreach ($games as $game): ?>
-                    <option value="<?= $game['gameid'] ?>"><?= $game['gamename'] ?></option>
+                    <option value="<?= $game['gameid'] ?>">
+                        <?= $game['gamename'] ?>
+                    </option>
                 <?php endforeach; ?>
             </select>
         </div>
         <button type="submit" name="select_game" id="sel" class="Select btn btn-primary">Select</button>
     </form>
     <?php if (isset($selectedGame)): ?>
-        <h2 style="padding-left: 16px;">Update Game:
+        <h2 class="text-center" style="padding-left: 17px; margin-top:8px">Update Game:
             <?= $selectedGame['gamename'] ?>
         </h2>
-        <form method="post" action="" style="padding-left: 16px; ">
+        <form method="post" action="" style="padding-left: 17px; margin-bottom:150px">
             <input type="hidden" name="gameid" value="<?= $selectedGame['gameid'] ?>">
             <div class="row mb-3 index">
                 <div class="col">
@@ -257,7 +244,7 @@ if (isset($_POST['update'])) {
                     <input type="text" name="price" id="price" class="form-control" value="<?= $selectedGame['price'] ?>"
                         required>
                 </div>
-                
+
                 <div class="col">
                     <label for="gametype" class="form-label">Game Type:</label>
                     <input type="text" name="gametype" id="gametype" class="form-control"
@@ -308,4 +295,7 @@ if (isset($_POST['update'])) {
     <?php endif; ?>
 </body>
 
-</html><?php include 'footer.php'; ?>
+</html>
+<div class=" " style="position: fixed; bottom: 0; left: 0; right: 0;">
+    <?php include 'footer.php'; ?>
+</div>

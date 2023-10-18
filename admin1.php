@@ -9,7 +9,7 @@
 
 
     <div class="w-full ml-16">
-        <div class="text-center container py-5">
+        <div class="text-center container py-3 pt-4">
             <h4 class="heading" style="font-family: 'Press Start 2P'; font-size: 22px; color:black;">
                 <strong>ParaCrash Game Store</strong>
             </h4>
@@ -90,7 +90,6 @@
                     padding-bottom: 13px;
                     border-collapse: collapse;
                     margin-top: 13px;
-                    /* border-radius: 0px 0px 20px 20px; */
                     background-color: rgba(255, 255, 255, 0.4);
                 }
 
@@ -106,9 +105,11 @@
                     background-color: #4a5568;
                     color: white;
                 }
-                tr{
-                    transition:all ease 0.8s;
+
+                tr {
+                    transition: all ease 0.8s;
                 }
+
                 tr:nth-child(even) {
                     background-color: rgba(255, 255, 255, 0.6);
                 }
@@ -121,6 +122,7 @@
 
                     color: #F5F5DC !important;
                 }
+
                 tr:hover td {
                     background-color: rgba(106, 90, 205, 0.5);
 
@@ -139,88 +141,76 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js"></script>
 
             <style>
-                .card-header,
-                .linkpages:link {
-                    text-decoration: none;
+                #cardadmin {
+                    background-color: rgba(106, 90, 205, 0.9) !important;
+                    border-radius: 5px;
+                    border:2px solid Black; 
+                }
+
+                .linkpages {
+                    background-color:#0C97FA;
                     font-size: 18px;
-                }
-
-                .card-header {
-                    color: black;
-                    background-color: #DEB887;
-                }
-
-                li {
-                    color: darkslategrey;
+                    text-decoration: none;
+                    transition: background-color 0.2s;
                 }
 
                 .linkpages:hover {
-                    color: black;
-                }
-
-                #cardadmin2 {
-                    padding-left: 16px;
-                }
-                a{
-                    color:black;
-                    text-decoration: none;
-                    cursor: pointer;
+                    color: white;
+                    background-color: slateblue;
                 }
             </style>
-            <div id="cardadmin2">
-                <div class="card " id="cardadmin" style="width: 17rem;">
-                    <div class="card-header">
-                        Admin:
-                    </div>
-                    <ul class="list-group list-group-flush" id="links">
-                        <a class="linkpages" href="admin1.php">
-                            <li class="list-group-item">Customer Details</li>
-                        </a>
-                        <a class="linkpages" href="admin2.php">
-                            <li class="list-group-item">Game Details</li>
-                        </a>
-                        <a class="linkpages" href="AdGamesAdd.php">
-                            <li class="list-group-item">Create Game</li>
-                        </a>
-                        <a class="linkpages" href="adGame.php">
-                            <li class="list-group-item">Update Game</li>
-                        </a>
-                        <a class="linkpages" href="deletegame.php">
-                            <li class="list-group-item">Delete Game</li>
-                        </a>
-                    </ul>
+
+            <div id="cardadmin" class="card max-w-xs mx-auto text-center">
+                <div class="list-group list-group-flush" id="links">
+                    <a class="linkpages block list-group-item py-2 px-4" href="admin1.php">Customer Details</a>
+                    <a class="linkpages block list-group-item py-2 px-4" href="admin2.php">Game Details</a>
+                    <a class="linkpages block list-group-item py-2 px-4" href="AdGamesAdd.php">Create Game</a>
+                    <a class="linkpages block list-group-item py-2 px-4" href="adGame.php">Update Game</a>
+                    <a class="linkpages block list-group-item py-2 px-4" href="deletegame.php">Delete Game</a>
+                    <a class="linkpages block list-group-item py-2 px-4" href="category.php">Category</a>
                 </div>
             </div>
-            <br>
+
+
+            
             <center>
-                <h1>Customer Details</h1>
-            </center> <br>
+                <h1 class="py-3 pt-4">Customer Details</h1>
+            </center> 
     </div>
 </div>
 <div>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email Address</th>
-        <th>Contact No</th>
-    </tr>
-    <?php foreach ($customers as $customer): ?>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email Address</th>
+            <th>Contact No</th>
+        </tr>
+        <?php foreach ($customers as $customer): ?>
             <tr>
                 <td><a href="admincustomer.php?customerid=<?= $customer['customerid']; ?>">
-                <?= $customer['customerid']; ?></a></td>
-                <td> <a href="admincustomer.php?customerid=<?= $customer['customerid']; ?>"><?= $customer['firstname']; ?></a></td>
-                <td> <a href="admincustomer.php?customerid=<?= $customer['customerid']; ?>"><?= $customer['lastname']; ?></a></td>
-                <td> <a href="admincustomer.php?customerid=<?= $customer['customerid']; ?>"><?= $customer['emailaddress']; ?></a></td>
-                <td> <a href="admincustomer.php?customerid=<?= $customer['customerid']; ?>"><?= $customer['contactno']; ?></a></td>
+                        <?= $customer['customerid']; ?>
+                    </a></td>
+                <td> <a href="admincustomer.php?customerid=<?= $customer['customerid']; ?>">
+                        <?= $customer['firstname']; ?>
+                    </a></td>
+                <td> <a href="admincustomer.php?customerid=<?= $customer['customerid']; ?>">
+                        <?= $customer['lastname']; ?>
+                    </a></td>
+                <td> <a href="admincustomer.php?customerid=<?= $customer['customerid']; ?>">
+                        <?= $customer['emailaddress']; ?>
+                    </a></td>
+                <td> <a href="admincustomer.php?customerid=<?= $customer['customerid']; ?>">
+                        <?= $customer['contactno']; ?>
+                    </a></td>
             </tr>
-    <?php endforeach; ?>
-</table>
+        <?php endforeach; ?>
+    </table>
 
-        </div>
-        
-    </body>
+</div>
+
+</body>
 
 </html>
 

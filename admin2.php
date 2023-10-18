@@ -5,178 +5,164 @@ session_start();
 <?php
 include 'navbar.php';
 ?>
-    <link href='https://fonts.googleapis.com/css?family=Press Start 2P' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Press Start 2P' rel='stylesheet'>
 
-    <div class="text-center container py-5">
-        <h4 class="heading" style="
+<div class="text-center container py-3 pt-4">
+    <h4 class="heading" style="
     font-family: 'Press Start 2P';font-size: 22px; color:black;"><strong>ParaCrash Game Store</strong></h4>
-    </DIV>
-    <?php
-    // Check if the admin is authenticated
-    
-    // Database connection configuration
-    $dsn = 'mysql:host=localhost;dbname=game4';
-    $username = 'root';
-    $password = '';
+</DIV>
+<?php
+// Check if the admin is authenticated
 
-    // Create a PDO instance
+// Database connection configuration
+$dsn = 'mysql:host=localhost;dbname=game4';
+$username = 'root';
+$password = '';
+
+// Create a PDO instance
+try {
+    $pdo = new PDO($dsn, $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Database connection failed: " . $e->getMessage());
+}
+
+// Fetch game details from the games table
+try {
+    $query = "SELECT * FROM games";
+    $stmt = $pdo->query($query);
+    $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Error fetching game details: " . $e->getMessage());
+}
+
+if (isset($_POST['show_game'])) {
+    $gamename = $_POST['GAMENAME'];
     try {
-        $pdo = new PDO($dsn, $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = "SELECT * FROM games WHERE gamename = ?";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$gamename]);
+        $show_game = $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
-        die("Database connection failed: " . $e->getMessage());
+        die("Error fetching selected game details: " . $e->getMessage());
     }
+}
+?>
 
-    // Fetch game details from the games table
-    try {
-        $query = "SELECT * FROM games";
-        $stmt = $pdo->query($query);
-        $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        die("Error fetching game details: " . $e->getMessage());
-    }
+<!DOCTYPE html>
+<html>
 
-    if (isset($_POST['show_game'])) {
-        $gamename = $_POST['GAMENAME'];
-        try {
-            $query = "SELECT * FROM games WHERE gamename = ?";
-            $stmt = $pdo->prepare($query);
-            $stmt->execute([$gamename]);
-            $show_game = $stmt->fetch(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            die("Error fetching selected game details: " . $e->getMessage());
+
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js"></script>
+
+    <title class="f">Admin Page - Game Show</title>
+    <style>
+        body {
+            background-image: linear-gradient(#146aa7, #48aaadb0);
+            background-repeat: no-repeat !important;
+            background-attachment: fixed !important;
+            height: 100% !important;
         }
-    }
-    ?>
 
-    <!DOCTYPE html>
-    <html>
+        
 
+        .btn {
+            padding-left: 19px;
+            font-size: 16px;
+            transition-duration: 0.4s;
+            border: 3px solid black;
+        }
 
+        .btn:hover {
+            background-color: black;
+            color: white;
+            border: 3px solid White;
+        }
 
-    <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js"></script>
+        table {
+            margin: auto;
+            width: 90%;
+            border-collapse: collapse;
+            border: 2px solid white;
+            margin-top: 13px;
+        }
 
-        <title class="f">Admin Page - Game Show</title>
-        <style>
-            body {
-                background-image: linear-gradient(#146aa7, #48aaadb0);
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                height: 100% !important;
-            }
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid gray;
+        }
 
-            .btn {
-                padding-left: 19px;
-                font-size: 16px;
-                transition-duration: 0.4s;
-                border: 3px solid black;
-            }
+        .hd {
+            font-size: 10px;
+        }
 
-            .btn:hover {
-                background-color: black;
-                color: white;
-                border: 3px solid White;
-            }
+        h1 {
+            padding-left: 19px;
+        }
+    </style>
+</head>
 
-            table {
-                margin: auto;
-                width: 90%;
-                border-collapse: collapse;
-                border: 2px solid white;
-                margin-top: 13px;
-            }
+<body>
+    <style>
+        #cardadmin {
+            background-color: rgba(106, 90, 205, 0.9) !important;
+            border-radius: 5px;
+            border: 2px solid Black;
+        }
 
-            th,
-            td {
-                padding: 8px;
-                text-align: left;
-                border: 1px solid gray;
-            }
+        .linkpages {
+            background-color: #0C97FA;
+            font-size: 18px;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
 
-            .hd {
-                font-size: 10px;
-            }
+        .linkpages:hover {
+            color: white;
+            background-color: slateblue;
+        }
 
-            h1 {
-                padding-left: 19px;
-            }
-        </style>
-    </head>
+        .slat{
+            width: fit-content;
+        }
+    </style>
 
-    <body>
-        <h1>Admin Page</h1>
-        <style>
-            .card-header,
-            .linkpages:link {
-                text-decoration: none;
-                font-size: 18px;
-            }
-
-            .card-header {
-                color: black;
-                background-color: #DEB887;
-            }
-
-            li {
-                color: darkslategrey;
-            }
-
-            .linkpages:hover {
-                color: black;
-            }
-
-            #cardadmin2 {
-                padding-left: 16px;
-            }
-        </style>
-        <div id="cardadmin2">
-            <div class="card " id="cardadmin" style="width: 17rem;">
-                <div class="card-header">
-                    Admin:
-                </div>
-                <ul class="list-group list-group-flush" id="links">
-                    <a class="linkpages" href="admin1.php">
-                        <li class="list-group-item">Customer Details</li>
-                    </a>
-                    <a class="linkpages" href="admin2.php">
-                        <li class="list-group-item">Game Details</li>
-                    </a>
-                    <a class="linkpages" href="AdGamesAdd.php">
-                        <li class="list-group-item">Create Game</li>
-                    </a>
-                    <a class="linkpages" href="adGame.php">
-                        <li class="list-group-item">Update Game</li>
-                    </a>
-                    <a class="linkpages" href="deletegame.php">
-                        <li class="list-group-item">Delete Game</li>
-                    </a>
-                </ul>
-            </div>
+    <div id="cardadmin" class="card max-w-xs mb-5 mx-auto text-center">
+        <div class="list-group list-group-flush" id="links">
+            <a class="linkpages block list-group-item py-2 px-4" href="admin1.php">Customer Details</a>
+            <a class="linkpages block list-group-item py-2 px-4" href="admin2.php">Game Details</a>
+            <a class="linkpages block list-group-item py-2 px-4" href="AdGamesAdd.php">Create Game</a>
+            <a class="linkpages block list-group-item py-2 px-4" href="adGame.php">Update Game</a>
+            <a class="linkpages block list-group-item py-2 px-4" href="deletegame.php">Delete Game</a>
+            <a class="linkpages block list-group-item py-2 px-4" href="category.php">Category</a>
         </div>
-        <br>
-        <form method="post" action="">
-            <div class="mb-3">
-                <label for="GAMENAME" class="form-label">Select a game to show:</label>
-                <select name="GAMENAME" id="GAMENAME" class="form-select" required>
-                    <option value="">Select a game</option>
-                    <?php foreach ($games as $game): ?>
-                        <option value="<?= $game['gamename'] ?>">
-                            <?= $game['gamename'] ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-                <button type="submit" name="show_game" id="select" class="btn btn-primary">Select</button>
-            </div>
-        </form>
-        <?php if (isset($show_game)): ?>
-            <h2 class="heading">Display Game:
-                <?= $show_game['gamename'] ?>
-            </h2>
-            <div class="tablediv"></div>
+    </div>
+    <form method="post" action="">
+        <div class="mb-3 pb-10 slat ">
+
+            <select name="GAMENAME" id="GAMENAME" class="form-select" required>
+                <option value="">Select a game</option>
+                <?php foreach ($games as $game): ?>
+                    <option value="<?= $game['gamename'] ?>">
+                        <?= $game['gamename'] ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+            <button type="submit" name="show_game" id="select" class="btn btn-primary">Select</button>
+        </div>
+    </form>
+    <?php if (isset($show_game)): ?>
+        <h2 class="heading">Display Game:
+            <?= $show_game['gamename'] ?>
+        </h2>
+        <div class="tablediv">
             <table>
 
                 <tr>
@@ -261,15 +247,11 @@ include 'navbar.php';
                 </tr>
 
             </table>
-            <br>
-            <br>
-            <br>
+
         <?php endif; ?>
-</div>
-</div>
+    </div>
 </body>
 <style>
-
     .heading,
     form {
         padding-left: 20px;
@@ -328,9 +310,15 @@ include 'navbar.php';
         font-size: 20px;
 
     }
+
+    .tablediv {
+        margin-bottom: 150px;
+    }
 </style>
 
 
 
 </html>
-<?php include 'footer.php'; ?>
+<div class=" " style="position: fixed; bottom: 0; left: 0; right: 0;">
+    <?php include 'footer.php'; ?>
+</div>

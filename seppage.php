@@ -76,7 +76,6 @@ if ($games) {
             background-attachment: fixed;
             height: 100% !important;
             overflow-y: smooth;
-            padding: 5px 7px !important;
         }
 
         /* Hide scrollbar */
