@@ -325,7 +325,7 @@ if ($games) {
                     <?php echo $storage_required; ?>
                 </p>
                 <p>Minimum RAM Required -
-                    <?php echo $memory_required; ?>
+                    <?php echo $memory_required; ?> GB
                 </p>
                 <p>Operating System Required -
                     <?php echo $operating_system; ?>
