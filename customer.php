@@ -213,10 +213,11 @@ if (!isset($_SESSION['name'])) {
     </div>
   </div>
 
-  <?php $query = "Select  `gameid`, `bill_date`, `amount` FROM `bill` WHERE customerID = $Id";
-  $st = $conn->query($query);
-  $resu = $st->fetchAll(PDO::FETCH_ASSOC);
-  if ($resu) {
+   <?php $query = "SELECT `gameid`, `bill_date`, `amount` FROM `bill` WHERE customerID = ?";
+$st = $conn->prepare($query);
+$st->execute([$Id]);
+$result23 = $st->fetchAll(PDO::FETCH_ASSOC);
+  if($result23) {
     ?>
 
     <div class="container container2  pt-2">
