@@ -106,7 +106,9 @@
                     background-color: #4a5568;
                     color: white;
                 }
-
+                tr{
+                    transition:all ease 0.8s;
+                }
                 tr:nth-child(even) {
                     background-color: rgba(255, 255, 255, 0.6);
                 }
@@ -115,9 +117,13 @@
                     background-color: rgba(255, 255, 255, 0.4);
                 }
 
+                tr:hover a {
+
+                    color: #F5F5DC !important;
+                }
                 tr:hover td {
                     background-color: rgba(106, 90, 205, 0.5);
-                    color: #F5F5DC !important;
+
                 }
 
                 h1 {
