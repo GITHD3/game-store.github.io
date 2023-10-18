@@ -67,7 +67,6 @@
       </section>
     </div>
     <div class="text-center p-3 suppose" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2023 Copyright:
       <a class="text-white" href="index.php">ParaCrash Game Store</a>
     </div>
   </footer>
