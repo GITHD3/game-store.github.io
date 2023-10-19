@@ -49,6 +49,7 @@
     }
 
     #ull {
+        
         background-color: rgb(255, 255, 255, 0.3);
         padding: 20px;
         border: none;
@@ -99,11 +100,14 @@ try{
         echo "Can't Delete , Try Later";
     }
 try{
-    if (isset($_POST['alterCategory'])) {
-        $catToAlter = $_POST['alterCategory'];
-        // You need to implement the alteration logic here
-        // For now, I've left it as a comment
-        // $alterQuery = "UPDATE `genre` SET `category`='$catToAlter' WHERE 1";
+    if (isset($_POST['kishan'])) {
+        $catToAlter = $_POST['changes'];
+        $catToAlterOG = $_POST['alterCategory2'];
+        $alterQuery = "UPDATE `genre` SET `category`= ? WHERE category = ?";
+        $al = $pdo->prepare($alterQuery);
+        $al->execute([$catToAlter , $catToAlterOG]);
+        if(!$al)
+        echo"rajai";
     }}catch (Exception $w){
         echo "Can't Alter , Try Later";
     }
@@ -135,14 +139,14 @@ try{
             foreach ($gen as $category):
         ?>
             <div class="mb-2">
-                <?php echo $category['category']; ?>
+                <form method="post" style="display: inline;" action="category.php">
+                    <input name="changes" value="<?php echo $category['category']; ?>">
+                    <input name="alterCategory2" type="hidden" value="<?php echo $category['category']; ?>">
+                    <button type="submit" name="kishan" class="btn2">Alter</button>
+                </form>
                 <form method="post" style="display: inline;" action="category.php">
                     <input type="hidden" name="deleteCategory" value="<?php echo $category['category']; ?>">
                     <button type="submit" class="btn2">Delete</button>
-                </form>
-                <form method="post" style="display: inline;" action="category.php">
-                    <input type="hidden" name="alterCategory" value="<?php echo $category['category']; ?>">
-                    <button type="submit" class="btn2">Alter</button>
                 </form>
             </div>
         <?php
