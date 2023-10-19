@@ -219,6 +219,7 @@ if (isset($_SESSION['id'])) {
                             <?php
                             if (isset($_POST['cartsubmit'])) {
                                 try {
+                                    $cid = $cartid ;
                                     $query = "SELECT bill_id FROM bill ORDER BY bill_id DESC LIMIT 1";
                                     $statement2 = $dbconn->prepare($query);
                                     $statement2->execute();
@@ -253,8 +254,11 @@ if (isset($_SESSION['id'])) {
                                             ]);
                                             ?>
                                             <p class="Ack">Purchased Successfully</p>
-
+                                            
                                             <?php
+                                            // $queryyy = "DELETE FROM `cart` WHERE gameid = $tempid and cartid = $cid";
+                                            // $res = $dbconn->query($queryyy);
+                                            
                                         } else {
                                             ?>
                                             <p class="Ack">Purchased</p>
