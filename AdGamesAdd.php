@@ -162,8 +162,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             justify-content: space-between;
         }
 
-        
-
         @media (min-width:500px) {
             .priamrykeyupdates {
                 padding-left: 42px;
@@ -183,6 +181,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border: 2px solid Black;
         }
 
+        #selectedCategories {
+            font-size: 16px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            padding: 8px 12px;
+            border-radius: 5px;
+            width: 200px;
+            height: 40px;
+        }
+
+        .custom-select {
+            font-size: 16px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            padding: 8px 12px;
+            border-radius: 5px;
+            width: 200px;
+            cursor: pointer;
+        }
+
+        .custom-select option {
+            font-size: 14px;
+        }
+
         .linkpages {
             background-color: #0C97FA;
             font-size: 18px;
@@ -194,8 +216,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: white;
             background-color: slateblue;
         }
-
-        
     </style>
 
     <div id="cardadmin" class="card max-w-xs mb-5 mx-auto text-center">
@@ -263,8 +283,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="price">Price:</label>
                     <input type="number" id="price" name="price" required>
                     <div></div><br>
-                    <label for="genre">Genre:</label>
-                    <input type="text" id="genre" name="genre" required>
+                    <div class="flex">
+                        <label class="inline-block" for="genre">Category:</label>
+                        <select class="custom-select inline-block" id="genre" name="genre" required multiple>
+                            <?php
+                            $sql = "SELECT category FROM genre ;";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt->execute();
+
+                            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                $category = $row["category"];
+                                echo "<option value='$category'>$category</option>";
+                            }
+                            ?>
+                        </select>
+
+                        <div id="selectedCategories" class="m-3 inline-block"></div>
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                const select = document.getElementById('genre');
+                                const selectedCategoriesDisplay = document.getElementById('selectedCategories');
+
+                                select.addEventListener('change', function () {
+                                    const selectedOptions = select.selectedOptions;
+                                    const selectedCategories = [];
+
+                                    for (let i = 0; i < selectedOptions.length; i++) {
+                                        const category = selectedOptions[i].value;
+                                        selectedCategories.push(category);
+                                    }
+
+                                    if (selectedCategories.length >= 2) {
+                                        selectedCategoriesDisplay.innerHTML = selectedCategories.join(', ');
+                                    } else {
+                                        selectedCategoriesDisplay.innerHTML = ''; // Clear the display
+                                    }
+                                });
+                            });
+                        </script>
+                    </div>
+
+
                     <div></div><br>
                     <label for="gameSize">Game Size:</label>
                     <input type="text" id="gameSize" name="gameSize" required>
