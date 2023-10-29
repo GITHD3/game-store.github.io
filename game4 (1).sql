@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2023 at 02:44 PM
+-- Generation Time: Oct 29, 2023 at 04:25 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -65,7 +65,11 @@ INSERT INTO `bill` (`bill_id`, `gameid`, `bill_date`, `amount`, `customerID`) VA
 (9, ' NUNA10', '2023-10-14', 2500.000, 11),
 (10, 'NUNA117', '2023-10-15', 3100.000, 3),
 (11, 'NUNA110', '2023-10-15', 1708.000, 3),
-(12, 'NUA124', '2023-10-15', 1300.000, 13);
+(12, 'NUA124', '2023-10-15', 1300.000, 13),
+(13, ' NUA105', '2023-10-28', 850.000, 3),
+(13, 'NUA120', '2023-10-28', 2599.000, 3),
+(14, 'NUNA120', '2023-10-28', 0.000, 3),
+(15, 'NUNA102', '2023-10-28', 0.000, 3);
 
 -- --------------------------------------------------------
 
@@ -90,8 +94,6 @@ INSERT INTO `cart` (`cartid`, `gameid`) VALUES
 (0, 'NUNA114'),
 (0, 'NUNA117'),
 (0, 'NUNA120'),
-(3, ' NUA105'),
-(3, 'NUA120'),
 (8, 'NUA121'),
 (8, 'NUNA105'),
 (11, 'NUNA105'),
@@ -204,6 +206,7 @@ INSERT INTO `games` (`gameid`, `gamename`, `developer_name`, `publisher_name`, `
 ('NUNA120', 'MultiVersus', 'Player First Games', 'Warner Bros. Games', 'Fighting game ,  Platform game', 0.00, '6 GB', 1, 'MultiVersus, a free-to-play platform fighting game that ignites the arena with an eclectic assembly of characters plucked from diverse Warner Bros. realms. Engage in electrifying 2v2 skirmishes, uniting with a friend or AI ally to clash against rival teams. With its versatile array of game modes, ranging from the standard 2v2 face-off to the frenetic 4-player free-for-all frenzy and even a cooperative venture, MultiVersus ensures no shortage of thrilling showdowns. Applauded for its seamless gameplay, dynamic graphics, and an expansive cast of characters, MultiVersus catapults you into a realm where battles blaze with intensity and color.', '\"MultiVersus – Heroes in explosive 2v2 battles and wild free-for-alls. Dive into a realm where gameplay flows like magic and characters collide in a riot of color and chaos.\"', 4, 'Windows 7 or Higher', 'Intel Core i5-2300', '7 GB', '2022-07-19'),
 ('NUNA121', 'Uno', 'Carbonated Games (XBLA) Gameloft Ubisoft', 'Microsoft Game Studios', 'Card Game', 0.00, '2 GB', 1, 'One of the most iconic classic games which we all grew to know and love! UNO makes its return with an assortment of exciting \r\nnew features such as added video chat support and an all new theme system which adds more fun! Match cards either by matching \r\ncolor or value and play action cards to change things up ...', 'Wild cards, strategies hard – UNO PC game, a battle of cards.\r\nSkip, reverse, action diverse – UNO on your screen, excitement immerse.', 4, 'Windows 7 or Higher', '​Intel Pentium G860 @ 3 GHz, AMD FX-4150', '2 GB', '2016-12-08'),
 ('NUNA122', 'Garena Free Fire', 'Garena', 'Garena', 'Battle Royale , Action Game , Multiplayer', 0.00, '4 GB', 1, 'In Free Fire, players control a character in a third-person perspective and use a joystick to move. \r\nThe fire button allows them to shoot and throw items. The character can perform actions such as jumping, crawling, and \r\nlying down. During gameplay, players can utilize the \"Gloo Wall\" grenade as a form of cover to protect against damage.\r\nFree Fire offers over 15 game modes, including Team Deathmatch, Clash Squad, Big Head, Explosive Jump, Cold Steel, \r\nRampage, and Pet Mania. However, modes other than Battle Royale, Clash Squad, and Lone Wolf are only available during \r\nspecial events.\r\nThe Battle Royale mode in Free Fire accommodates up to 52 players landing on an island without weapons. \r\nThey must fight to be the last one standing by scavenging weapons and equipment from buildings. Playing this mode in ranked \r\nmode will affect their ranking. There are 6 maps to choose from: Bermuda, Bermuda Remastered, Kalahari, Purgatory, Alpine, \r\nand NeXTerra. The mode allows for solo, duo, or squad play.', '\"Joystick dance, character\'s grace, in Free Fire\'s world, survival\'s embrace.\r\n\"Shoot and throw, actions diverse, Free Fire\'s moves, endless verse.\"', 2, '32-bit Windows 7 or Higher', 'Any dual-core processor with at least 2G', '4 GB', '2017-12-08'),
+('NUNA123', 'Wolfenstein Youngblood', 'MachineGames , Arkane Studios', 'Bethesda Softworks', 'Action-Adventure, First Person Shooter', 1399.00, '40 GB', 1, '\'Wolfenstein: Youngblood,\' step into the shoes of Jess and Soph Blazkowicz, twin daughters of BJ Blazkowicz, on a mission to find their missing father in an alternate reality 1980s Paris. This co-op first-person shooter offers intense action, challenging missions, and a dynamic combat system. Team up with a friend or an AI companion for an adrenaline-pumping adventure through Nazi-occupied Paris, where every battle counts. Customize your weapons, enhance your abilities, and dismantle the oppressive regime. Explore the city, uncover secrets, and resist the enemy in this high-octane addition to the Wolfenstein franchise.', '\"Wolfenstein: Youngblood\" is a co-op focused first-person shooter that takes place in an alternate history 1980s Paris, where you play as BJ Blazkowicz\'s twin daughters, Jess and Soph, on a mission to find their missing father.', 8, 'Windows 7 / 10 (64-bit version', 'AMD FX-8350 / Ryzen 5 1400 or Intel Core', '40 GB', '2019-07-26'),
 ('UNA100', 'Minecraft', 'Mojang Studios', ' Mojang Studios', '3D sandbox game, Open-World Game', 500.00, '1 GB', 0, 'Minecraft is a 3-D computer game where players can build anything. The game which has been described as like an online Lego involves building blocks andcreating structures across different environments and terrains. Set in a virtual worldthe game involves resource gathering, crafting items, building, and combat. ', '\"Minecraft: The Ultimate 3D Building Adventure! Unleash Your Imagination in a Virtual World of Endless Possibilities, Crafting, and Exploration.\"', 2, '64-bit Windows 10 or Higher', ' Intel i7-6500U / AMD A8-6600K or better', ' 1 GB', '2011-11-01'),
 ('UNA101', 'Monopoly', 'Ubisoft Pune', 'Hasbro Parker Brothers Waddington', 'Board game', 0.00, '2 GB', 1, 'Monopoly is a multi-player economics-themed board game. In the game, players roll two dice to move around the game board, buying and trading \r\nproperties and developing them with houses and hotels. Players collect rent from their opponents and aim to drive them into bankruptcy. Money can also \r\nbe gained or lost through Chance and Community Chest cards and tax squares. Players receive a salary every time they pass \"Go\" and can end up in jail, \r\nfrom which they cannot move until they have met one of three conditions. House rules, hundreds of different editions, many spin-offs, and related media \r\nexist.', '\"Roll the dice, seize your slice – Monopoly\'s economic thrill!\"\r\n\"Buy, trade, build – conquer the Monopoly board, be skilled.\"\r\n\"Collect rent, bankrupt foes – victory\'s how the story goes!\"', 8, 'Windows 7 or Higher', 'Intel Core i5- 2400 @ 3.1 GHz or AMD FX-', '2 GB', '2014-11-25'),
 ('UNA102', 'Hive', 'John Yianni ', 'Gen42 Games', 'Tabletop Abstract Strategy Game', 0.00, '300 MB', 1, 'The object of Hive is to capture the opponent\'s queen bee by allowing it to become completely surrounded \r\nby other pieces (belonging to either player), while avoiding the capture of one\'s own queen.\r\nHive shares elements of both tile-based games and board games. It differs from other tile-based games in that \r\nthe tiles, once placed, can then be moved to other positions according to various rules, much like chess pieces.', '\"Queen trapped tight, victory in sight – Hive\'s challenge, day or night.\"\r\n\"Surround and seize, a royal tease – Hive\'s tactics, aim to please.\"\r\n\"Tiles in play, strategic sway – Hive\'s moves like chess, make your way.\"', 1, 'Windows XP or Higher', 'Intel Pentium 4 2.00GHz.', '300 MB', '2001-01-01'),
@@ -226,7 +229,7 @@ CREATE TABLE `genre` (
 --
 
 INSERT INTO `genre` (`category`) VALUES
-('3D sandbox game'),
+('3D sandbox games'),
 ('Action'),
 ('Action Role-Play'),
 ('Action-Adventure'),
@@ -237,7 +240,6 @@ INSERT INTO `genre` (`category`) VALUES
 ('City-building'),
 ('Construction and Management Simulation'),
 ('Educational Video Game'),
-('Extra'),
 ('Fighting'),
 ('First Person Shooter'),
 ('Horror'),
@@ -252,7 +254,6 @@ INSERT INTO `genre` (`category`) VALUES
 ('Survival'),
 ('Survival Adventure'),
 ('Survival Horror'),
-('Tactical RPG'),
 ('Tactical Shooter');
 
 -- --------------------------------------------------------
