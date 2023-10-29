@@ -121,6 +121,21 @@
       border-radius: 8px;
       background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
     }
+
+    .downloadZipButton{
+      border:none !important;
+      border-radius: 10px !important;
+      background-color: whitesmoke !important;
+    }
+    
+    .flexi{
+      margin-right: 50px !important;
+      margin-left: 0px !important;
+    }
+    .flexi1{
+      margin-right: 10px !important;
+
+    }
   </style>
 </head>
 <?php
@@ -222,14 +237,14 @@ $result23 = $st->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="container container2  pt-2">
       <div class="row d-flex justify-content-center align-items-center h-100 full-height">
-        <div class="col col-lg-6 mb-4 mb-lg-0">
+        <div class="col col-lg-9 mb-4 mb-lg-0">
           <div class="card mb-3" style="border-radius: .5rem;">
             <div class="card-body p-4">
               <h6>Library</h6>
               <hr class="mt-0 mb-4">
               <?php
               $no = 1;
-              foreach ($resu as $bill) {
+              foreach ($result23 as $bill) {
                 $tmp = $bill['gameid'];
                 $query2 = "Select  `gamename` FROM `games` WHERE gameid = '$tmp';";
                 $st2 = $conn->query($query2);
@@ -238,7 +253,7 @@ $result23 = $st->fetchAll(PDO::FETCH_ASSOC);
                 
                 ?>
                 <div class="row pt-1 bgy">
-                  <div class="col-md-4 mb-3">
+                  <div class="col-md-3 mb-3 flexi1">
                     <h6>
                       <?php echo $no . "."; ?> Game Name
                     </h6>
@@ -246,32 +261,20 @@ $result23 = $st->fetchAll(PDO::FETCH_ASSOC);
                       <?php echo $gameNames; ?>
                     </p>
                   </div>
-                  <div class="col-md-4 mb-3">
-                    <h6>Bill Date</h6>
-                    <p class="text-muted">
-                      <?php echo $bill['bill_date']; ?>
-                    </p>
-                  </div>
-                  <div class="col-md-4 mb-3">
-                    <h6>Amount</h6>
-                    <p class="text-muted">
-                      <?php echo $bill['amount']; ?>
-                    </p>
-                  </div>
-                  <div class="col-md-4 mb-3">
-                    <p class="text-muted">
+                  <div class="col-md-1 flexi">
+                    <p class="text-muted"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                     <form class="formbutton text-center" method="POST">
     <input type="hidden" value="<?php echo $gameNames; ?>" class="gameNameInput">
-    <button class="btn downloadZipButton" name="submitd" type="submit">Download</button>
+    <button class="btn fa downloadZipButton" name="submitd" type="submit" data-game="<?php echo $gameNames; ?>">&#xf019;</button>
 </form>
 
 <?php
 if(isset($_POST['submitd'])){
 ?>
 <script>
-document.addEventListener('click', function (event) {
+function handleDownload(event) {
     if (event.target && event.target.classList.contains('downloadZipButton')) {
-        var gamename = event.target.parentElement.querySelector('.gameNameInput').value;
+        var gamename = event.target.dataset.game;
         var zipUrl = 'zips/' + gamename + '.zip';
         var a = document.createElement('a');
         a.href = zipUrl;
@@ -281,13 +284,28 @@ document.addEventListener('click', function (event) {
         document.body.removeChild(a);
         return false;
     }
-});
+}
+
+document.addEventListener('click', handleDownload);
 </script>
 <?php
 }
 ?>
   
                   </div>
+                  <div class="col-md-2 mb-3">
+                    <h6>Bill Date</h6>
+                    <p class="text-muted">
+                      <?php echo $bill['bill_date']; ?>
+                    </p>
+                  </div>
+                  <div class="col-md-2 mb-3">
+                    <h6>Amount</h6>
+                    <p class="text-muted">
+                      <?php echo $bill['amount']; ?>
+                    </p>
+                  </div>
+                  
                 </div>
                 <hr>
                 <?php

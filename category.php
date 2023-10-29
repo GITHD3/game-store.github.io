@@ -49,7 +49,9 @@
     }
 
     #ull {
-        
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
         background-color: rgb(255, 255, 255, 0.3);
         padding: 20px;
         border: none;
@@ -57,75 +59,96 @@
         line-height: 2.5;
     }
 
-    .custom-br {
+    .newCat {
+        border-radius: 15px;
+        padding: 20px;
+        justify-content: center;
+        width: fit-content;
+        text-align: center;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        padding-left: 20px;
+        transition: 0.3s;
+        padding-right: 20px;
+        box-shadow: rgba(106, 90, 205, 0.19) 0px 10px 20px, rgba(106, 90, 205, 0.23) 0px 6px 6px;
+background-color: rgba(255, 255, 255, 0.4);
+
+    }
+
+    .newCat:hover {
+        background-color: rgb(255, 255, 255, 0.5);
+        box-shadow: rgba(128, 0, 128, 0.8) 0px 20px 30px -10px;
+
     }
 </style>
 <div id="cardadmin" class="card max-w-xs mb-5 mx-auto text-center">
-        <div class="list-group list-group-flush" id="links">
-            <a class="linkpages block list-group-item py-2 px-4" href="admin1.php">Customer Details</a>
-            <a class="linkpages block list-group-item py-2 px-4" href="admin2.php">Game Details</a>
-            <a class="linkpages block list-group-item py-2 px-4" href="AdGamesAdd.php">Create Game</a>
-            <a class="linkpages block list-group-item py-2 px-4" href="adGame.php">Update Game</a>
-            <a class="linkpages block list-group-item py-2 px-4" href="deletegame.php">Delete Game</a>
-            <a class="linkpages block list-group-item py-2 px-4" href="category.php">Category</a>
-        </div>
+    <div class="list-group list-group-flush" id="links">
+        <a class="linkpages block list-group-item py-2 px-4" href="admin1.php">Customer Details</a>
+        <a class="linkpages block list-group-item py-2 px-4" href="admin2.php">Game Details</a>
+        <a class="linkpages block list-group-item py-2 px-4" href="AdGamesAdd.php">Create Game</a>
+        <a class="linkpages block list-group-item py-2 px-4" href="adGame.php">Update Game</a>
+        <a class="linkpages block list-group-item py-2 px-4" href="category.php">Category</a>
     </div>
+</div>
 
-    <?php
-    $dsn = 'mysql:host=localhost;dbname=game4';
-    $username = 'root';
-    $password = '';
+<?php
+$dsn = 'mysql:host=localhost;dbname=game4';
+$username = 'root';
+$password = '';
 
-    try {
-        $pdo = new PDO($dsn, $username, $password);
-    } catch (PDOException $e) {
-        die("Database connection failed: " . $e->getMessage());
-    }
-try{
+try {
+    $pdo = new PDO($dsn, $username, $password);
+} catch (PDOException $e) {
+    die("Database connection failed: " . $e->getMessage());
+}
+try {
     if (isset($pdo)) {
         $query = 'SELECT * FROM genre';
         $stmt = $pdo->query($query);
         $gen = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }}
-    catch (Exception $w){
-        echo "Error , Try Later";
     }
-try{
+} catch (Exception $w) {
+    echo "Error , Try Later";
+}
+try {
     if (isset($_POST['deleteCategory'])) {
         $catToDelete = $_POST['deleteCategory'];
         $deleteQuery = "DELETE FROM genre WHERE category = ?";
         $deleteStmt = $pdo->prepare($deleteQuery);
         $deleteStmt->execute([$catToDelete]);
-    }}catch (Exception $w){
-        echo "Can't Delete , Try Later";
     }
-try{
+} catch (Exception $w) {
+    echo "Can't Delete , Try Later";
+}
+try {
     if (isset($_POST['kishan'])) {
         $catToAlter = $_POST['changes'];
         $catToAlterOG = $_POST['alterCategory2'];
         $alterQuery = "UPDATE `genre` SET `category`= ? WHERE category = ?";
         $al = $pdo->prepare($alterQuery);
-        $al->execute([$catToAlter , $catToAlterOG]);
-        if(!$al)
-        echo"rajai";
-    }}catch (Exception $w){
-        echo "Can't Alter , Try Later";
+        $al->execute([$catToAlter, $catToAlterOG]);
+        if (!$al)
+            echo "rajai";
     }
-try{
+} catch (Exception $w) {
+    echo "Can't Alter , Try Later";
+}
+try {
     if (isset($_POST['newCategory'])) {
         $newCategory = $_POST['newCategory'];
         $insertQuery = "INSERT INTO genre (category) VALUES (?)";
         $insertStmt = $pdo->prepare($insertQuery);
         $insertStmt->execute([$newCategory]);
-    }}catch (Exception $w){
-        echo "Can't Add , Try Later";
     }
-    ?>
+} catch (Exception $w) {
+    echo "Can't Add , Try Later";
+}
+?>
 
 <div class="container">
     <h2 class="text-center">Categories</h2>
     <ul id="ull">
-        <?php 
+        <?php
         try {
             $dsn = 'mysql:host=localhost;dbname=game4';
             $username = 'root';
@@ -137,19 +160,19 @@ try{
             $gen = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             foreach ($gen as $category):
-        ?>
-            <div class="mb-2">
-                <form method="post" style="display: inline;" action="category.php">
-                    <input name="changes" value="<?php echo $category['category']; ?>">
-                    <input name="alterCategory2" type="hidden" value="<?php echo $category['category']; ?>">
-                    <button type="submit" name="kishan" class="btn2">Alter</button>
-                </form>
-                <form method="post" style="display: inline;" action="category.php">
-                    <input type="hidden" name="deleteCategory" value="<?php echo $category['category']; ?>">
-                    <button type="submit" class="btn2">Delete</button>
-                </form>
-            </div>
-        <?php
+                ?>
+                <div class="mb-2">
+                    <form method="post" style="display: inline;" action="category.php">
+                        <input name="changes" value="<?php echo $category['category']; ?>">
+                        <input name="alterCategory2" type="hidden" value="<?php echo $category['category']; ?>">
+                        <button type="submit" name="kishan" class="btn2">Alter</button>
+                    </form>
+                    <form method="post" style="display: inline;" action="category.php">
+                        <input type="hidden" name="deleteCategory" value="<?php echo $category['category']; ?>">
+                        <button type="submit" class="btn2">Delete</button>
+                    </form>
+                </div>
+                <?php
             endforeach;
         } catch (PDOException $e) {
             die("Database connection failed: " . $e->getMessage());
@@ -158,16 +181,16 @@ try{
     </ul>
 </div>
 <?php try { ?>
-<div class="container">
-    <h2>Add New Category</h2>
-    <form method="post" action="category.php">
-        <input type="text" name="newCategory" required>
-        <button type="submit" class="btn2">Add</button>
-    </form>
-</div>
+    <div class="container newCat">
+        <h2>Add New Category</h2>
+        <form method="post" action="category.php">
+            <input type="text" name="newCategory" required>
+            <button type="submit" class="btn2">Add</button>
+        </form>
+    </div>
 <?php } catch (PDOException $e) {
-            echo"Duplicate Entry or Try Later on .";
-        }  ?>
+    echo "Duplicate Entry or Try Later on .";
+} ?>
 
 </body>
 

@@ -1,6 +1,13 @@
 <?php
 session_start();
 include 'navbar.php';
+$dsn = "mysql:host=localhost;dbname=game4";
+                        $username = "root";
+                        $password = "";
+
+                        $db = new PDO($dsn, $username, $password);
+                        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 ?>
 
 <!DOCTYPE html>
@@ -308,13 +315,7 @@ include 'navbar.php';
 
                 if (isset($_POST['submit']) || isset($_POST['listvalue'])) {
                     try {
-                        $dsn = "mysql:host=localhost;dbname=game4";
-                        $username = "root";
-                        $password = "";
-
-                        $db = new PDO($dsn, $username, $password);
-                        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+                        
                         if (isset($_POST['searchstring']) || isset($_POST['listvalue'])) { // Check if searchstring is set
                             if (isset($_POST['searchstring']))
                                 $searchString = $_POST['searchstring'];
@@ -446,47 +447,21 @@ include 'navbar.php';
             }
         </style>
         <div class="sidebar">
-            <form method="POST" action="">
-                <ul class="rigthsidelist">
-                    <li><button class="genrelist" type="Submit" name="listvalue" value="All">Latest</button></li>
-                    <li><button class="genrelist" type="Submit" name="listvalue" value="Action">Action</button></li>
-                    <li><button class="genrelist" type="Submit" name="listvalue"
-                            value="Action-Adventure">Action-Adventure</button></li>
-                    <li><button class="genrelist" type="Submit" name="listvalue" value="Racing">Racing</button></li>
-                    <li><button class="genrelist" type="Submit" name="listvalue" value="First Person Shooter">First
-                            Person Shooter</button></li>
-                    <li><button class="genrelist" type="Submit" name="listvalue" value="Action Role-Play">Action
-                            Role-Play</button></li>
-                    <li><button class="genrelist" type="Submit" name="listvalue" value="Open-World">Open World</button>
-                    <li><button class="genrelist" type="Submit" name="listvalue" value="Fighting">Fighting</button></li>
-                    <li><button class="genrelist" type="Submit" name="listvalue" value="3D sandbox game">3D sandbox
-                            game</button></li>
-                    <li><button class="genrelist" type="Submit" name="listvalue"
-                            value="Educational Video Game">Educational Video Game</button></li>
-                    <li><button class="genrelist" type="Submit" name="listvalue" value="Survival Horror">Survival
-                            Horror</button></li>
-                    <li><button class="genrelist" type="Submit" name="listvalue" value="Tactical Shooter">Tactical
-                            Shooter</button></li>
-                    <li><button class="genrelist" type="Submit" name="listvalue"
-                            value="Puzzle-Platform Video game ">Puzzle-Platform</button></li>
-                    <li><button class="genrelist" type="Submit" name="listvalue" value="Battle Royale">Battle
-                            Royale</button></li>
-                    <li><button class="genrelist" type="Submit" name="listvalue"
-                            value="Real-time Grand Strategy">Real-time Grand Strategy</button></li>
-                    <li><button class="genrelist" type="Submit" name="listvalue"
-                            value="Science-Fiction">Science-Fiction</button></li>
-                    <li><button class="genrelist" type="Submit" name="listvalue" value="Horror">Horror</button></li>
-                    <li><button class="genrelist" type="Submit" name="listvalue" value="Simulation">Simulation</button>
-                    </li>
-                    <li><button class="genrelist" type="Submit" name="listvalue" value="Survival">Survival</button></li>
-                    </li>
-                    <li><button class="genrelist" type="Submit" name="listvalue" value="Card Game">Card Game</button>
-                    </li>
-                    <li><button class="genrelist" type="Submit" name="listvalue" value="Board Game">Board Game</button>
-                    </li>
-                </ul>
-                <!-- Add your right side panel content here -->
-            </form>
+        <form method="POST" action="">
+    <ul class="rigthsidelist">
+        <?php
+        $sql = "SELECT * FROM genre;";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $genre = $row["category"];
+            echo "<li><button class='genrelist' type='Submit' name='listvalue' value='$genre'>$genre</button></li>";
+        }
+        ?>
+    </ul>
+</form>
+
         </div>
     </div>
 </body>

@@ -1,5 +1,5 @@
 <?php
-
+$c = 1;
 session_start();
 $tempchecker = false;
 $total_storage_required = 0; ?>
@@ -166,35 +166,35 @@ if (isset($_SESSION['id'])) {
                                                             <td class="whitespace-nowrap px-6 py-4 font-medium">
                                                                 <?php echo $index + 1; ?>
                                                                 <?php try {
-                                                                $query = "SELECT bill_id FROM bill WHERE gameid = :game_id AND customerid = :customer_id";
-                                                                $statement = $dbconn->prepare($query);
-                                                                $statement->bindParam(':game_id', $game['id'], PDO::PARAM_INT);
-                                                                $statement->bindParam(':customer_id', $tempid, PDO::PARAM_INT);
-                                                                $statement->execute();
-                                                                $ress = $statement->fetch(PDO::FETCH_ASSOC);
+                                                                    $query = "SELECT bill_id FROM bill WHERE gameid = :game_id AND customerid = :customer_id";
+                                                                    $statement = $dbconn->prepare($query);
+                                                                    $statement->bindParam(':game_id', $game['id'], PDO::PARAM_INT);
+                                                                    $statement->bindParam(':customer_id', $tempid, PDO::PARAM_INT);
+                                                                    $statement->execute();
+                                                                    $ress = $statement->fetch(PDO::FETCH_ASSOC);
 
-                                                                if ($ress) { ?>
-                                                                            <form class="formbutton text-center ">
-                                                                                <input type="hidden" value="<?php echo $game['gamename']; ?>"
-                                                                                    id="gameName">
-                                                                                <button id="downloadZipButton" class="btn"
-                                                                                    type="button"><i style="font-size:24px" class="fa">&#xf019;</i></button>
-                                                                            </form>
-                                                                            <script>
-                                                                                document.getElementById('downloadZipButton').addEventListener('click', function () {
-                                                                                    var gamename = document.getElementById('gameName').value;
-                                                                                    var zipUrl = 'zips/' + gamename + '.zip';
-                                                                                    var a = document.createElement('a');
-                                                                                    a.href = zipUrl;
-                                                                                    a.download = gamename + '.zip';
-                                                                                    document.body.appendChild(a);
-                                                                                    a.click();
-                                                                                    document.body.removeChild(a);
-                                                                                });
-                                                                            </script>
-                                                                <?php }
-                                                            } catch (Exception $e) {
-                                                            } ?>
+                                                                    if ($c = 0) { ?>
+                                                                        <form class="formbutton text-center ">
+                                                                            <input type="hidden" value="<?php echo $game['gamename']; ?>"
+                                                                                id="gameName">
+                                                                            <button id="downloadZipButton" class="btn" type="button"><i
+                                                                                    style="font-size:24px" class="fa">&#xf019;</i></button>
+                                                                        </form>
+                                                                        <script>
+                                                                            document.getElementById('downloadZipButton').addEventListener('click', function () {
+                                                                                var gamename = document.getElementById('gameName').value;
+                                                                                var zipUrl = 'zips/' + gamename + '.zip';
+                                                                                var a = document.createElement('a');
+                                                                                a.href = zipUrl;
+                                                                                a.download = gamename + '.zip';
+                                                                                document.body.appendChild(a);
+                                                                                a.click();
+                                                                                document.body.removeChild(a);
+                                                                            });
+                                                                        </script>
+                                                                    <?php }
+                                                                } catch (Exception $e) {
+                                                                } ?>
                                                             </td>
                                                             <td class="whitespace-nowrap px-6 py-4">
                                                                 <?php echo $game['gamename']; ?>
@@ -205,7 +205,7 @@ if (isset($_SESSION['id'])) {
                                                             <td class="whitespace-nowrap px-6 py-4">
                                                                 <?php echo $game['price']; ?>
                                                             </td>
-                                                            
+
                                                         </tr>
                                                         <?php
                                                     endforeach; ?>
@@ -219,7 +219,7 @@ if (isset($_SESSION['id'])) {
                             <?php
                             if (isset($_POST['cartsubmit'])) {
                                 try {
-                                    $cid = $cartid ;
+                                    $cid = $cartid;
                                     $query = "SELECT bill_id FROM bill ORDER BY bill_id DESC LIMIT 1";
                                     $statement2 = $dbconn->prepare($query);
                                     $statement2->execute();
@@ -252,14 +252,20 @@ if (isset($_SESSION['id'])) {
                                                 ':amount' => $amt,
                                                 ':customerID' => $tempid
                                             ]);
+                                            $deleteCartQuery = "DELETE FROM cart WHERE cartid = :cid";
+                                            $deleteCartStatement = $dbconn->prepare($deleteCartQuery);
+                                            $deleteCartStatement->execute([
+                                                ':cid' => $cid
+                                            ]);
                                             ?>
+                                            $c = 0;
                                             <p class="Ack">Purchased Successfully</p>
-                                            
+
                                             <?php
                                             // $queryyy = "DELETE FROM `cart` WHERE gameid = $tempid and cartid = $cid";
                                             // $res = $dbconn->query($queryyy);
-                                            
-                                        } else {
+                
+                                        } else {$c = 0;
                                             ?>
                                             <p class="Ack">Purchased</p>
                                             <?php
@@ -415,10 +421,12 @@ if (isset($_SESSION['id'])) {
                                                 ?>
                                                 <p class="Ack">Purchased Successfully</p>
                                             <?php
+
                                             } else {
 
                                                 ?>
                                                 <p class="Ack">Purchased</p>
+
                                             <?php
                                             }
                                         }

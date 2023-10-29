@@ -33,19 +33,28 @@ try {
     die("Error fetching customer details: " . $e->getMessage());
 }
 
-// Add game form validation and insertion
+$gameName = $releaseDate = $genre = '';
+$gameid = '';
+$developerName = '';
+$publisherName = '';
+$price = '';
+$gameSize = '';
+$gameType = '';
+$description = '';
+$mini_description = '';
+$memoryRequired = '';
+$operatingSystem = '';
+$processorRequired = '';
+$storageRequired = '';
 $error = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $gameName = $_POST['gameName'];
     $releaseDate = $_POST['releaseDate'];
     $genre = $_POST['genre'];
-    // Validate form fields
     if (empty($gameName) || empty($releaseDate) || empty($genre)) {
         $error = 'All fields are required.';
     } else {
-        // Insert game into the database
         try {
-            // Get values from the form
             $gameid = $_POST['gameid'];
             $developerName = $_POST['developerName'];
             $publisherName = $_POST['publisherName'];
@@ -59,16 +68,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $processorRequired = $_POST['processorRequired'];
             $storageRequired = $_POST['storageRequired'];
 
-            // Insert game into the database
-            $insertQuery = "INSERT INTO games (gameid,gamename, developer_name, publisher_name, price, genre_name, gamesize, gametype, description,mini_description, memory_required, operating_system, processor_required, storage_required, release_date) 
-            VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
+            $insertQuery = "INSERT INTO games (gameid, gamename, developer_name, publisher_name, price, genre_name, gamesize, gametype, description, mini_description, memory_required, operating_system, processor_required, storage_required, release_date) 
+                VALUES (:gameid, :gamename, :developerName, :publisherName, :price, :genre, :gameSize, :gameType, :description, :mini_description, :memoryRequired, :operatingSystem, :processorRequired, :storageRequired, :releaseDate)";
+
             $stmt = $pdo->prepare($insertQuery);
-            $stmt->execute([$gameid, $gameName, $developerName, $publisherName, $price, $genre, $gameSize, $gameType, $description, $mini_description, $memoryRequired, $operatingSystem, $processorRequired, $storageRequired, $releaseDate]);
+
+            $params = array(
+                ':gameid' => $gameid,
+                ':gamename' => $gameName,
+                ':developerName' => $developerName,
+                ':publisherName' => $publisherName,
+                ':price' => $price,
+                ':genre' => $genre,
+                ':gameSize' => $gameSize,
+                ':gameType' => $gameType,
+                ':description' => $description,
+                ':mini_description' => $mini_description,
+                ':memoryRequired' => $memoryRequired,
+                ':operatingSystem' => $operatingSystem,
+                ':processorRequired' => $processorRequired,
+                ':storageRequired' => $storageRequired,
+                ':releaseDate' => $releaseDate
+            );
+
+            $stmt->execute($params);
 
             // Redirect to the game page or display a success message
             echo "<br><pre>Added</pre>";
         } catch (PDOException $e) {
-            $error = 'Error inserting game: In Query';
+            $error = 'Error inserting game: Try After Some Time ' . $e->getMessage() . $e->getLine();
         }
     }
 }
@@ -82,9 +110,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js"></script>
-
+    <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
+                
     <title>Admin Page</title>
     <style>
+       @import url('https://fonts.cdnfonts.com/css/satoshi');
+
+
         body {
             background: linear-gradient(#404ccc, #03e9f4);
             background-repeat: no-repeat;
@@ -93,17 +125,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         .btn {
-            padding-left: 19px;
-
+            font-family: 'Satoshi', sans-serif;
+            border-radius: 10px;
             font-size: 16px;
-            transition-duration: 0.4s;
-            border: 3px solid black;
+            transition-duration: 0.3s;
+            border: 1px solid black;
         }
 
         .btn:hover {
-            background-color: black;
-            color: white;
-            border: 3px solid White;
+            background-color: rgba(255, 255, 255, 0.5);
+            color: #171717;
+            border: 1px solid #171717;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         }
 
         h2,
@@ -216,6 +249,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: white;
             background-color: slateblue;
         }
+
+        .categorydiv{
+            padding-left:19px;
+            padding-bottom: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: rgb(245, 245, 220 , 0.5);
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+
     </style>
 
     <div id="cardadmin" class="card max-w-xs mb-5 mx-auto text-center">
@@ -224,13 +267,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a class="linkpages block list-group-item py-2 px-4" href="admin2.php">Game Details</a>
             <a class="linkpages block list-group-item py-2 px-4" href="AdGamesAdd.php">Create Game</a>
             <a class="linkpages block list-group-item py-2 px-4" href="adGame.php">Update Game</a>
-            <a class="linkpages block list-group-item py-2 px-4" href="deletegame.php">Delete Game</a>
             <a class="linkpages block list-group-item py-2 px-4" href="category.php">Category</a>
         </div>
     </div>
     <div class="e ">
         <h2 class="text-center">Add Game</h2>
-        <form method="POST" action="">
+        <form method="POST" action="" id="gameForm">
             <div class="priamrykeyupdates text-center">
                 <pre><?php
                 try {
@@ -269,95 +311,113 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="flex-container">
                 <div class="inputs">
                     <label for="gameid">Game ID:</label>
-                    <input type="text" id="gameid" name="gameid" required>
+                    <input type="text" id="gameid" name="gameid" value="<?php echo htmlspecialchars($gameid); ?>"
+                        required>
+
                     <div></div><br>
                     <label for="gameName">Game Name:</label>
-                    <input type="text" id="gameName" name="gameName" required>
+                    <input type="text" id="gameName" name="gameName" value="<?php echo htmlspecialchars($gameName); ?>"
+                        required>
+
                     <div></div><br>
                     <label for="developerName">Developer Name:</label>
-                    <input type="text" id="developerName" name="developerName" required>
+                    <input type="text" id="developerName" name="developerName"
+                        value="<?php echo htmlspecialchars($developerName); ?>" required>
                     <div></div><br>
                     <label for="publisherName">Publisher Name:</label>
-                    <input type="text" id="publisherName" name="publisherName" required>
+                    <input type="text" id="publisherName" name="publisherName"
+                        value="<?php echo htmlspecialchars($publisherName); ?>" required>
                     <div></div><br>
                     <label for="price">Price:</label>
-                    <input type="number" id="price" name="price" required>
-                    <div></div><br>
-                    <div class="flex">
-                        <label class="inline-block" for="genre">Category:</label>
-                        <select class="custom-select inline-block" id="genre" name="genre" required multiple>
-                            <?php
-                            $sql = "SELECT category FROM genre ;";
-                            $stmt = $pdo->prepare($sql);
-                            $stmt->execute();
-
-                            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                $category = $row["category"];
-                                echo "<option value='$category'>$category</option>";
-                            }
-                            ?>
-                        </select>
-
-                        <div id="selectedCategories" class="m-3 inline-block"></div>
-
-                        <script>
-                            document.addEventListener('DOMContentLoaded', function () {
-                                const select = document.getElementById('genre');
-                                const selectedCategoriesDisplay = document.getElementById('selectedCategories');
-
-                                select.addEventListener('change', function () {
-                                    const selectedOptions = select.selectedOptions;
-                                    const selectedCategories = [];
-
-                                    for (let i = 0; i < selectedOptions.length; i++) {
-                                        const category = selectedOptions[i].value;
-                                        selectedCategories.push(category);
-                                    }
-
-                                    if (selectedCategories.length >= 2) {
-                                        selectedCategoriesDisplay.innerHTML = selectedCategories.join(', ');
-                                    } else {
-                                        selectedCategoriesDisplay.innerHTML = ''; // Clear the display
-                                    }
-                                });
-                            });
-                        </script>
-                    </div>
-
+                    <input type="number" id="price" name="price" value="<?php echo htmlspecialchars($price); ?>"
+                        required>
 
                     <div></div><br>
                     <label for="gameSize">Game Size:</label>
-                    <input type="text" id="gameSize" name="gameSize" required>
+                    <input type="text" id="gameSize" name="gameSize" value="<?php echo htmlspecialchars($gameSize); ?>"
+                        required>
+
                     <div></div><br>
                     <label for="gameType">Game Type:</label>
-                    <input type="text" id="gameType" name="gameType" required>
-                    <div></div><br>
+                    <input type="text" id="gameType" name="gameType" value="<?php echo htmlspecialchars($gameType); ?>"
+                        required>
 
-                </div>
-                <div class="inputs">
+                    <div></div><br>
 
                     <label for="description">Description:</label>
-                    <textarea id="description" name="description" required></textarea>
+                    <textarea id="description" name="description"
+                        required><?php echo htmlspecialchars($description); ?></textarea>
+
                     <div></div><br>
                     <label for="mini_description">Mini - Description:</label>
-                    <textarea id="mini_description" name="mini_description" required></textarea>
+                    <textarea id="mini_description" name="mini_description"
+                        required><?php echo htmlspecialchars($mini_description); ?></textarea>
                     <div></div><br>
                     <label for="memoryRequired">Memory Required:</label>
-                    <input type="number" id="memoryRequired" name="memoryRequired" required>
+                    <input type="number" id="memoryRequired" name="memoryRequired"
+                        value="<?php echo htmlspecialchars($memoryRequired); ?>" required>
                     <div></div><br>
                     <label for="operatingSystem">Operating System:</label>
-                    <input type="text" id="operatingSystem" name="operatingSystem" required>
+                    <input type="text" id="operatingSystem" name="operatingSystem"
+                    value="<?php echo htmlspecialchars($operatingSystem); ?>" required>
                     <div></div><br>
                     <label for="processorRequired">Processor Required:</label>
-                    <input type="text" id="processorRequired" name="processorRequired" required>
+                    <input type="text" id="processorRequired" name="processorRequired"
+                    value="<?php echo htmlspecialchars($processorRequired); ?>" required>
                     <div></div><br>
                     <label for="storageRequired">Storage Required:</label>
-                    <input type="text" id="storageRequired" name="storageRequired" required>
+                    <input type="text" id="storageRequired" name="storageRequired"
+                    value="<?php echo htmlspecialchars($storageRequired); ?>" required>
                     <div></div><br>
                     <label for="releaseDate">Release Date:</label>
-                    <input type="date" id="releaseDate" name="releaseDate" required>
+                    <input type="date" id="releaseDate" name="releaseDate"
+                    value="<?php echo htmlspecialchars($releaseDate); ?>" required>
                     <div></div><br>
-                    <button type="submit">Add Game</button>
+                </div>
+                <div class="inputs">
+                    <div class="flex categorydiv">
+                        <label class="inline-block" for="genre">Category:</label>
+                        <?php
+                        $sql = "SELECT category FROM genre;";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute();
+
+                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            $category = $row["category"];
+                            echo "<div class='form-check'>
+                <input class='form-check-input' id='smae2same' type='checkbox' name='selectedCategories[]' value='$category' id='category_$category'>
+                <label class='form-check-label' id='smae2same' for='category_$category'>$category</label>
+              </div>";
+                        }
+                        ?>
+                        <div id="selectedCategoriesDisplay"></div>
+
+                        <input type="text" name="genre" id="genre" required>
+                    </div>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const checkboxes = document.querySelectorAll('input[type=checkbox]');
+                            const selectedCategoriesDisplay = document.getElementById('selectedCategoriesDisplay');
+
+                            checkboxes.forEach(checkbox => {
+                                checkbox.addEventListener('change', function () {
+                                    const selectedCategories = Array.from(checkboxes)
+                                        .filter(cb => cb.checked)
+                                        .map(cb => cb.value);
+
+                                    selectedCategoriesDisplay.textContent = selectedCategories.join(', ');
+                                    genreInput.value = selectedCategories.join(',');
+                                });
+                            });
+                        });
+                    </script>
+
+
+
+
+                    <div></div><br>
+                    <button class="btn" type="submit">Add Game</button>
                 </div>
             </div>
             <?php if (!empty($error)): ?>
