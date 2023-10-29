@@ -137,6 +137,7 @@ ob_start();
                             <li><a class="dropdown-item" href="customer.php">Profile</a></li>
                             <li><a class="dropdown-item" href="registeration.php">Sign Up</a></li>
                             <li><a class="dropdown-item" href="login.php">Log In</a></li>
+                            <li><a class="dropdown-item" href="feed.php">Feedback</a></li>
                             <?php 
                             $fn = $_SESSION['name'];
                             $email = $_SESSION['email'];
