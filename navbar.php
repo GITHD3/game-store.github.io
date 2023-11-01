@@ -135,8 +135,7 @@ ob_start();
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="customer.php">Profile</a></li>
-                            <li><a class="dropdown-item" href="registeration.php">Sign Up</a></li>
-                            <li><a class="dropdown-item" href="login.php">Log In</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="logout()">Log Out</a></li>
                             <li><a class="dropdown-item" href="feed.php">Feedback</a></li>
                             <?php 
                             $fn = $_SESSION['name'];
@@ -165,5 +164,13 @@ ob_start();
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
+<script>
+    function logout() {
+            <?php
+            session_destroy();
+            ?>
+            location.reload(); // Refresh the page after logout
+            location.reload(); // Refresh the page after logout
+        }
+</script>
 </html>

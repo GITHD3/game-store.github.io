@@ -6,30 +6,44 @@ $name = $_SESSION['name'];
 $id = $_SESSION['id'];
 
 if (isset($_POST['submit'])) {
-    $message = $_POST['message'];
-    $question1 = $_POST['question1'];
-    $question2 = $_POST['question2'];
-    $question3 = $_POST['question3'];
-
-    // Create a directory if it doesn't exist
+    // Ensure the 'Feedback' directory exists
     if (!is_dir('Feedback')) {
         mkdir('Feedback', 0755, true);
     }
 
-    // Create a TXT file with proper format
-    $file = fopen("Feedback/$id.$name.txt", "w");
-    fwrite($file, "Id: $id\n");
-    fwrite($file, "Name: $name\n");
-    fwrite($file, "How would you rate your overall experience with ParaCrash Game Store? - $question1\n");
-    fwrite($file, "Did you find the game you were looking for? - $question2\n");
-    fwrite($file, "How would you rate the difficulty level of the games available? - $question3\n");
-    fwrite($file, "Message:\n$message");
-    fclose($file);
+    // Get the list of existing feedback files for the user
+    $existingFiles = glob("Feedback/$id.$name.*.txt");
 
-    // Feedback submitted
-    echo "<script>alert('Feedback submitted successfully!');</script>";
+    // Limit to a maximum of 3 feedback submissions
+    if (count($existingFiles) >= 3) {
+        echo "<script>alert('You have already submitted 3 feedbacks. You cannot submit more.');</script>";
+    } else {
+        // Calculate the next serial number for the feedback
+        $nextSerial = count($existingFiles) + 1;
+
+        $feedbackFile = "Feedback/$id.$name.$nextSerial.txt";
+
+        // Create a TXT file with the proper format
+        $file = fopen($feedbackFile, "w");
+        if ($file) {
+            fwrite($file, "Id: $id\n");
+            fwrite($file, "Name: $name\n");
+            fwrite($file, "How would you rate your overall experience with ParaCrash Game Store? - {$_POST['question1']}\n");
+            fwrite($file, "Did you find the game you were looking for? - {$_POST['question2']}\n");
+            fwrite($file, "How would you rate the difficulty level of the games available? - {$_POST['question3']}\n");
+            fwrite($file, "Message:\n{$_POST['message']}");
+            fclose($file);
+            echo "<script>alert('Feedback submitted successfully!');</script>";
+        } else {
+            echo "Error: Unable to open file. Check directory permissions.";
+        }
+    }
 }
 ?>
+
+<!-- Your HTML form remains unchanged -->
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,11 +57,12 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
     <style>
         body {
-            background-image: url('img 2/gameicon.webp');
+            background-image: linear-gradient(slateblue, #bebef1);
+
             background-repeat: no-repeat !important;
             background-attachment: fixed !important;
             background-size: cover;
-            color: black;
+            color: beige;
 
         }
 
@@ -92,20 +107,27 @@ if (isset($_POST['submit'])) {
         }
 
         select,
-        option,
         textarea {
             color: beige !important;
             border: 3px solid slateblue;
             transition: 0.2s;
             background-color: #171717;
         }
-
+        .opt{
+            
+            padding: 10px;
+            color: #EFDECD !important;
+            border: 3px solid slateblue;
+            border-radius: 10px;
+            transition: 0.2s;
+            background-color: #302f2f !important ;
+        }
         .mainformdiv {
-            background-color: rgb(255, 255, 255, 0.55);
+            background-color: rgb(23, 23, 23, 0.79);
             box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
             border-radius: 16px;
             border: none;
-            backdrop-filter: blur(5px); 
+            backdrop-filter: blur(6px);
         }
     </style>
 </head>
@@ -113,9 +135,9 @@ if (isset($_POST['submit'])) {
 <body>
     <div class="container mainformdiv2">
         <div class="container mainformdiv mt-10">
-            <h1 class="text-3xl font-bold mb-4" style="font-family: 'Press Start 2P'; font-size: 22px; color: #171717">
+            <h1 class="text-3xl font-bold mb-4" style="font-family: 'Press Start 2P'; font-size: 22px; color: #beb6ff">
                 Feedback | ParaCrash Game Store</h1>
-            <form action="thank.php" method="post">
+            <form method="post" action="thank.php">
                 <div class="np mb-6">
                     <h5 class="nameplate pb-2 pr-2 pt-2">
                         <?php echo $name; ?>
@@ -123,24 +145,24 @@ if (isset($_POST['submit'])) {
                 </div>
                 <label for="question1">How would you rate your overall experience with ParaCrash Game Store?</label>
                 <select name="question1" id="question1" class="w-full p-2   rounded mb-4">
-                    <option value="">Select an option</option>
-                    <option value="Excellent">Excellent</option>
-                    <option value="Good">Good</option>
-                    <option value="Fair">Fair</option>
-                    <option value="Poor">Poor</option>
+                    <option class="opt" value="">Select an option</option>
+                    <option class="opt" value="Excellent">Excellent</option>
+                    <option class="opt" value="Good">Good</option>
+                    <option class="opt" value="Fair">Fair</option>
+                    <option class="opt" value="Poor">Poor</option>
                 </select>
                 <label for="question2">Did you find the game you were looking for?</label>
                 <select name="question2" id="question2" class="w-full p-2   rounded mb-4">
-                    <option value="">Select an option</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
+                    <option option="opt" value="">Select an option</option>
+                    <option option="opt" value="Yes">Yes</option>
+                    <option option="opt" value="No">No</option>
                 </select>
                 <label for="question3">How would you rate the difficulty level of the games available?</label>
                 <select name="question3" id="question3" class="w-full p-2   rounded mb-4">
-                    <option value="">Select an option</option>
-                    <option value="Easy">Easy</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Difficult">Difficult</option>
+                    <option class="opt" value="">Select an option</option>
+                    <option class="opt" value="Easy">Easy</option>
+                    <option class="opt" value="Medium">Medium</option>
+                    <option class="opt" value="Difficult">Difficult</option>
                 </select>
                 <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
                 <button type="submit" name="submit" class="btn">Submit Feedback</button>

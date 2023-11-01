@@ -6,12 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css">
   <style>
+    .video-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .video-container video {
+      object-fit: fill;
+      width: 103%;
+      height: 100%;
+    }
+
     .logo-container {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background-color: #0096F4;
       animation: backgroundAnimation 2s ease-in-out forwards;
     }
 
@@ -32,29 +47,35 @@
     }
 
     @keyframes borderAnimation {
-    0%, 100% {
-      box-shadow: 80%; 
-      border-radius: 100%;
+      0%,
+      100% {
+        box-shadow: 80%;
+        border-radius: 100%;
+      }
+
+      50% {
+        border-radius: 100%;
+        box-shadow: 0 0 10px 5px #0096F4, 0 0 80px 60px #0096F4;
+        background-color: #0096F4;
+      }
     }
-    50% {
-      border-radius: 100%;
-      box-shadow: 0 0 10px 5px #0096F4, 0 0 80px 60px #0096F4;
-      background-color: #0096F4;
-    }
-  }
   </style>
 </head>
 
 <body>
-  <div class="logo-container">
-    <img class="logo-img" src="img/ww.png" alt="Logo">
+  <div class="video-container">
+    <video autoplay muted loop>
+      <source src="gif/VideoTitle.mp4" type="video/mp4">
+      Welcome to ParaCrash Game-Store
+    </video>
   </div>
+
+ 
 
   <script>
     setTimeout(function () {
       window.location.href = "main1.php";
-    }, 2000);
-
+    }, 5500);
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
