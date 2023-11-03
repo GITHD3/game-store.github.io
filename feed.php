@@ -113,15 +113,17 @@ if (isset($_POST['submit'])) {
             transition: 0.2s;
             background-color: #171717;
         }
-        .opt{
-            
+
+        .opt {
+
             padding: 10px;
             color: #EFDECD !important;
             border: 3px solid slateblue;
             border-radius: 10px;
             transition: 0.2s;
-            background-color: #302f2f !important ;
+            background-color: #302f2f !important;
         }
+
         .mainformdiv {
             background-color: rgb(23, 23, 23, 0.79);
             box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
@@ -134,6 +136,15 @@ if (isset($_POST['submit'])) {
 
 <body>
     <div class="container mainformdiv2">
+    <div class="container mainformdiv" style="margin-bottom:18px;">
+    <p style="font-family: 'Press Start 2P'; color: #beb6ff">
+        MAIL | <a href="mailto:dedakiya000@gmail.com" style="color: #beb6ff; text-decoration: none;">dedakiya000@gmail.com</a>
+    </p>
+    <p style="font-family: 'Press Start 2P'; color: #beb6ff">
+        PHONE | <a href="tel:2003940580" style="color: #beb6ff; text-decoration: none;">2003940580</a>
+    </p>
+</div>
+
         <div class="container mainformdiv mt-10">
             <h1 class="text-3xl font-bold mb-4" style="font-family: 'Press Start 2P'; font-size: 22px; color: #beb6ff">
                 Feedback | ParaCrash Game Store</h1>

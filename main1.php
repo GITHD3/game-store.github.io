@@ -589,7 +589,7 @@ if (isset($_SESSION['dob'])) {
     }
 
     .Flipcards .i .c {
-        background: #fff;
+        background-color: rgba(245, 245, 220, 0.9);
         -webkit-box-shadow: 0 4px 0 #2b86ac;
         -moz-box-shadow: 0 4px 0 #2b86ac;
         box-shadow: 0 4px 0 #2b86ac;
@@ -609,16 +609,22 @@ if (isset($_SESSION['dob'])) {
     }
 
     @keyframes slideFromBottom {
-        0% {
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        100% {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    0% {
+        opacity: 0;
+        transform: translateY(100px);
     }
+
+    50% {
+        opacity: 0.5;
+        transform: translateY(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
     .Flipcards .i .c .wrap img {
         width: 100%;
@@ -805,9 +811,7 @@ if (isset($_SESSION['dob'])) {
         padding-bottom: 20px;
     }
 
-    .A {
-        width: 50%;
-    }
+    
 
     body {
         font-family: sans-serif;
@@ -819,7 +823,16 @@ if (isset($_SESSION['dob'])) {
         height: 100% !important;
     }
 
+    @media (min-width: 768px) {
+        .A {
+            width: 488px;
+    padding: 0px;
+        }
+    }
     @media (max-width: 768px) {
+        .A {
+    width: 50%
+}
         .main {
             flex-direction: column;
             justify-content: center;
@@ -831,11 +844,10 @@ if (isset($_SESSION['dob'])) {
             text-align: center;
             width: 300px;
             height: 450px;
-            align-self: center;
+            align-items: center;
         }
 
         .A {
-            width: 100%;
             text-align: center;
         }
 
@@ -866,9 +878,7 @@ if (isset($_SESSION['dob'])) {
         }
     }
 
-    .A {
-        padding: 0px inherit;
-    }
+    
 
     .heading {
         font-family: 'Press Start 2P';
