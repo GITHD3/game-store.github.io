@@ -1,8 +1,9 @@
 <?php
 session_start();
-if(isset($_SESSION['name'])){
-$customername = $_SESSION['name'];
-$custid = $_SESSION['id'];}
+if (isset($_SESSION['name'])) {
+    $customername = $_SESSION['name'];
+    $custid = $_SESSION['id'];
+}
 include 'navbar.php';
 $dsn = "mysql:host=localhost;dbname=game4";
 $username = "root";
@@ -17,7 +18,7 @@ if (isset($_SESSION['dob'])) {
     $currentDateObj = new DateTime($currentDate);
     $age = $currentDateObj->diff($dobObj)->y;
 } else {
-    $age = 18; 
+    $age = 18;
 }
 ?>
 
@@ -92,23 +93,23 @@ if (isset($_SESSION['dob'])) {
                                             ';
                                         } else {
                                             ?>
-                                                <form class="formbutton3" method="POST">
-                                                    <input type="hidden" name="gameid" value="Fortnite">
-                                                    <button type="submit" class="btn"
-                                                        name="add_to_cart_Fortnite">Add to Cart</button>
-                                                </form>
-                                                <?php
-                                                if (isset($_POST['add_to_cart_Fortnite'])) { 
-                                                    if (isset($_SESSION['id'])) {
-                                                        $cartid = $_SESSION['id'];
-                                                        $fortniteid = 'NUNA105'; // Assuming this is the valid game ID
-                                                
-                                                        $addquery = "INSERT INTO `cart`(`cartid`, `gameid`) VALUES ($cartid, '$fortniteid')";
-                                                
-                                                        try {
-                                                            $stmt = $dbconn->query($addquery);
-                                                        } catch (PDOException $e) {
-                                                        }
+                                            <form class="formbutton3" method="POST">
+                                                <input type="hidden" name="gameid" value="Fortnite">
+                                                <button type="submit" class="btn" name="add_to_cart_Fortnite">Add to
+                                                    Cart</button>
+                                            </form>
+                                            <?php
+                                            if (isset($_POST['add_to_cart_Fortnite'])) {
+                                                if (isset($_SESSION['id'])) {
+                                                    $cartid = $_SESSION['id'];
+                                                    $fortniteid = 'NUNA105'; // Assuming this is the valid game ID
+                                        
+                                                    $addquery = "INSERT INTO `cart`(`cartid`, `gameid`) VALUES ($cartid, '$fortniteid')";
+
+                                                    try {
+                                                        $stmt = $dbconn->query($addquery);
+                                                    } catch (PDOException $e) {
+                                                    }
                                                 } else {
                                                     ?>
                                                     <script>
@@ -157,7 +158,7 @@ if (isset($_SESSION['dob'])) {
                     <div class="row pl-3 pr-3 rowcards">
 
                         <?php
-                        
+
                         if ($age >= 18) {
                             $query2 = "SELECT gameid, gamename, mini_description, price FROM games ORDER BY release_date DESC LIMIT 3";
                         } else {
@@ -209,11 +210,11 @@ if (isset($_SESSION['dob'])) {
                                             if ($stmt_check_game_cart->rowCount() > 0) {
                                                 ?>
                                                 <form class="formbutton3" method="POST" action="cart.php">
-                                                <input type="hidden" name="gameid" value="<?php echo $gameidtemp; ?>">
-                                    <button type="submit" class="btn" name="go_to_cart">Go to Cart</button>
-                                    </form>
-                                    <?php
-                                            } else  { 
+                                                    <input type="hidden" name="gameid" value="<?php echo $gameidtemp; ?>">
+                                                    <button type="submit" class="btn" name="go_to_cart">Go to Cart</button>
+                                                </form>
+                                                <?php
+                                            } else {
                                                 ?>
                                                 <form class="formbutton3" method="POST">
                                                     <input type="hidden" name="gameid" value="<?php echo $gameidtemp2; ?>">
@@ -228,7 +229,7 @@ if (isset($_SESSION['dob'])) {
                                                         $stmt = $dbconn->prepare($addquery);
                                                         $stmt->bindParam(':cartid', $cartid);
                                                         $stmt->bindParam(':gameid', $gameidtemp2); // Use the correct variable here
-
+                                        
                                                         try {
                                                             $stmt->execute();
                                                         } catch (PDOException $e) {
@@ -270,7 +271,7 @@ if (isset($_SESSION['dob'])) {
                     <div class="row pl-3 pr-3 rowcards">
 
                         <?php
-                         if ($age >= 18) {
+                        if ($age >= 18) {
                             $query2 = "SELECT gameid, gamename, mini_description, price FROM games ORDER BY release_date DESC LIMIT 3 OFFSET 3";
                         } else {
                             $query2 = "SELECT gameid, gamename, mini_description, price FROM games WHERE gameid LIKE '%NA%' ORDER BY release_date DESC LIMIT 3 OFFSET 3";
@@ -340,7 +341,7 @@ if (isset($_SESSION['dob'])) {
                                                         $stmt = $dbconn->prepare($addquery);
                                                         $stmt->bindParam(':cartid', $cartid);
                                                         $stmt->bindParam(':gameid', $gameidtemp2); // Use the correct variable here
-
+                                        
                                                         try {
                                                             $stmt->execute();
                                                         } catch (PDOException $e) {
@@ -397,7 +398,7 @@ if (isset($_SESSION['dob'])) {
                         $actionQuery = "SELECT * FROM games WHERE genre_name LIKE '%Action%' AND gameid  LIKE '%NA%' LIMIT 4";
                         $racingQuery = "SELECT * FROM games WHERE genre_name LIKE '%Racing%' AND gameid  LIKE '%NA%' LIMIT 4";
                     }
-                    
+
                     $result = $dbconn->query($actionQuery);
 
                     // Loop through the results and generate the HTML
@@ -437,7 +438,7 @@ if (isset($_SESSION['dob'])) {
             <div class="row p-1 g-4">
                 <?php
                 try {
-                    
+
 
                     $result = $dbconn->query($racingQuery);
 
@@ -537,7 +538,7 @@ if (isset($_SESSION['dob'])) {
     .rowcards {
         display: flex;
         justify-content: space-between;
-  animation: slideFromBottom 1s ease-in-out;
+        animation: slideFromBottom 1s ease-in-out;
     }
 
     .img-responsive {
@@ -758,8 +759,7 @@ if (isset($_SESSION['dob'])) {
 
     .bcard {
         font-family: 'Nohemi', sans-serif;
-        background: linear-gradient(135deg, #9D7ABD, #E1A2B7, #F4E3EE);
-        background-color: rgba(255, 255, 255, 0.15) !important;
+        background-color:rgb(79, 128, 226) ;
         backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 16px;
@@ -777,6 +777,7 @@ if (isset($_SESSION['dob'])) {
     }
 
     .card-body {
+        font-weight: 700;
         max-height: 500px !important;
     }
 
@@ -810,7 +811,8 @@ if (isset($_SESSION['dob'])) {
 
     body {
         font-family: sans-serif;
-        background: linear-gradient(180deg, rgba(106, 90, 205, 0.8), rgba(64, 76, 204, 0.8)) !important;
+        background:linear-gradient(#3E54D3,rgb(79, 128, 226)) !important  ;
+
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: cover;

@@ -8,8 +8,7 @@
     body {
       margin: 0;
       padding: 0;
-      background-color: #0e4377 !important;
-      background-image: none !important;
+      background: linear-gradient(160deg, rgb(21, 205, 202), #4FE0B6) !important;
       background-repeat: no-repeat;
       background-size: auto !important;
       height: 100% !important;

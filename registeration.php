@@ -10,6 +10,7 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Satoshi' rel='stylesheet'>
 
 </head>
 
@@ -96,12 +97,6 @@
     width: 123%;
     }
 
-    body {
-        background: linear-gradient(#404ccc, #03e9f4);
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        height: 100%;
-    }
 
     #btn1 {
         position: absolute;
@@ -155,17 +150,16 @@
 
     }
 
-    /*add css Code*/
-
-
-
     body {
-        font-family: sans-serif;
-        background: linear-gradient(#404ccc, #03e9f4);
+        background: linear-gradient(#3E54D3 , #15CDCA ) !important;
         position: relative;
         z-index: 1;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        font-family: 'Satoshi' , sans-serif;
+        height: 100%;
 
-        padding: 5px 7px !important;
     }
 
 

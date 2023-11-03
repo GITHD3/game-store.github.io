@@ -14,7 +14,6 @@
 
         body {
             overflow-y: smooth;
-            padding: 5px 7px !important;
         }
 
         /* Hide scrollbar */
@@ -50,7 +49,7 @@
             }
 
             body {
-                background: linear-gradient(120deg, slateblue , #1F456E);
+                background: linear-gradient(120deg, slateblue , rgb(21, 205, 202););
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 background-size: cover;

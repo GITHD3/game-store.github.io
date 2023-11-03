@@ -4,6 +4,7 @@
 <head>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Satoshi' rel='stylesheet'>
 
   <?php
   session_start();
@@ -155,10 +156,11 @@ $password = $hashed_password;
 
 
   body {
-    background: linear-gradient(#404ccc, #03e9f4);
+    background: linear-gradient(#3E54D3 , #15CDCA ) !important;
     background-repeat: no-repeat;
     background-attachment: fixed;
     height: 100%;
+        font-family: 'Satoshi' , sans-serif;
     padding: 0px !important;
   }
 

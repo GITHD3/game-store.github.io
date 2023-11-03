@@ -11,14 +11,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         body {
-            background: linear-gradient(#3f4797, #404ccc) !important;
+            background: linear-gradient(#3f4797, rgb(21, 205, 202)) !important;
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
             margin: 0;
             padding: 0;
             height: max-content !important;
-            padding: 5px 7px !important;
+            
         }
 
         .Maincontent {
