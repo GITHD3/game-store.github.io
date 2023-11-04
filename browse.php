@@ -369,7 +369,7 @@ $dsn = "mysql:host=localhost;dbname=game4";
                                                 <div class="flip-card-inner">
                                                     <div class="flip-card-front">
                                                         <div class="card-content">
-                                                            <img id="img1" src="img/<?php echo $row['gamename']; ?>.webp">
+                                                        <img id="img1" src="img/<?php echo htmlspecialchars($row['gamename'], ENT_QUOTES); ?>.webp">
                                                         </div>
                                                     </div>
                                                     <div class="flip-card-back">
