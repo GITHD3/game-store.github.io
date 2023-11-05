@@ -139,6 +139,7 @@ if (isset($_POST['show_game'])) {
             <a class="linkpages block list-group-item py-2 px-4" href="admin1.php">Customer Details</a>
             <a class="linkpages block list-group-item py-2 px-4" href="admin2.php">Game Details</a>
             <a class="linkpages block list-group-item py-2 px-4" href="AdGamesAdd.php">Create Game</a>
+            <a class="linkpages block list-group-item py-2 px-4" href="deactivate.php">Deactivate Game</a>
             <a class="linkpages block list-group-item py-2 px-4" href="adGame.php">Update Game</a>
             <a class="linkpages block list-group-item py-2 px-4" href="category.php">Category</a>
         </div>

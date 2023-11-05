@@ -42,7 +42,7 @@ $total = 0;
                 if (result.isConfirmed) {
                     window.location.href = 'login.php';
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    window.location.href = 'registration.php';
+                    window.location.href = 'registeration.php';
                 }
             });
 

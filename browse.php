@@ -325,9 +325,9 @@ $dsn = "mysql:host=localhost;dbname=game4";
 
                                 if ($searchString == "All") {
                                     if ($temp == true or $age >= 18) {
-                                        $sql = "SELECT * FROM `games` ORDER BY release_date DESC";
+                                        $sql = "SELECT * FROM `games` AND deactivate = 0 ORDER BY release_date DESC ";
                                     } else {
-                                        $sql = "SELECT * FROM `games` WHERE gameid LIKE '%NA%' ORDER BY release_date DESC";
+                                        $sql = "SELECT * FROM `games` WHERE gameid LIKE '%NA%'   AND deactivate = 0 ORDER BY release_date DESC";
                                     }
                                     $stmt = $db->prepare($sql);
                                     $stmt->execute();
@@ -335,18 +335,18 @@ $dsn = "mysql:host=localhost;dbname=game4";
                                 
                                 } else {
                                     if ($temp == true or $age >= 18) {
-                                        $sql = "SELECT * FROM `games` WHERE 
+                                        $sql = "SELECT * FROM `games` WHERE deactivate = 0 AND
                                                 (gamename LIKE CONCAT('%', :searchString, '%') OR 
                                                 publisher_name LIKE CONCAT('%', :searchString, '%') OR 
                                                 developer_name LIKE CONCAT('%', :searchString, '%') OR 
                                                 genre_name LIKE CONCAT('%', :searchString, '%'))";
                                     } else {
-                                        $sql = "SELECT * FROM `games` WHERE 
+                                        $sql = "SELECT * FROM `games` WHERE deactivate = 0 ANDa
                                                 (gamename LIKE CONCAT('%', :searchString, '%') OR 
                                                 publisher_name LIKE CONCAT('%', :searchString, '%') OR 
                                                 developer_name LIKE CONCAT('%', :searchString, '%') OR 
                                                 genre_name LIKE CONCAT('%', :searchString, '%'))
-                                                AND gameid LIKE '%NA%'";
+                                                AND gameid LIKE '%NA%' AND deactivate = 0";
                                     }
                                     $stmt = $db->prepare($sql);
                                     $stmt->bindValue(':searchString', '%' . $searchString . '%');

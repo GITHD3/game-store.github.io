@@ -1,0 +1,413 @@
+.imgsmallcard {
+    border-radius: 7px;
+}
+
+.formbutton2 {
+    margin-top: auto;
+    padding: 0;
+    padding-bottom: 3px;
+}
+
+.bodysmallcard {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0;
+    border-radius: 12px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+
+.smallcards {
+    background-color: transparent;
+    outline: 2px solid beige;
+    border-radius: 3px;
+    color: whitesmoke;
+    border: none;
+    overflow: hidden;
+    height: 320px;
+
+    transition: all 0.3s ease-in-out;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.smallcards {
+    transition: all 0.3s ease;
+}
+
+.smallcards:hover {
+    transition: all 0.4s ease;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    background-color: rgba(255, 255, 255, 0.28);
+}
+
+.smallcards:hover .imgsmallcard {
+    transform: scale(1.06);
+    transition: transform 0.3s ease;
+    transform-origin: center center;
+    backface-visibility: hidden;
+    z-index: 1000;
+    position: relative;
+
+}
+
+.hrtag2 {
+    margin: 30px auto;
+    max-width: 300px;
+    border-top: 2px solid #333;
+}
+
+.rowcards {
+    display: flex;
+    justify-content: space-between;
+    animation: slideFromBottom 1s ease-in-out;
+}
+
+.img-responsive {
+    max-width: 90%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.Flipcards {
+    padding-bottom: 25px;
+    background-color: rgba(173, 216, 230, 0.28);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    height: 100%;
+}
+
+.Flipcards h2 {
+    color: #fff;
+    margin: 0 0 30px 0;
+}
+
+.position {
+    font-size: 10px;
+}
+
+@media (max-width:500px) {
+    .i {
+        height: 400px;
+        width: 230px;
+        align-self: center;
+        padding: 0;
+    }
+
+    .more {
+        font-size: 12px;
+        padding: 2px;
+
+    }
+
+    .rowcards {
+        justify-content: center;
+    }
+}
+
+.i {
+    max-width: 270px;
+    height: 400px;
+}
+
+.Flipcards .i .c {
+    background-color: rgba(245, 245, 220, 0.9);
+    -webkit-box-shadow: 0 4px 0 #2b86ac;
+    -moz-box-shadow: 0 4px 0 #2b86ac;
+    box-shadow: 0 4px 0 #2b86ac;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 110px;
+}
+
+.Flipcards .i .c .wrap {
+    position: relative;
+}
+
+@keyframes slideFromBottom {
+0% {
+    opacity: 0;
+    transform: translateY(100px);
+}
+
+50% {
+    opacity: 0.5;
+    transform: translateY(50px);
+}
+
+100% {
+    opacity: 1;
+    transform: translateY(0);
+}
+}
+
+
+.Flipcards .i .c .wrap img {
+    width: 100%;
+    height: 250px;
+    /* Set your desired fixed height for the images */
+    object-fit: cover;
+    /* Ensures the image covers the entire container */
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.Flipcards .i .c .wrap .info {
+    padding: 10px 0;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+
+}
+
+.Flipcards .i .c .wrap .info .name {
+    margin: 0;
+    font-size: 20px;
+    padding: 1px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+}
+
+.more {
+    padding-top: 2px;
+    font-size: 14px;
+    color: dodgerblue;
+    font-weight: bold;
+    font-family: 'Satoshi', sans-serif !important;
+}
+
+.Flipcards .i .c .wrap .info .position {
+    margin: 0;
+    font-size: 15px;
+    color: #555659;
+}
+
+.Flipcards .i .c .more {
+    position: absolute;
+    bottom: -100%;
+    width: 100%;
+
+}
+
+.Flipcards .i .c .more p {
+    margin: 0 18px 30px 18px;
+    line-height: 22px;
+
+}
+
+.Flipcards .i .c:hover img {
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    -webkit-opacity: 0;
+    opacity: 0;
+}
+
+.i:hover .c {
+    transition: 0.3s;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 19px 38px, rgba(0, 0, 0, 0.33) 0px 15px 12px;
+
+}
+
+.Flipcards .i .c:hover .info {
+    top: 0;
+}
+
+.Flipcards .i .c:hover .more {
+    bottom: 0;
+}
+
+.container {
+    max-width: 85%;
+}
+
+.hrtag {
+    padding: 0 15px;
+    size: 3px;
+    border-radius: 10px;
+}
+
+.cardpotratit {
+    max-width: 400px;
+    border-radius: 16px;
+    padding: 4px;
+}
+
+.text-muted {
+
+    font-family: 'Satoshi', sans-serif;
+}
+
+.card-text {
+    font-size: 17px;
+    padding: 1px 2px;
+    font-family: 'Nohemi', sans-serif;
+}
+
+.formbutton {
+    text-decoration: none;
+    text-align: left;
+}
+
+.formbutton3div {
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.btn {
+    text-align: center;
+    background-color: black;
+    color: beige;
+    outline: 2px solid black;
+    border-radius: 4px;
+    transition: 0.5s;
+}
+
+.btn:hover {
+    background-color: #33363D;
+    border-radius: 7px;
+    color: blanchedalmond;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.cardtitle2 {
+    background-image: linear-gradient(to left, darkblue, Purple);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.bcard {
+    font-family: 'Nohemi', sans-serif;
+    background-color:rgb(79, 128, 226) ;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow:
+        0px 15.3px 74.2px rgba(0, 0, 0, 0.075),
+        0px 20.7px 73.3px rgba(0, 0, 0, 0.099),
+        0px 25.2px 65.6px rgba(0, 0, 0, 0.124),
+        0px 43px 80px rgba(0, 0, 0, 0.21);
+    padding: 8px;
+    max-width: 400px;
+}
+
+.container2 {
+    padding: 0px 40px
+}
+
+.card-body {
+    font-weight: 700;
+    max-height: 500px !important;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.main {
+    display: flex;
+    background-color: none;
+    justify-content: center;
+    padding-top: 20px;
+    gap: 10px;
+    max-width: 98%;
+    align-items: center;
+}
+
+.B {
+    width: 50%;
+    padding-right: 8px;
+    padding-left: 8px;
+    padding-bottom: 20px;
+}
+
+
+
+body {
+    font-family: sans-serif;
+    background:linear-gradient(#3E54D3,rgb(79, 128, 226)) !important  ;
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100% !important;
+}
+
+@media (min-width: 768px) {
+    .A {
+        width: 488px;
+padding: 0px;
+    }
+}
+@media (max-width: 768px) {
+    .A {
+width: 50%
+}
+    .main {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .bcard {
+        text-align: center;
+        width: 300px;
+        height: 450px;
+        align-items: center;
+    }
+
+    .A {
+        text-align: center;
+    }
+
+    .formbutton {
+        text-align: center;
+    }
+}
+
+.name,
+.card-title {
+    font-family: 'Nohemi', sans-serif !important;
+}
+
+@keyframes glowing {
+    0% {
+        color: #343434;
+        text-shadow: none;
+    }
+
+    50% {
+        color: beige;
+        text-shadow: 0 0 8px beige, 0 0 8px beige;
+    }
+
+    100% {
+        color: #343434;
+        text-shadow: none;
+    }
+}
+
+
+
+.heading {
+    font-family: 'Press Start 2P';
+    font-size: 22px;
+    animation: glowing 3s infinite;
+
+}

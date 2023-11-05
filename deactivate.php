@@ -13,7 +13,6 @@
         background-repeat: no-repeat;
         background-attachment: fixed;
         height: 100%;
-        overflow: hidden;
     }
 
 
@@ -61,6 +60,13 @@
         color: white;
         background-color: slateblue;
     }
+    footer {
+    position: fixed !important;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
 </style>
 
 <div id="cardadmin" class="card max-w-xs mb-5 mx-auto text-center">
@@ -69,7 +75,7 @@
         <a class="linkpages block list-group-item py-2 px-4" href="admin2.php">Game Details</a>
         <a class="linkpages block list-group-item py-2 px-4" href="AdGamesAdd.php">Create Game</a>
         <a class="linkpages block list-group-item py-2 px-4" href="adGame.php">Update Game</a>
-        <a class="linkpages block list-group-item py-2 px-4" href="deletegame.php">Delete Game</a>
+        <a class="linkpages block list-group-item py-2 px-4" href="deactivate.php">Deactivate Game</a>
         <a class="linkpages block list-group-item py-2 px-4" href="category.php">Category</a>
     </div>
 </div>
@@ -92,37 +98,40 @@
         $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
 
-        <form method="post" action="" style="padding-left: 17px; padding-top:10px; width:fit-content;">
-            <div class="mb-3">
-                <select name="GAMENAME" id="GAMENAME" class="form-select" required>
-                    <option value="">Select a game to Delete </option>
-                    <?php foreach ($games as $g): ?>
-                        <option value="<?= $g['gamename'] ?>">
-                            <?= $g['gamename'] ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-                <button type="submit" name="selectgame" id="select" class="btn btn-primary">Select</button>
-            </div>
-        </form>
+<form method="post" action="" style="padding-left: 17px; padding-top:10px; width:fit-content;">
+    <div class="mb-3">
+        <select name="GAMENAME" id="GAMENAME" class="form-select" required>
+            <option value="">Select a game to Delete </option>
+            <?php foreach ($games as $g): ?>
+                <option value="<?= $g['gamename'] ?>">
+                    <?= $g['gamename'] ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+        <button type="submit" name="selectgame" id="select" class="btn btn-primary">Select</button>
+    </div>
+</form>
 
-        <?php if (isset($_POST['selectgame'])) {
-            $sg = $_POST['GAMENAME'];
-            $q2 = 'DELETE FROM `games` WHERE gamename = ?';
-            $stmt2 = $pdo->prepare($q2);
-            $stmt2->execute([$sg]);
-            if ($stmt2->rowCount() > 0) {
-                ?>
-                <h2 style="padding-left: 16px;">Deleted:
-                    <?= $sg ?>
-                </h2>
-            <?php } else {
-                echo "<br><pre>Not Deleted";
-            }
-        }
+<?php
+if (isset($_POST['selectgame'])) {
+    $sg = $_POST['GAMENAME'];
+    $q1 = 'UPDATE `games` SET deactivate = 1 WHERE gamename = ?';
+    $stmt1 = $pdo->prepare($q1);
+    $stmt1->execute([$sg]);
+
+    if ($stmt1->rowCount() > 0) {
+        ?>
+        <h2 style="padding-left: 16px;">Not Deactivated :
+            <?= $sg ?>
+        </h2>
+    <?php } else {
+        echo "<br>Deactivated";
     }
-    ?>
-</body>
+}}
+?>
 
+</body>
 </html>
-<?php include 'footer.php'; ?>
+<footer>
+    <?php include 'footer.php'; ?>
+</footer>

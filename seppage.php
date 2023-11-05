@@ -20,7 +20,7 @@ $database = "game4";
 $conn = new PDO("mysql:host=$host;dbname=$database", $username, $db_password);
 
 $stmt = $conn->prepare("SELECT `gameid`, `gamename`, `developer_name`, `publisher_name`, `genre_name`, `price`, `gamesize`, `gametype`, `description`, 
-    `memory_required`, `operating_system`, `processor_required`, `storage_required`, `release_date` FROM `games` WHERE gamename = :tmp ");
+    `memory_required`, `operating_system`, `processor_required`, `storage_required`, `release_date` FROM `games` WHERE gamename = :tmp AND deactivate = 0 ");
 $stmt->bindParam(":tmp", $gameName);
 $stmt->execute();
 
@@ -198,7 +198,7 @@ if ($games) {
                 </div>
                 <div class="card2 p-0 pt-2 m-0 inline-block">
                     <?php
-                    $check_game_cart = "SELECT * FROM `cart` WHERE gameid = :gameid";
+                    $check_game_cart = "SELECT * FROM `cart` WHERE gameid = :gameid ";
                     $stmt_check_game_cart = $conn->prepare($check_game_cart);
                     $stmt_check_game_cart->bindParam(':gameid', $gameidtemp);
                     $stmt_check_game_cart->execute();
