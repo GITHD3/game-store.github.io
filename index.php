@@ -59,23 +59,37 @@
         background-color: #0096F4;
       }
     }
+
+    .video-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.video-container video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
   </style>
 </head>
 
 <body>
-  <div class="video-container">
-    <video autoplay muted loop>
-      <source src="gif/VideoTitle.mp4" type="video/mp4">
-      Welcome to ParaCrash Game-Store
-    </video>
-  </div>
+<div class="video-container">
+  <video autoplay muted loop style="width: 100%; height: 100%;">
+    <source src="gif/intro.mp4" type="video/mp4">
+    Welcome to ParaCrash Game Store
+  </video>
+</div>
+
 
  
 
   <script>
     setTimeout(function () {
       window.location.href = "main1.php";
-    }, 5500);
+    }, 3000);
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>

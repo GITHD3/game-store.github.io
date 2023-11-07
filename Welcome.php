@@ -7,7 +7,7 @@ if (isset($_POST['submit'])) {
     $dob = $_POST['dob'];
     $email = $_POST['email'];
     $tmp = $_POST['pass'];
-    $hashed_password = md5($tmp);
+    $hashed_password = password_hash($tmp, PASSWORD_DEFAULT);
     $pw = $hashed_password;
     $contact = $_POST['no'];
 
@@ -17,34 +17,26 @@ if (isset($_POST['submit'])) {
     $database = "game4";
 
     $conn = new PDO("mysql:host=$host;dbname=$database", $username, $pass);
-    // Check connection
+
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    // Check if the email address already exists in the database
     $stmt = $conn->prepare("SELECT * FROM customer WHERE emailaddress = :email");
     $stmt->bindParam(':email', $email);
     $stmt->execute();
     $existingUser = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($existingUser) {
-        ?>
-        <script>
-            setTimeout(function () {
-                window.location.href = "registeration.php";
-            }, 3000);
-        </script>
-        <?php
+        header("Location: registeration.php");
+        exit;
     } else {
-        // Retrieve the last primary key value
         $stmt = $conn->prepare("SELECT MAX(customerid) AS maxid FROM customer");
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $lastId = $result['maxid'];
         $newId = $lastId + 1;
 
-        // Insert the new record into the database
         $stmt = $conn->prepare("INSERT INTO customer (firstname, lastname, customerid, dob, emailaddress, password, contactno) 
         VALUES (:firstname, :lastname, :cid , :dob, :emailaddress, :password, :contactno)");
 
@@ -54,21 +46,33 @@ if (isset($_POST['submit'])) {
             ":cid" => $newId,
             ":dob" => $dob,
             ":emailaddress" => $email,
-            ":password" => $pw, // Store the plaintext password in the database
+            ":password" => $pw,
             ":contactno" => $contact,
         ]);
 
-        // Store the name in a session variable
         $_SESSION['name'] = $fn;
-        $_SESSION['id'] = $newid;
         $_SESSION['email'] = $email;
         $_SESSION['dob'] = $dob;
 
-        // Close the database connection
+        $qm = $conn->prepare("SELECT customerid FROM customer WHERE firstname = :firstname AND emailaddress = :email AND dob = :dob");
+        $qm->bindParam(":firstname", $fn);
+        $qm->bindParam(":email", $email);
+        $qm->bindParam(":dob", $dob);
+        $qm->execute();
+
+        $result = $qm->fetch(PDO::FETCH_ASSOC);
+
+        if ($result) {
+            $customerid = $result['customerid'];
+            $_SESSION['id'] = $customerid;
+        } else {
+            echo "No customer found with the provided details.";
+        }
+
         $conn = null;
 
-        // Redirect to the main page after successful registration
         header("Location: main1.php");
         exit;
     }
 }
+?>

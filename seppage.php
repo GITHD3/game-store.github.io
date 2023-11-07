@@ -183,6 +183,14 @@ if ($games) {
         .cartbutton:hover {
             background-color: transparent;
         }
+        .sys , .maindetail{
+            background-color: rgb(171, 131 ,209 , 0.4);
+            padding:10px;
+            box-shadow: rgba(138, 43, 226, 0.5) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+            border: none;
+            border-radius: 10px;
+        }
     </style>
 
 
@@ -314,6 +322,7 @@ if ($games) {
                     <?php echo $genre; ?>
                 </p>
                 <hr class="hidden-sm hidden-md hidden-lg">
+                <div class="sys">
                 <center>
                     <h5>SYSTEM REQUIREMENTS</h5>
                 </center><br>
@@ -332,8 +341,8 @@ if ($games) {
                 <p>Processor Required -
                     <?php echo $processor_required; ?>
                 </p>
+                </div>
 
-                <hr class="hidden-sm hidden-md hidden-lg">
             </div>
             <div class="col-sm-8"><br>
                 <center>
@@ -341,8 +350,7 @@ if ($games) {
                         <?php echo $gameName; ?>
                     </h2>
                 </center>
-                <hr id="line1">
-                <br><br>
+                <br><br><div class="maindetail">
                 <h5>Release Date -
                     <?php echo $release_date; ?>
                 </h5>
@@ -357,7 +365,7 @@ if ($games) {
                 <p id="special2">Description</p>
                 <p id="special3">
                     <?php echo $description; ?>
-                </p>
+                </p></div>
                 <hr class="hidden-sm hidden-md hidden-lg">
                 <div class="fakeimg"><img class="imglarge" src="img 2/<?php echo $gameName; ?>.webp" alt=" "></div>
 

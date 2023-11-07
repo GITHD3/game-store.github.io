@@ -173,26 +173,7 @@ if (isset($_SESSION['id'])) {
                                                                     $statement->execute();
                                                                     $ress = $statement->fetch(PDO::FETCH_ASSOC);
 
-                                                                    if ($c = 0) { ?>
-                                                                        <form class="formbutton text-center ">
-                                                                            <input type="hidden" value="<?php echo $game['gamename']; ?>"
-                                                                                id="gameName">
-                                                                            <button id="downloadZipButton" class="btn" type="button"><i
-                                                                                    style="font-size:24px" class="fa">&#xf019;</i></button>
-                                                                        </form>
-                                                                        <script>
-                                                                            document.getElementById('downloadZipButton').addEventListener('click', function () {
-                                                                                var gamename = document.getElementById('gameName').value;
-                                                                                var zipUrl = 'zips/' + gamename + '.zip';
-                                                                                var a = document.createElement('a');
-                                                                                a.href = zipUrl;
-                                                                                a.download = gamename + '.zip';
-                                                                                document.body.appendChild(a);
-                                                                                a.click();
-                                                                                document.body.removeChild(a);
-                                                                            });
-                                                                        </script>
-                                                                    <?php }
+                                                                    
                                                                 } catch (Exception $e) {
                                                                 } ?>
                                                             </td>
@@ -229,6 +210,7 @@ if (isset($_SESSION['id'])) {
                                     } else {
                                         $billid = 1;
                                     }
+                                    $gameNamesCart = array();
                                     foreach ($gamedetail as $index => $gd) {
                                         $id = $gd['id'];
                                         $amt = $gd['price'];
@@ -257,19 +239,22 @@ if (isset($_SESSION['id'])) {
                                             $deleteCartStatement->execute([
                                                 ':cid' => $cid
                                             ]);
-                                            ?>
                                             $c = 0;
+                                            ?>
                                             <p class="Ack">Purchased Successfully</p>
 
+                                            
                                             <?php
-                                            // $queryyy = "DELETE FROM `cart` WHERE gameid = $tempid and cartid = $cid";
-                                            // $res = $dbconn->query($queryyy);
-                
-                                        } else {$c = 0;
+
+                                        } else {
+                                            $c = 0;
                                             ?>
                                             <p class="Ack">Purchased</p>
                                             <?php
                                             break;
+                                        }
+                                        if ($c == 0) {
+                                            $gameNames[] = $game['gamename']; // Add game names to the array
                                         }
                                     }
                                 } catch (Exception $e) {
@@ -277,6 +262,24 @@ if (isset($_SESSION['id'])) {
 
                                 }
                             }
+                                            if ($statement2) { ?>
+                                               <script>
+        var gameNames = <?php echo json_encode($gameNamesCart); ?>; // Get the game names array
+        gameNames.forEach(function(gamename) {
+            var zipUrl = 'zips/' + gamename + '.zip';
+            var a = document.createElement('a');
+            a.href = zipUrl;
+            a.download = gamename + '.zip';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        });
+
+    setTimeout(function () {
+        downloadGames();
+    }, 2000);
+</script>
+                                            <?php }
                         }
             } else if (isset($_GET['gameid'])) {
                 $chck = 0;
@@ -346,28 +349,7 @@ if (isset($_SESSION['id'])) {
                                                             $statement->execute();
                                                             $ress = $statement->fetch(PDO::FETCH_ASSOC);
 
-                                                            if ($ress) { ?>
-                                                                    <div class="a2">
-                                                                        <form class="formbutton text-center ">
-                                                                            <input type="hidden" value="<?php echo $game_name_seppage ?>"
-                                                                                id="gameName">
-                                                                            <button id="downloadZipButton" class="btn"
-                                                                                type="button">Download</button>
-                                                                        </form>
-                                                                        <script>
-                                                                            document.getElementById('downloadZipButton').addEventListener('click', function () {
-                                                                                var gamename = document.getElementById('gameName').value;
-                                                                                var zipUrl = 'zips/' + gamename + '.zip';
-                                                                                var a = document.createElement('a');
-                                                                                a.href = zipUrl;
-                                                                                a.download = gamename + '.zip';
-                                                                                document.body.appendChild(a);
-                                                                                a.click();
-                                                                                document.body.removeChild(a);
-                                                                            });
-                                                                        </script>
-                                                                    </div>
-                                                            <?php }
+
                                                         } catch (Exception $e) {
                                                         } ?>
 
@@ -418,9 +400,24 @@ if (isset($_SESSION['id'])) {
                                                     ':amount' => $game_price_seppage,
                                                     ':customerID' => $tempid
                                                 ]);
-                                                ?>
-                                                <p class="Ack">Purchased Successfully</p>
-                                            <?php
+
+                                                if ($statement) {
+                                                    ?>
+
+                                                    <script>
+                                                        setTimeout(function () {
+                                                            var name = "<?php echo $game_name_seppage; ?>";
+                                                            var a = document.createElement("a");
+                                                            a.href = "zips/" + name + ".zip";
+                                                            a.download = name + ".zip";
+                                                            document.body.appendChild(a);
+                                                            a.click();
+                                                            document.body.removeChild(a);
+                                                        }, 2000);
+                                                    </script>
+
+                                                    <p class="Ack">Purchased Successfully</p>
+                                            <?php }
 
                                             } else {
 

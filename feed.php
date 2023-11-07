@@ -131,24 +131,37 @@ if (isset($_POST['submit'])) {
             border: none;
             backdrop-filter: blur(6px);
         }
+        
+        .count {
+            color: beige !important;
+            background-color: rgb(23, 23, 23, 0.79);
+            box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+            border-radius: 3px;
+            border: none;
+            backdrop-filter: blur(6px);
+        
+            margin: 13px 0px;
+            padding: 8px 13px;
+        }
     </style>
 </head>
 
 <body>
     <div class="container mainformdiv2">
-    <div class="container mainformdiv" style="margin-bottom:18px;">
-    <p style="font-family: 'Press Start 2P'; color: #beb6ff">
-        MAIL | <a href="mailto:dedakiya000@gmail.com" style="color: #beb6ff; text-decoration: none;">dedakiya000@gmail.com</a>
-    </p>
-    <p style="font-family: 'Press Start 2P'; color: #beb6ff">
-        PHONE | <a href="tel:2003940580" style="color: #beb6ff; text-decoration: none;">2003940580</a>
-    </p>
-</div>
+        <div class="container mainformdiv" style="margin-bottom:18px;">
+            <p style="font-family: 'Press Start 2P'; color: #beb6ff">
+                MAIL | <a href="mailto:dedakiya000@gmail.com"
+                    style="color: #beb6ff; text-decoration: none;">dedakiya000@gmail.com</a>
+            </p>
+            <p style="font-family: 'Press Start 2P'; color: #beb6ff">
+                PHONE | <a href="tel:2003940580" style="color: #beb6ff; text-decoration: none;">2003940580</a>
+            </p>
+        </div>
 
         <div class="container mainformdiv mt-10">
             <h1 class="text-3xl font-bold mb-4" style="font-family: 'Press Start 2P'; font-size: 22px; color: #beb6ff">
                 Feedback | ParaCrash Game Store</h1>
-            <form method="post" action="thank.php">
+            <form method="post" action="thank.php" >
                 <div class="np mb-6">
                     <h5 class="nameplate pb-2 pr-2 pt-2">
                         <?php echo $name; ?>
@@ -175,8 +188,54 @@ if (isset($_POST['submit'])) {
                     <option class="opt" value="Medium">Medium</option>
                     <option class="opt" value="Difficult">Difficult</option>
                 </select>
-                <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
-                <button type="submit" name="submit" class="btn">Submit Feedback</button>
+                <textarea name="message" id="message" rows="6" placeholder="Your Message" required></textarea>
+                <div id="charCount" class="count"></div>
+                <div id="feedback" class="count"></div>
+
+                <script>
+    var minLength = 10; // Minimum number of characters required
+    var maxLength = 80; // Maximum number of characters allowed
+
+    function validateForm() {
+        var message = document.getElementById("message").value.replace(/\s/g, '');
+        var charCount = message.length;
+
+        var feedback = document.getElementById("feedback");
+
+        if (charCount < minLength) {
+            feedback.innerText = "Minimum " + minLength + " characters required.";
+            return false;
+        } else if (charCount > maxLength) {
+            feedback.innerText = "Maximum " + maxLength + " characters allowed.";
+            return false;
+        } else {
+            feedback.innerText = "";
+            return true;
+        }
+    }
+
+    document.querySelector('form').addEventListener('submit', function (e) {
+        if (!validateForm()) {
+            e.preventDefault();
+        }
+    });
+
+    document.getElementById("message").addEventListener("input", function () {
+        var message = this.value.replace(/\s/g, ''); // Remove spaces before counting
+        var charCount = message.length;
+        document.getElementById("charCount").innerText = "Characters: " + charCount;
+
+        var feedback = document.getElementById("feedback");
+        if (charCount < minLength) {
+            feedback.innerText = "Minimum " + minLength + " characters required.";
+        } else if (charCount > maxLength) {
+            feedback.innerText = "Maximum " + maxLength + " characters allowed.";
+        } else {
+            feedback.innerText = "";
+        }
+    });
+</script>
+                <button type="submit" name="submit" class="btn" onsubmit="return validateForm();">Submit Feedback</button>
             </form>
         </div>
     </div>

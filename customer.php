@@ -3,18 +3,16 @@
 <?php session_start(); ?>
 
 <head>
-  <title>Customer</title>
+  <title>Profile</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
       background: linear-gradient(160deg, rgb(21, 205, 202), #4FE0B6) !important;
       background-repeat: no-repeat;
-      background-size: auto !important;
+    background-attachment: fixed;
+    background-size: cover;
       height: 100% !important;
     }
 
-    /* Hide scrollbar */
     ::-webkit-scrollbar {
       display: none;
     }
