@@ -1,168 +1,169 @@
-    <style>
-        .user-box {
-            position: relative;
-        }
-    
-        .show-password {
-            position: absolute;
-            right: 5px;
-            cursor: pointer;
-        }
-        
-        .show-password img {
-            transform: translateY(-280%);
-            height: 20px;
-            width: 130%;
-        }
-        
-        .show-password img[src="gif/eyeopen.png"] {
-            transform: translateY(-390%);
-            height: 13px;
+<style>
+    .user-box {
+        position: relative;
+    }
+
+    .show-password {
+        position: absolute;
+        right: 5px;
+        cursor: pointer;
+    }
+
+    .show-password img {
+        transform: translateY(-280%);
+        height: 20px;
+        width: 130%;
+    }
+
+    .show-password img[src="gif/eyeopen.png"] {
+        transform: translateY(-390%);
+        height: 13px;
         width: 123%;
-        }
-    
-    
-        #btn1 {
-            position: absolute;
-            height: 34px;
-            max-width: 175px;
-            min-width: 120px;
-            outline: none;
-            color: white;
-            cursor: pointer;
-            font-size: 14px;
-            /* border: 1px solid #03e9f4; */
-            background: rgb(33 37 41);
-            font-family: 'Raleway', sans-serif;
-            color: #c3dfe0;
-            border: 1.5px solid #03e9f4;
-            border-radius: 7px;
-            margin-right: 10px;
-    
-        }
-    
-        #btn1:hover {
-            background: #03e9f4;
-            color: black;
-    
-        }
-    
-        .btnbox {
-            padding-top: 9px;
-            padding-bottom: 33px;
-        }
-    
-        .login-box {
-            margin-bottom: 100px;
-    
-        }
-    
-        #navbar {
-            position: relative;
-    
-        }
-    
-        #footer {
-            padding: 20px;
-        }
-    
-        .contain {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-    
-        }
-    
-        body {
-            background: linear-gradient(#3E54D3 , #15CDCA ) !important;
-            position: relative;
-            z-index: 1;
-            background-repeat: no-repeat !important;
-            background-attachment: fixed !important;
-            background-size: cover !important;
-            font-family: 'Satoshi' , sans-serif;
-            height: 100%;
-    
-        }
-    
-    
-    
-        .scrolling-wrapper {
-            overflow-x: scroll;
-            overflow-y: hidden;
-            white-space: nowrap;
-        }
-    
-        .contain {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding-top: 15px;
-            padding-bottom: 15px;
-        }
-    
-        .login-box {
-            margin-bottom: 0px;
-            width: 400px;
-            padding: 40px;
-    
-            background: rgba(0, 0, 0, 0.5);
-            box-sizing: border-box;
-            border-radius: 7px;
-            z-index: 10;
-            transition: all 0.4s ease;
-        }
-    
-        .login-box:hover {
-            box-shadow: 0px 20px 30px -10px #171717;
-        }
-    
-        .login-box h2 {
-            margin: 0 0 30px;
-            padding: 0;
-            color: #fff;
-            text-align: center;
-        }
-    
-        .login-box .user-box {
-            position: relative;
-        }
-    
-        .login-box .user-box input {
-            width: 100%;
-            padding: 10px 0;
-            font-size: 16px;
-            color: #fff;
-            margin-bottom: 30px;
-            border: none;
-            border-bottom: 1px solid #fff;
-            outline: none;
-            background: transparent;
-        }
-    
-        .login-box .user-box label {
-            position: absolute;
-            top: 0;
-            left: 0;
-            padding: 10px 0;
-            font-size: 16px;
-            color: #fff;
-            pointer-events: none;
-            transition: .5s;
-        }
-    
-        .login-box .user-box input:focus~label,
-        .login-box .user-box input:valid~label {
-            top: -20px;
-            left: 0;
-            color: #03e9f4;
-            font-size: 12px;
-        }
-        .content{
-            color : beige;
-        }
-    </style>
+    }
+
+
+    #btn1 {
+        position: absolute;
+        height: 34px;
+        max-width: 175px;
+        min-width: 120px;
+        outline: none;
+        color: white;
+        cursor: pointer;
+        font-size: 14px;
+        /* border: 1px solid #03e9f4; */
+        background: rgb(33 37 41);
+        font-family: 'Raleway', sans-serif;
+        color: #c3dfe0;
+        border: 1.5px solid #03e9f4;
+        border-radius: 7px;
+        margin-right: 10px;
+
+    }
+
+    #btn1:hover {
+        background: #03e9f4;
+        color: black;
+
+    }
+
+    .btnbox {
+        padding-top: 9px;
+        padding-bottom: 33px;
+    }
+
+    .login-box {
+        margin-bottom: 100px;
+
+    }
+
+    #navbar {
+        position: relative;
+
+    }
+
+    #footer {
+        padding: 20px;
+    }
+
+    .contain {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+
+    }
+
+    body {
+        background: linear-gradient(#3E54D3, #15CDCA) !important;
+        position: relative;
+        z-index: 1;
+        background-repeat: no-repeat !important;
+        background-attachment: fixed !important;
+        background-size: cover !important;
+        font-family: 'Satoshi', sans-serif;
+        height: 100%;
+
+    }
+
+
+
+    .scrolling-wrapper {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+    }
+
+    .contain {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .login-box {
+        margin-bottom: 0px;
+        width: 400px;
+        padding: 40px;
+
+        background: rgba(0, 0, 0, 0.5);
+        box-sizing: border-box;
+        border-radius: 7px;
+        z-index: 10;
+        transition: all 0.4s ease;
+    }
+
+    .login-box:hover {
+        box-shadow: 0px 20px 30px -10px #171717;
+    }
+
+    .login-box h2 {
+        margin: 0 0 30px;
+        padding: 0;
+        color: #fff;
+        text-align: center;
+    }
+
+    .login-box .user-box {
+        position: relative;
+    }
+
+    .login-box .user-box input {
+        width: 100%;
+        padding: 10px 0;
+        font-size: 16px;
+        color: #fff;
+        margin-bottom: 30px;
+        border: none;
+        border-bottom: 1px solid #fff;
+        outline: none;
+        background: transparent;
+    }
+
+    .login-box .user-box label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px 0;
+        font-size: 16px;
+        color: #fff;
+        pointer-events: none;
+        transition: .5s;
+    }
+
+    .login-box .user-box input:focus~label,
+    .login-box .user-box input:valid~label {
+        top: -20px;
+        left: 0;
+        color: #03e9f4;
+        font-size: 12px;
+    }
+
+    .content {
+        color: beige;
+    }
+</style>
 <!DOCTYPE html>
 <html>
 <?php session_start(); ?>
@@ -209,7 +210,8 @@
                     <div class="pass-field">
                         <input type="password" id="password" name="pass" required="" placeholder="Password">
                         <div class="show-password">
-                            <img id="showPassword" src="gif/eyeclose.png" alt="Show Password" onclick="togglePasswordVisibility()">
+                            <img id="showPassword" src="gif/eyeclose.png" alt="Show Password"
+                                onclick="togglePasswordVisibility()">
                         </div>
                     </div>
                     <div class="content">
@@ -258,7 +260,19 @@
                 eyeIcon.src = 'gif/eyeclose.png';
             }
         }
+        function validateContactNumber() {
+            const contactInput = document.querySelector('input[type="contact"]');
+            const contactNumber = contactInput.value;
 
+            if (contactNumber.length < 10 | contactNumber.length > 10) {
+                alert('Contact number is not Valid ');
+                contactInput.focus();
+                return false;
+            }
+
+            return true;
+        }
+        
         function validateForm(event) {
             var password = document.getElementById("password").value;
             var passwordStrengthMessage = document.getElementById("password-strength-message");
@@ -300,10 +314,19 @@
 
             if (!isStrong) {
                 passwordStrengthMessage.textContent = "Password is not strong enough!";
-            passwordStrengthMessage.style.color = "Beige";
+                passwordStrengthMessage.style.color = "Beige";
                 return false;
             }
+            const contactForm = document.querySelector('form');
+        contactForm.addEventListener('submit', (event) => {
+            event.preventDefault();
 
+            if (!validateContactNumber()) {
+                return;
+            }
+
+            contactForm.submit();
+        });
             passwordStrengthMessage.textContent = "Password is strong!";
             passwordStrengthMessage.style.color = "Slateblue";
             document.querySelector('form').submit();

@@ -205,20 +205,7 @@ if ($games) {
                     <img class="fakeimg1" src="img/<?php echo $gameName; ?>.webp">
                 </div>
                 <div class="card2 p-0 pt-2 m-0 inline-block">
-                    <?php
-                    $check_game_cart = "SELECT * FROM `cart` WHERE gameid = :gameid ";
-                    $stmt_check_game_cart = $conn->prepare($check_game_cart);
-                    $stmt_check_game_cart->bindParam(':gameid', $gameidtemp);
-                    $stmt_check_game_cart->execute();
-                    if ($stmt_check_game_cart->rowCount() > 0) {
-                        ?>
-                        <form class="formbutton" method="POST" action="cart.php">
-                            <input type="hidden" name="gameid" value="<?php echo $gameidtemp; ?>">
-                            <button type="submit" class="btn" name="go_to_cart">Go to Cart</button>
-                        </form>
-                        <?php
-                    } else {
-                        echo '
+                   
                         <form class="formbutton"method="POST">
                         <input type="hidden" name="gameidtemp" value="<?php echo $gameidtemp; ?>">
                         <div class="d-flex justify-content-center">
@@ -228,10 +215,7 @@ if ($games) {
 </div>
 
                                             </form>
-                        
-                        
-                        ';
-                        ?>
+                      
 
 
                         <?php
@@ -272,7 +256,6 @@ if ($games) {
                 </script>";
                             }
                         }
-                    }
 
                     ?>
 
@@ -282,28 +265,7 @@ if ($games) {
                         <input type="hidden" value="<?php echo $gameidtemp; ?>" name="gameid">
                         <button type="submit" class="btn">Buy</button>
                     </form>
-                    <!-- <form class="formbutton text-center p-0 m-0 pt-2">
-                        <input type="hidden" value="<?php echo $gamename ?>" id="gameName">
-                        <button id="downloadZipButton" class="btn" type="button">Download</button>
-                    </form>
-
-                     <?php
-                     $zipfile = "zips/$gamename.zip";
-                     ?>
-
-                    <script>
-                        document.getElementById('downloadZipButton').addEventListener('click', function () {
-                            var gamename = document.getElementById('gameName').value;
-                            var zipUrl = 'zips/' + gamename + '.zip';  // Specify the desired path here
-
-                            var a = document.createElement('a');
-                            a.href = zipUrl;
-                            a.download = gamename + '.zip';
-                            document.body.appendChild(a);
-                            a.click();
-                            document.body.removeChild(a);
-                        });
-                    </script> -->
+                    
 
 
 

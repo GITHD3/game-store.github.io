@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2023 at 07:06 PM
+-- Generation Time: Nov 08, 2023 at 03:21 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -123,7 +123,8 @@ INSERT INTO `cart` (`cartid`, `gameid`) VALUES
 (11, 'UNA104'),
 (13, 'NUA107'),
 (13, 'NUA121'),
-(13, 'NUNA105');
+(13, 'NUNA105'),
+(24, 'NUNA105');
 
 -- --------------------------------------------------------
 
@@ -137,7 +138,7 @@ CREATE TABLE `customer` (
   `password` varchar(32) NOT NULL,
   `firstname` varchar(20) NOT NULL,
   `lastname` varchar(20) NOT NULL,
-  `contactno` varchar(14) NOT NULL,
+  `contactno` varchar(10) NOT NULL,
   `dob` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -159,7 +160,8 @@ INSERT INTO `customer` (`customerid`, `emailaddress`, `password`, `firstname`, `
 (20, 'yagnik38@gmail.com', '4bcdc2330abae94f3a02430feeec9783', 'yagnik', 'shah', '9978662617', '2000-04-05'),
 (21, 'manisanhay32@gmail.com', '21ffdbf243a317c92933e9fd01719309', 'Sanjay', 'Mani', '8529632211', '1995-11-06'),
 (22, 'vivek1222@gmail.com', '$2y$10$uTRXh.niEiWlGZM2KSzoMeYkc', 'Vivek', 'Patni', '9898888551', '2008-12-14'),
-(23, 'vodekpvtltd@gmail.com', '$2y$10$9TbSo8YtaWXmvZUoqxKlRep2Z', 'Hemanshu', 'shah', '8529637433', '2001-11-02');
+(23, 'vodekpvtltd@gmail.com', '$2y$10$9TbSo8YtaWXmvZUoqxKlRep2Z', 'Hemanshu', 'shah', '8529637433', '2001-11-02'),
+(24, 'Sagar12@gmail.com', '$2y$10$7910cpcntlPtcVPXLl58Be.V3', 'Sagara', 'Bharwad', '8756943216', '2002-11-22');
 
 -- --------------------------------------------------------
 
@@ -230,7 +232,7 @@ INSERT INTO `games` (`gameid`, `gamename`, `developer_name`, `publisher_name`, `
 ('NUNA111', 'Grand Theft Auto Vice City', 'Rockstar', 'Rockstar', 'Action-Adventure, Open-World Game', 499.00, '1.5 GB', 1, 'Welcome to Vice City. Welcome to the 1980s. From the decade of big hair, excess and pastel suits comes a story of one man\'s rise to the top of the criminal pile.', '\"Welcome to Vice City, the neon-soaked playground of the 1980s. In this decade of excess, witness one man\'s relentless ascent to the top of the criminal pile.\"', 256, 'Microsoft Windows 7 or Higher', '800 MHz Intel Pentium III or 800 MHz AMD', '2.5 GB', '2002-10-28', 0),
 ('NUNA112', 'Need For Speed Most Wanted', 'Criterion Software', 'Electronic Arts', 'Open-World Racing Game', 899.00, '20 GB', 1, 'The open-world action in Need for Speed Most Wanted gives you the freedom to drive your way. Hit jumps and shortcuts, switch cars, lie low or head for terrain that plays to your vehicle\'s unique strengths. Fight your way past cops and rivals using skill, high-end car tech and tons of nitrous.', '\"Experience Unleashed Freedom in Need for Speed Most Wanted. Race, Evade, and Dominate as you Take Control of the Open World, Master Jumps, Switch Cars, and Outsmart Cops and Rivals with Skill and Nitrous Power!\"', 4, 'Windows 7 or Higher', 'Quad-Core CPU or More', '20 GB', '2005-11-11', 0),
 ('NUNA113', 'Asphalt 9 Legends', 'Gameloft', 'Gameloft, Gameloft Iberica S.A.U.', 'Racing Game', 0.00, '2 GB', 1, 'Asphalt 9: Legends, released in 2018 by Gameloft, is a racing game with a notable car lineup, including the \"TouchDrive\" autopilot mode and \"shockwave nitro.\" Compared to Asphalt 8, the graphics are significantly improved. The game features 219 cars divided into classes (D, C, B, A, and S), with players starting from the Mitsubishi Lancer Evolution X (Class D) and progressing to the Bugatti Bolide (Class S). To unlock and enhance cars, blueprints are required, and customization is possible through the car editor. Moreover, cars now consume fuel during races, depending on their star level.', '\"Get ready for heart-pounding action in Asphalt 9: Legends! Race through stunning tracks, use the \'TouchDrive\' autopilot for precision maneuvers, and unleash the \'shockwave nitro\' for a burst of speed. With 219 cars to choose from, each with unique blueprints and customizable options . Fuel your passion for racing and conquer the road in this adrenaline-fueled game!\"', 4, 'Windows 10 or Higher', 'Core i3-3110M | AMD Ryzen 3 3300U or bet', '2 GB', '2018-02-26', 0),
-('NUNA114', 'Froza Horizon 5', 'Playground Games', ' Xbox Game Studios, Motorsport Horizon R', 'Racing Game', 3999.00, '103 GB', 1, 'Forza Horizon 5, released in 2021, takes you on the ultimate Horizon Adventure in a fictionalized version of Mexico. Explore vibrant landscapes, drive the world\'s greatest cars, and conquer the challenging Sierra Nueva in the epic Horizon Rally. Get ready for limitless driving action and thrilling racing experiences. Expansion sold separately.', '\"Forza Horizon 5: Ultimate Horizon Adventure in Mexico. Explore vibrant landscapes, iconic cars, and conquer the challenging Sierra Nueva in adrenaline-pumping Horizon Rally. Get ready for limitless driving action!\"', 8, 'Windows 10 or Higher', 'Intel i5-4460 or AMD Ryzen 3 1200. Memor', '110 GB', '2021-11-05', 0),
+('NUNA114', 'Forza Horizon 5', 'Playground Games', ' Xbox Game Studios, Motorsport Horizon R', 'Racing Game', 3999.00, '103 GB', 1, 'Forza Horizon 5, released in 2021, takes you on the ultimate Horizon Adventure in a fictionalized version of Mexico. Explore vibrant landscapes, drive the world\'s greatest cars, and conquer the challenging Sierra Nueva in the epic Horizon Rally. Get ready for limitless driving action and thrilling racing experiences. Expansion sold separately.', '\"Forza Horizon 5: Ultimate Horizon Adventure in Mexico. Explore vibrant landscapes, iconic cars, and conquer the challenging Sierra Nueva in adrenaline-pumping Horizon Rally. Get ready for limitless driving action!\"', 8, 'Windows 10 or Higher', 'Intel i5-4460 or AMD Ryzen 3 1200. Memor', '110 GB', '2021-11-05', 0),
 ('NUNA116', 'Valorant', 'Riot Games', 'Riot Games', 'Tactical shooter , First Person Shooter Game', 0.00, '16 GB', 1, 'Valorant is a free-to-play first-person tactical hero shooter developed and published by Riot Games for Windows. Initially teased as \"Project A\" in October 2019, it entered a closed beta in April 2020 before its official release on June 2, 2020. The game combines elements of CS:GO\'s competitive FPS with Overwatch\'s diverse heroes, offering flashy skills and abilities that can influence the outcome of a round. Each class possesses unique abilities, like leaping high in the air or revealing enemy positions, with ultimate abilities that can damage enemies through walls. Valorant\'s polished design, balanced maps, and heroes contributed to its successful Early Access, promising even more improvements in the future.', '\"Valorant: The Epic Fusion of CS:GO and Overwatch, Unleash Heroic Powers and Strategic Genius in a Free-to-Play FPS Showdown! Master Unique Abilities, Dominate Rounds, and Conquer the Competition through Walls!\"', 4, '64-bit Windows 7 or Higher', 'Intel Core 2 Duo E8400, AMD Athlon 200GE', '20 GB', '2020-06-02', 0),
 ('NUNA117', 'Gord', 'Covenant.dev', 'Team17', 'Strategy game, Simulation Video Game, Narrative, Entertainm', 3100.00, '20 GB', 1, 'Gord, a single-player adventure strategy game that blends survival with conquest. Build a thriving civilization while venturing into the darkness beyond the gates. Navigate eerie lands, manage a populace with personal stories, and shape your settlement\'s fate through quests and decisions. Gord intertwines strategic brilliance with immersive storytelling, offering a unique gaming experience where your choices determine the destiny of your tribe.', '\"GORD: Shape Destiny, Conquer Darkness.Forge Realms, Unleash Legends - GORD Awaits Your Command.\"', 8, 'Windows 10 or higher', 'Intel Core i5-6600 3.3 GHz or AMD Ryzen ', '20 GB', '2023-08-17', 0),
 ('NUNA118', 'Hearthstone', 'Blizzard Entertainment', 'Blizzard Entertainment', 'Card Game , Strategy game', 0.00, '3', 1, 'THE HEARTHSTONE GAME is a captivating turn-based card duel that unfolds between two opponents, each wielding decks meticulously composed of 30 cards, in addition to selecting a hero endowed with distinctive powers. Within the intricate strategy of the game, players judiciously allocate their finite mana crystals to either unleash potent abilities or conjure minions to launch calculated assaults against their adversary. The ultimate objective revolves around the intricate dance of strategy: to decimate the opponent\'s hero and secure triumph in this enchanting clash of wits and tactics.', '\"Unleash your strategic prowess and wield your cards wisely in THE HEARTHSTONE GAME, where heroes clash, mana crystals gleam, and victory awaits the cunning.\"', 3, 'Windows 7 or Higher', 'Intel® Pentium® D or AMD® Athlon™ 64 X2', '3 GB', '2014-03-11', 0),
@@ -294,6 +296,36 @@ INSERT INTO `genre` (`category`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `news`
+--
+
+CREATE TABLE `news` (
+  `id` int(11) NOT NULL,
+  `gamename` varchar(40) DEFAULT NULL,
+  `date` date NOT NULL,
+  `part` tinyint(1) NOT NULL,
+  `content` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`id`, `gamename`, `date`, `part`, `content`) VALUES
+(1, 'Gord', '2023-11-06', 1, 'GORD Game: Evolving Beyond Limits! From release till now, updates have slain critics concerns and infused new realms of excitement. Unleash the power within!'),
+(2, 'Cyberpunk2077', '2023-09-26', 1, 'The upcoming expansion, Phantom Liberty, is set to be released on September 26, 2023. It will add new quests, weapons, and enemies to the game. CD Projekt Red is also working on a sequel to Cyberpunk 2077, but it is still in the early stages of development.'),
+(3, 'Grand Theft Auto V', '2023-11-06', 1, 'GTA V is still the most-watched game on Twitch. In 2021, GTA V was the most-watched game on Twitch, with over 3.1 billion hours watched. This is likely due to the popularity of GTA RP, a mode where players join a dedicated GTA server and roleplay as different characters.'),
+(4, 'Forza Horizon 5', '2021-11-01', 2, 'Forza Horizon 5 breaks records with its vast 50% larger map than its predecessor. Dynamic weather adds thrill to gameplay. Nominated for Game of the Year at The Game Awards 2021.'),
+(5, 'Wolfenstein New Order', '2021-10-01', 2, 'Wolfenstein: The New Order, where the Axis Powers reign after WWII. As B.J. Blazkowicz, lead the resistance against Nazi rule. Acclaimed and commercially successful, it earned Game of the Year nominations at The Game Awards 2014, selling over 2 million copies in its debut week.'),
+(6, 'Need For Speed Most Wanted', '2022-01-15', 2, 'Most Played Car Racing Game!'),
+(7, 'Street Fighter 6', '2023-09-27', 2, 'Cooler Master has revealed a new line of Street Fighter 6-inspired gaming hardware. The line includes a gaming headset, mousepad, and keyboard.'),
+(8, 'PlayerUnknown\'s Battlegrounds', '2022-05-01', 2, 'PUBG Mobile\'s ban in India during September 2020, citing addiction and gambling concerns, was lifted in March 2022. PUBG: New State arrives this November 2022, featuring dynamic gameplay with drivable vehicles and advanced weapon attachments.'),
+(9, 'Call of Duty Modern Warfare', '2022-01-20', 2, 'It was the first Call of Duty game to be rated M for Mature by the ESRB. This was due to its realistic violence and depictions of terrorism.'),
+(10, 'Valorant', '2022-01-05', 2, 'Valorant boasts 15+ million monthly players, cementing its place as a premier competitive FPS. Riot Games reveals the upcoming agent, \'Giraffe,\' a recon specialist, set to debut in Episode 7 Act 3.');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `payment`
 --
 
@@ -345,12 +377,28 @@ ALTER TABLE `genre`
   ADD UNIQUE KEY `unique_category` (`category`);
 
 --
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `payment`
 --
 ALTER TABLE `payment`
   ADD PRIMARY KEY (`paymentid`),
   ADD KEY `customerid` (`customerid`),
   ADD KEY `billid` (`billid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `news`
+--
+ALTER TABLE `news`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
