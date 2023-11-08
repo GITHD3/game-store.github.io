@@ -90,6 +90,8 @@ background-color: rgba(255, 255, 255, 0.4);
 
         <a class="linkpages block list-group-item py-2 px-4" href="adGame.php">Update Game</a>
         <a class="linkpages block list-group-item py-2 px-4" href="category.php">Category</a>
+        <a class="linkpages block list-group-item py-2 px-4" href="admin_news.php">News</a>
+
     </div>
 </div>
 

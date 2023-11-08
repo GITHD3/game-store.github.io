@@ -188,6 +188,8 @@ if (isset($_POST['update'])) {
             <a class="linkpages block list-group-item py-2 px-4" href="AdGamesAdd.php">Create Game</a>
             <a class="linkpages block list-group-item py-2 px-4" href="adGame.php">Update Game</a>
             <a class="linkpages block list-group-item py-2 px-4" href="category.php">Category</a>
+            <a class="linkpages block list-group-item py-2 px-4" href="admin_news.php">News</a>
+
         </div>
     </div>
     <form class="index2 " method="post" action="" style="padding-left:19px; width:fit-content;">
