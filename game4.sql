@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2023 at 06:12 AM
+-- Generation Time: Dec 08, 2023 at 05:53 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -91,7 +91,9 @@ INSERT INTO `bill` (`bill_id`, `gameid`, `bill_date`, `amount`, `customerID`) VA
 (29, 'NUNA125', '2023-11-07', 4599.000, 23),
 (30, ' NUA106', '2023-11-07', 0.000, 23),
 (30, 'NUA112', '2023-11-07', 0.000, 23),
-(31, 'NUNA126', '2023-11-09', 4999.000, 3);
+(31, 'NUNA126', '2023-11-09', 4999.000, 3),
+(32, 'NUNA123', '2023-12-01', 1399.000, 3),
+(33, 'NUNA105', '2023-12-01', 0.000, 25);
 
 -- --------------------------------------------------------
 
@@ -162,7 +164,8 @@ INSERT INTO `customer` (`customerid`, `emailaddress`, `password`, `firstname`, `
 (21, 'manisanhay32@gmail.com', '21ffdbf243a317c92933e9fd01719309', 'Sanjay', 'Mani', '8529632211', '1995-11-06'),
 (22, 'vivek1222@gmail.com', '$2y$10$uTRXh.niEiWlGZM2KSzoMeYkc', 'Vivek', 'Patni', '9898888551', '2008-12-14'),
 (23, 'vodekpvtltd@gmail.com', '$2y$10$9TbSo8YtaWXmvZUoqxKlRep2Z', 'Hemanshu', 'shah', '8529637433', '2001-11-02'),
-(24, 'Sagar12@gmail.com', '$2y$10$7910cpcntlPtcVPXLl58Be.V3', 'Sagara', 'Bharwad', '8756943216', '2002-11-22');
+(24, 'Sagar12@gmail.com', '$2y$10$7910cpcntlPtcVPXLl58Be.V3', 'Sagara', 'Bharwad', '8756943216', '2002-11-22'),
+(25, 'rahuldutt@gmail.com', '$2y$10$Ixim6jXVS2XZ1byac8uYH.b82', 'Rahul', 'Dutt', '8006910420', '2001-01-05');
 
 -- --------------------------------------------------------
 
@@ -313,7 +316,7 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`id`, `gamename`, `date`, `part`, `content`) VALUES
-(1, 'Gord', '2023-11-06', 1, 'GORD Game: Evolving Beyond Limits! From release till now, updates have slain critics concerns and infused new realms of excitement. Unleash the power within!'),
+(1, 'Gord', '2023-12-08', 1, 'GORD Game: Evolving Beyond Limits! From release till now, updates have slain critics concerns and infused new realms of excitement. Unleash the power within!!'),
 (2, 'Cyberpunk2077', '2023-09-26', 1, 'The upcoming expansion, Phantom Liberty, is set to be released on September 26, 2023. It will add new quests, weapons, and enemies to the game. CD Projekt Red is also working on a sequel to Cyberpunk 2077, but it is still in the early stages of development.'),
 (3, 'Grand Theft Auto V', '2023-11-06', 1, 'GTA V is still the most-watched game on Twitch. In 2021, GTA V was the most-watched game on Twitch, with over 3.1 billion hours watched. This is likely due to the popularity of GTA RP, a mode where players join a dedicated GTA server and roleplay as different characters.'),
 (4, 'Forza Horizon 5', '2021-11-01', 2, 'Forza Horizon 5 breaks records with its vast 50% larger map than its predecessor. Dynamic weather adds thrill to gameplay. Nominated for Game of the Year at The Game Awards 2021.'),

@@ -33,7 +33,8 @@
             $gamename = $_POST['gamename'];
             $new_gamename = $_POST['new_gamename'];
             $content = $_POST['content'];
-            $ndate = $_POST['new_date'];
+            $ndate = date('Y-m-d');
+
             $part = $_POST['part'];
 
             $query = "UPDATE news SET gamename = :new_gamename, content = :content, date = :ndate WHERE gamename = :gamename AND part = :part";

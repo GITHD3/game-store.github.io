@@ -269,22 +269,34 @@ $result23 = $st->fetchAll(PDO::FETCH_ASSOC);
 if(isset($_POST['submitd'])){
 ?>
 <script>
-function handleDownload(event) {
+  document.addEventListener('click', function (event) {
     if (event.target && event.target.classList.contains('downloadZipButton')) {
-        var gamename = event.target.dataset.game;
-        var zipUrl = 'zips/' + gamename + '.zip';
-        var a = document.createElement('a');
-        a.href = zipUrl;
-        a.download = gamename + '.zip';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        return false;
-    }
-}
+      event.preventDefault(); // Prevent default form submission
+      var gamename = event.target.dataset.game;
+      var zipUrl = 'zips/' + gamename + '.zip';
 
-document.addEventListener('click', handleDownload);
+      // Use fetch to download the file asynchronously
+      fetch(zipUrl)
+        .then(response => response.blob())
+        .then(blob => {
+          // Create a Blob URL and trigger a click event on an anchor element
+          var blobUrl = URL.createObjectURL(blob);
+          var downloadLink = document.createElement('a');
+          downloadLink.href = blobUrl;
+          downloadLink.download = gamename + '.zip';
+
+          document.body.appendChild(downloadLink);
+          downloadLink.click();
+
+          // Remove the anchor and revoke the Blob URL
+          document.body.removeChild(downloadLink);
+          URL.revokeObjectURL(blobUrl);
+        })
+        .catch(error => console.error('Error fetching the file:', error));
+    }
+  });
 </script>
+
 <?php
 }
 ?>

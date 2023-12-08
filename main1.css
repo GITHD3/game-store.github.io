@@ -290,7 +290,7 @@
 
 .bcard {
     font-family: 'Nohemi', sans-serif;
-    background-color:rgb(79, 128, 226) ;
+    background-color: #a58fff !important; 
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 16px;
@@ -325,7 +325,7 @@
     justify-content: center;
     padding-top: 20px;
     gap: 10px;
-    max-width: 98%;
+    max-width: 100%;
     align-items: center;
 }
 
