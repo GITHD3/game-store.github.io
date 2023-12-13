@@ -198,6 +198,7 @@ if (isset($_SESSION['id'])) {
                             </div>
 
                             <?php
+                            $statement2 = null;
                             if (isset($_POST['cartsubmit'])) {
                                 try {
                                     $cid = $cartid;
@@ -234,6 +235,10 @@ if (isset($_SESSION['id'])) {
                                                 ':amount' => $amt,
                                                 ':customerID' => $tempid
                                             ]);
+                                            $updatePlayerCountQuery = "UPDATE games SET player_count = player_count + 1 WHERE gameid = :gameid";
+                                            $updatePlayerCountStatement = $dbconn->prepare($updatePlayerCountQuery);
+                                            $updatePlayerCountStatement->execute([':gameid' => $id]);
+                                        
                                             $deleteCartQuery = "DELETE FROM cart WHERE cartid = :cid";
                                             $deleteCartStatement = $dbconn->prepare($deleteCartQuery);
                                             $deleteCartStatement->execute([
@@ -262,6 +267,7 @@ if (isset($_SESSION['id'])) {
 
                                 }
                             }
+                            try{
                                             if ($statement2) { ?>
                                                <script>
         var gameNames = <?php echo json_encode($gameNamesCart); ?>; // Get the game names array
@@ -279,7 +285,10 @@ if (isset($_SESSION['id'])) {
         downloadGames();
     }, 2000);
 </script>
-                                            <?php }
+                                            <?php }}
+                                            catch(Exception $e){
+                                                echo " ";
+                                            }
                         }
             } else if (isset($_GET['gameid'])) {
                 $chck = 0;
@@ -400,6 +409,10 @@ if (isset($_SESSION['id'])) {
                                                     ':amount' => $game_price_seppage,
                                                     ':customerID' => $tempid
                                                 ]);
+                                                $updatePlayerCountQuery = "UPDATE games SET player_count = player_count + 1 WHERE gameid = :gameid";
+                                                $updatePlayerCountStatement = $dbconn->prepare($updatePlayerCountQuery);
+                                                $updatePlayerCountStatement->execute([':gameid' => $game_id]);
+                                            
 
                                                 if ($statement) {
                                                     ?>

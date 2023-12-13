@@ -93,10 +93,13 @@ if ($dbconn->connect_error) {
                         $statement->bind_result($gamename, $content, $date);
 
                         while ($statement->fetch()) { ?>
-                            <div class="v1child">
+                            <div class="v1child">   
+                                
                                 <img class="v1childimg" src="img/<?php echo $gamename; ?>.webp">
                                 <p>
-                                    <?php echo $content; ?>
+                                    <a href="seppage.php?gameName=<?php echo $gamename; ?>" >
+                                        <?php echo $content; ?>
+                                    </a>
                                 </p>
                                 <div class="timenews">
                                     <h6 class="b-0" style="color: grey;">

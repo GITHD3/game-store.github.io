@@ -143,6 +143,7 @@ ob_start();
                             $email = $_SESSION['email'];
                             if ($fn == 'Harsh' && $email == 'harshadmin@gmail.com') { ?>
                                 <li><a class="dropdown-item" href="admin1.php">Admin</a></li>
+                                <li><a class="dropdown-item" href="report.php">Report</a></li>
                             <?php } ?>
                         </ul>
                     </li>

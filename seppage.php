@@ -64,11 +64,7 @@ if ($games) {
 
 <body>
     <?php include 'navbar.php'; ?>
-    <div class="text-center container py-5">
-        <h4 class="heading" style="font-family: 'Press Start 2P'; font-size: 22px; color: black;">
-            <strong>ParaCrash Game Store</strong>
-        </h4>
-    </div>
+    
     <STYLE>
         body {
             background: linear-gradient(#404ccc, #03e9f4);
@@ -130,8 +126,7 @@ if ($games) {
         }
 
         .special {
-            font-family: 'Aspekta', sans-serif;
-
+            font-family: 'Press Start 2P';
             align-items: center;
         }
 
@@ -184,7 +179,7 @@ if ($games) {
             background-color: transparent;
         }
         .sys , .maindetail{
-            background-color: rgb(171, 131 ,209 , 0.4);
+            background-color: #d1bde466;
             padding:10px;
             box-shadow: rgba(138, 43, 226, 0.5) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 
@@ -196,7 +191,7 @@ if ($games) {
 
 
 
-    <div class="container" id="all">
+    <div class="container my-5" id="all">
         <div class="row">
             <div class="col-sm-4">
 
