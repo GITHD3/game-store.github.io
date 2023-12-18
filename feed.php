@@ -160,7 +160,7 @@ if (isset($_POST['submit'])) {
 
         <div class="container mainformdiv mt-10">
             <h1 class="text-3xl font-bold mb-4" style="font-family: 'Press Start 2P'; font-size: 22px; color: #beb6ff">
-                Feedback | ParaCrash Game Store</h1>
+            ParaCrash | Feedback </h1>
             <form method="post" action="thank.php" >
                 <div class="np mb-6">
                     <h5 class="nameplate pb-2 pr-2 pt-2">

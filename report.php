@@ -68,7 +68,7 @@ while ($row = $allGamesResult->fetch_assoc()) {
             <button id="mostPlayedBtn" class="btnmain" onclick="toggleChart('mostPlayedChart')">Most Played
                 Game</button>
         </div>
-        <h4 class="heading pt-2" style="font-family: 'Press Start 2P'; font-size: 22px;">
+        <h4 class="heading" style="font-family: 'Press Start 2P'; font-size: 22px;">
             <strong>ParaCrash Report</strong>
         </h4>
         <div class="buttons-container">
@@ -77,7 +77,7 @@ while ($row = $allGamesResult->fetch_assoc()) {
     </div>
 
 
-    <div class="mainpie" style="width: 80%; margin: auto;">
+    <div class="mainpie" style="width: 65%; margin: auto;">
         <canvas id="mostPlayedChart" height="400"></canvas>
         <canvas id="allGamesChart" style="display: none;" height="400"></canvas>
     </div>
@@ -150,7 +150,7 @@ while ($row = $allGamesResult->fetch_assoc()) {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 400px;
+        margin-top: 150px;
         text-align: center;
     }
 
@@ -166,12 +166,13 @@ while ($row = $allGamesResult->fetch_assoc()) {
         color: beige;
         padding: 7px;
         transition: 0.3s;
-        background-color: rgba(0, 0, 0, 0.5);
-        box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+        background: rgba(0, 0, 0, 0.65);
     }
-    .btnmain:hover{
-        box-shadow: #9f95db 0px 22px 70px 4px;
-            background-color: #9f95db;
-            color:black;
+
+    .btnmain:hover {
+        box-shadow: 0px 0px 5px #9f95db, 0px 0px 25px #9f95db, 0px 0px 50px #9f95db, 0px 0px 100px #9f95db;
+        border: none;
+        background-color: #9f95db;
+        color: black;
     }
 </style>
