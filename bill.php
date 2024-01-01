@@ -246,20 +246,20 @@ if (isset($_SESSION['id'])) {
                                             ]);
                                             $c = 0;
                                             ?>
-                                            <p class="Ack">Purchased Successfully</p>
 
-                                            
-                                            <?php
 
-                                        } else {
-                                            $c = 0;
-                                            ?>
-                                            <p class="Ack">Purchased</p>
+<?php
+
+} else {
+    $c = 0;
+    ?>
+                                            <p class="Ack">Purchased , You can Download it from Profile Page</p>
                                             <?php
                                             break;
                                         }
-                                        if ($c == 0) {
-                                            $gameNames[] = $game['gamename']; // Add game names to the array
+                                        if ($c == 0) {?>
+                                            <p class="Ack">Purchased Successfully , You can Download it from Profile Page</p>
+                                           <?php $gameNames[] = $game['gamename']; // Add game names to the array
                                         }
                                     }
                                 } catch (Exception $e) {
