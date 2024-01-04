@@ -15,15 +15,17 @@ if ($conn->connect_error) {
 
 $mostPlayedQuery = "SELECT gameid, gamename, player_count, price FROM games ORDER BY player_count DESC, price * player_count DESC LIMIT 1";
 $mostPlayedResult = $conn->query($mostPlayedQuery);
-
-if ($mostPlayedResult->num_rows > 0) {
+if ($mostPlayedResult === false) {
+    // Handle the case where there's an error in the query execution
+    die("Error in executing most played query: " . $conn->error);
+} elseif ($mostPlayedResult->num_rows > 0) {
     $mostPlayedData = $mostPlayedResult->fetch_assoc();
 
     // Fetch number of customers playing the most played game
     $mostPlayedCustomersQuery = "SELECT COUNT(DISTINCT customerID) as most_played_customers FROM bill WHERE gameid = '{$mostPlayedData['gameid']}'";
     $mostPlayedCustomersResult = $conn->query($mostPlayedCustomersQuery);
     $mostPlayedCustomersData = $mostPlayedCustomersResult->fetch_assoc();
-} else {
+} else if($mostPlayedResult <= 0){
     // Handle the case where there are no results
     $mostPlayedData = [
         'gameid' => null,
