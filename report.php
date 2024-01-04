@@ -79,7 +79,7 @@ while ($row = $allGamesResult->fetch_assoc()) {
     </div>
 
 
-    <div class="mainpie" style="width: 60%; margin: auto;">
+    <div class="mainpie" style="max-width: 60%; margin: auto;">
         <canvas id="mostPlayedChart" height="400"></canvas>
         <canvas id="allGamesChart" style="display: none;" height="400"></canvas>
     </div>
